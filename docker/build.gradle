@@ -18,18 +18,13 @@ task prepareDocker(){
 		stageDir.mkdirs()
 	     // copy all necessary files to  build/docker/ dir
     	copy {
-	        from new File("../de.jena.mdo.runtime/generated/distributions/executable/de.jena.mdo.runtime_docker.jar")
+	        from new File("../de.avatar.mr.runtime/generated/distributions/executable/de.avatar.mr.runtime_docker.jar")
 	        into stageDir
-	        rename("de.jena.mdo.runtime_docker.jar", "de.jena.mdo.runtime.jar")
+	        rename("de.avatar.mr.runtime_docker.jar", "de.avatar.mr.runtime.jar")
 	    }
 	    copy {
-	        from new File("../de.jena.mdo.runtime/runtime/")
+	        from new File("../de.avatar.mr.runtime/runtime/")
 	        into new File(stageDir, "runtime")
-	    }
-	    copy {
-//	        from new File("../de.jena.mdo.jdbc.example/generated/tmp/run.launch-derby/mdo")
-	        from new File("../de.jena.mdo.jdbc.example/mdo")
-	        into new File(stageDir, "mdo")
 	    }
     }
 }
@@ -40,7 +35,7 @@ task prepareDocker(){
 task buildDocker(type:Exec, dependsOn: prepareDocker){
 	
 	workingDir '.'
-    def tag = "scj/mdo:latest"
+    def tag = "scj/avtar-modelrepo:latest"
 	executable "docker"
 
 	args "build", "-f", "Dockerfile", ".", "-t", tag

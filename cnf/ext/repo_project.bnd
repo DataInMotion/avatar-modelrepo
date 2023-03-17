@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: EPL-2.0
 
 
--plugin.1.mdo: \
+-plugin.1.avatar: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
 		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
 		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
@@ -15,7 +15,7 @@
 		readOnly 			= true;\
 		index				= ${.}/project.maven
 
--plugin.2.mdo: \
+-plugin.2.avatar: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
 		snapshotUrl			=https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/;\
 		releaseUrl			=https://devel.data-in-motion.biz/nexus/repository/dim-release/;\

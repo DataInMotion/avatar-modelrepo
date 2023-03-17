@@ -2,7 +2,7 @@ pipeline  {
     agent any
 
 	environment {
-		imagename = 'scj/mdo'
+		imagename = 'scj/avatar-modelrepo'
 		dockerImage = ''
 		JAVA_OPTS = "-Xms4096m -Xmx4096m -XX:MaxMetaspaceSize=1024m ${sh(script:'echo $JAVA_OPTS', returnStdout: true).trim()}"
 	}
@@ -56,7 +56,7 @@ pipeline  {
             }
             steps {
                 echo "I am building on ${env.BRANCH_NAME}"
-                sh "./gradlew release -Drelease.dir=$JENKINS_HOME/repo.gecko/release/de-jena/MDO --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+                sh "./gradlew release -Drelease.dir=$JENKINS_HOME/repo.gecko/release/DataInMotion/avatar-modelrepo --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
             }
         }
         
@@ -67,9 +67,9 @@ pipeline  {
             steps  {
                 echo "I am building on ${env.JOB_NAME}"
                 sh "./gradlew release --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
-                sh "mkdir -p $JENKINS_HOME/repo.gecko/snapshot/de-jena/MDO"
-                sh "rm -rf $JENKINS_HOME/repo.gecko/snapshot/de-jena/MDO/*"
-                sh "cp -r cnf/release/* $JENKINS_HOME/repo.gecko/snapshot/de-jena/MDO"
+                sh "mkdir -p $JENKINS_HOME/repo.gecko/snapshot/DataInMotion/avatar-modelrepo"
+                sh "rm -rf $JENKINS_HOME/repo.gecko/snapshot/DataInMotion/avatar-modelrepo/*"
+                sh "cp -r cnf/release/* $JENKINS_HOME/repo.gecko/snapshot/DataInMotion/avatar-modelrepo"
             }
         }
         
@@ -78,7 +78,7 @@ pipeline  {
 			steps  {
 				echo "I am exporting applications on branch: ${env.GIT_BRANCH}"
 
-                sh "./gradlew de.jena.mdo.runtime:resolve.de.jena.mdo.runtime_base --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+                sh "./gradlew de.avatar.mr.runtime:resolve.de.avatar.mr.runtime_base --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
 			}
 		}
 
@@ -87,7 +87,7 @@ pipeline  {
 			steps  {
 				echo "I am exporting applications on branch: ${env.GIT_BRANCH}"
 
-                sh "./gradlew de.jena.mdo.runtime:export.de.jena.mdo.runtime_docker --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+                sh "./gradlew de.avatar.mr.runtime:export.de.avatar.mr.runtime_docker --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
 			}
 		}
 
@@ -96,7 +96,7 @@ pipeline  {
 			steps  {
 				echo "I am exporting applications on branch: ${env.GIT_BRANCH}"
 
-                sh "./gradlew de.jena.mdo.jdbc.example:resolve.launch-derby --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+                sh "./gradlew de.avatar.mr.jdbc.example:resolve.launch-derby --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
 			}
 		}
 /*
@@ -104,7 +104,7 @@ pipeline  {
 			steps  {
 				echo "I am exporting applications on branch: ${env.GIT_BRANCH}"
 
-                sh "./gradlew  de.jena.mdo.jdbc.example:run.launch-derby --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
+                sh "./gradlew  de.avatar.mr.jdbc.example:run.launch-derby --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
 			}
 		}
 */
@@ -132,14 +132,14 @@ pipeline  {
 				step([$class: 'DockerBuilderPublisher',
 				      dockerFileDirectory: 'docker',
 							cloud: 'docker',
-							tagsString: 'registry-git.jena.de/scj/mdo:latest',
+							tagsString: 'registry-git.jena.de/scj/avatar-modelrepo:latest',
 							pushOnSuccess: true,
 							pushCredentialsId: 'github-jena'])
 
 				step([$class: 'DockerBuilderPublisher',
 				      dockerFileDirectory: 'docker',
 							cloud: 'docker',
-							tagsString: 'devel.data-in-motion.biz:6000/scj/mdo:latest',
+							tagsString: 'devel.data-in-motion.biz:6000/scj/avatar-modelrepo:latest',
 							pushOnSuccess: true,
 							pushCredentialsId: 'dim-nexus'])
 

@@ -1,7 +1,0 @@
--library: enable-emf
-
--includeresource: model=model
-
-Require-Capability: \
-	osgi.extender;\
-	filter:="(osgi.extender=emf.model)"

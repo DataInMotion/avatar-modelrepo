@@ -1,0 +1,11 @@
+{
+  ":configurator:resource-version": 1,
+  
+	"EMFMongoRepositoryConfigurator": 
+  	{
+	    "mongo.instances": "avatar",
+		"avatar.baseUris" : "mongodb://mongodb/",
+		"avatar.databases" : "avatar", 
+		"avatar.avatar.repoType" : "PROTOTYPE" 
+	}
+}

@@ -10,9 +10,9 @@ repositories {
 
 sonarqube {
   properties {
-    property "sonar.projectName", "de-jena.MDO"
-    property "sonar.projectKey", "de-jena_MDO"
-    property "sonar.organization", "de-jena"
+    property "sonar.projectName", "DataInMotion.avatar-modelrepo"
+    property "sonar.projectKey", "DataInMotion_avatar-modelrepo"
+    property "sonar.organization", "DataInMotion"
     property "sonar.host.url", "https://sonarcloud.io"
     property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
   }

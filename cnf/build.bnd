@@ -1,19 +1,13 @@
 javac.source: 17
 javac.target: 17
 
-Bundle-DocURL: https://github.com/de-jena/MDO
-Bundle-SCM: url=https://github.com/de-jena/MDO, \
-	connection=scm:git:git@github.com:de-jena/MDO.git, \
-	developerConnection=scm:git:git@github.com:de-jena/MDO.git
+Bundle-DocURL: https://github.com/DataInMotion/avatar-modelrepo
+Bundle-SCM: url=https://github.com/DataInMotion/avatar-modelrepo, \
+	connection=scm:git:git@github.com:DataInMotion/avatar-modelrepo.git, \
+	developerConnection=scm:git:git@github.com:DataInMotion/avatar-modelrepo.git
 
 
 Bundle-Developers: \
-    sbischof; \
-        email="stefan.bischof@jena.de"; \
-        name="Stefan Bischof"; \
-        organization="City of Jena"; \
-        organizationUrl="https://www.jena.de"; \
-        roles="architect,developer", \
     jalbert; \
         email="j.albert@data-in-motion.biz"; \
         name="Juergen Albert"; \
@@ -41,12 +35,12 @@ Bundle-Developers: \
 	geckoEMFUtil
 	
 # Needed because we enabled library 'gecko-dimc' 	
-github-project: de-jena/MDO
+github-project: DataInMotion/avatar-modelrepo
 base-version: 1.0.0.SNAPSHOT
-mdo-version: ${base-version}.SNAPSHOT
+avatar-mr-version: ${base-version}.SNAPSHOT
 
 # Maven Central Group-Id
--groupid: de.jena.mdo
+-groupid: de.avatar.mr
 
 -fixupmessages: \
 	"No metadata for revision";\
@@ -56,7 +50,7 @@ mdo-version: ${base-version}.SNAPSHOT
 -snapshot: ${tstamp}-SNAPSHOT
 -pom: version=${versionmask;===s;${@version}}	
 # Find out if the current Bundle Version is already deployed in any repository (excluding the Workspace)
-releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${mdo-version}));REPOS}
+releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${avatar-mr-version}));REPOS}
 
 # If release not needed is empty, no Bundle has been found and for maven we do a release to the remote Repo. If not, we only do a release to the local .m2 Repo
 -maven-release.local: ${if;${def;releaseNotNeeded};local;remote}

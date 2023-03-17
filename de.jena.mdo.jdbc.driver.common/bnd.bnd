@@ -1,3 +1,0 @@
--buildpath: \
-	org.osgi.annotation.bundle,\
-	org.osgi.framework

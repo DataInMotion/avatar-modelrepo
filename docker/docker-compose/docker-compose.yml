@@ -9,7 +9,7 @@ services:
             - "27017:27017"
 
     mdo:
-        image: devel.data-in-motion.biz:6000/scj/mdo:latest
+        image: devel.data-in-motion.biz:6000/scj/avatar-modelrepo:latest
         ports:
             - "8085:8085"
 

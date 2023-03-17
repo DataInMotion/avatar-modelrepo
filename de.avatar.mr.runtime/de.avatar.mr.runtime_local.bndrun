@@ -1,0 +1,6 @@
+-include: de.avatar.mr.runtime_base.bndrun
+
+-runbundles.local: de.avatar.mr.runtime.config.local
+
+-runproperties.local: \
+	keycloak.config.file = ./../de.avatar.mr.runtime.config.local/configs/keycloak-staging.json
