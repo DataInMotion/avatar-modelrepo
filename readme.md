@@ -5,7 +5,7 @@
 ## Links
 
 * [Documentation](https://github.com/de-jena/MDO)
-* [Source Code](https://github.com/de-jena/MDO) (clone with `scm:git:git@github.com:de-jena/MDO.git`)
+* [Source Code](https://github.com/de-jena/MDO) (clone with `scm:git:git@github.com:DataInMotion/avatar-modelrepo.git`)
 
 
 ## Developers
