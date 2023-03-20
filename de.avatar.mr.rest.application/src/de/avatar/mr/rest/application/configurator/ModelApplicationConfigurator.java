@@ -37,6 +37,7 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 import de.avatar.mr.rest.application.AvatarMRApplication;
 import de.avatar.mr.rest.application.resource.ModelResource;
 import de.avatar.mr.rest.application.resource.openapi.OpenApiResource;
+import de.avatar.mr.rest.model.documentation.provider.ModelDocumentationProvider;
 import de.avatar.mr.swagger.application.SwaggerIndexFilter;
 import de.avatar.mr.swagger.application.SwaggerResources;
 import de.avatar.mr.swagger.application.SwaggerServletContextHelper;
@@ -53,13 +54,15 @@ public class ModelApplicationConfigurator {
 	
 	private static final Logger logger = Logger.getLogger(ModelApplicationConfigurator.class.getName());
 	private ConfigurationAdmin configAdmin;
+	private ModelDocumentationProvider modelDocumentationProvider;	
 
 	/**
 	 * Creates a new instance.
 	 */
 	@Activate
-	public ModelApplicationConfigurator(@Reference ConfigurationAdmin configAdmin) {
+	public ModelApplicationConfigurator(@Reference ConfigurationAdmin configAdmin, @Reference ModelDocumentationProvider modelDocumentationProvider) {
 		this.configAdmin = configAdmin;
+		this.modelDocumentationProvider = modelDocumentationProvider;
 	}
 	
 	
@@ -85,20 +88,20 @@ public class ModelApplicationConfigurator {
 		Configuration resourceConfig = configAdmin.createFactoryConfiguration(ModelResource.COMPONENT_NAME, "?");
 		configList.add(resourceConfig);
 		
-		props = new Hashtable<String, Object>();
-		props.put(JaxrsWhiteboardConstants.JAX_RS_NAME, ePackage.getName() + "JaxRsResource");
-		props.put(JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT, "(id=" + ePackage.getNsURI() + ")");
-		props.put(ModelResource.EPACKAGE_REFERENCE_NAME + ".target", "(" + EMFNamespaces.EMF_MODEL_NSURI + "=" + ePackage.getNsURI() + ")");
-		props.put(ModelResource.REPO_REFERENCE_NAME + ".target", "(repo_id=mdo.mdo)");
-		if (properties.containsKey("Piveau")) {
-			Object piveauData = properties.get("Piveau");
-			props.put("Piveau", piveauData);
+		Dictionary<String, String> modelResourceProperties = new Hashtable<String, String>();
+		modelResourceProperties.put(JaxrsWhiteboardConstants.JAX_RS_NAME, ePackage.getName() + "JaxRsResource");
+		modelResourceProperties.put(JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT, "(id=" + ePackage.getNsURI() + ")");
+		modelResourceProperties.put(ModelResource.EPACKAGE_REFERENCE_NAME + ".target", "(" + EMFNamespaces.EMF_MODEL_NSURI + "=" + ePackage.getNsURI() + ")");
+		modelResourceProperties.put(ModelResource.REPO_REFERENCE_NAME + ".target", "(repo_id=mdo.mdo)");
+		if(modelDocumentationProvider.hasEPackageChanged(ePackage)) {
+			System.out.println("Regenerating documentation...");
+			Map<String, String> packageDocFileMap = modelDocumentationProvider.generateAllPackageDocumentation(ePackage);
+			Map<String, String> classesDocFileMap = modelDocumentationProvider.generateAllClassesDocumentation(ePackage);
+			packageDocFileMap.forEach((k,v) -> modelResourceProperties.put(k, v));
+			classesDocFileMap.forEach((k,v) -> modelResourceProperties.put(k, v));
 		}
-		if (properties.containsKey("emf.model.name")) {
-			Object modelName = properties.get("emf.model.name");
-			props.put("emf.model.name", modelName);
-		}
-		resourceConfig.update(props);
+		resourceConfig.update(modelResourceProperties);
+		resourceConfig.update(modelResourceProperties);
 		logger.fine(()->"Registering JaxRs resource " + ePackage.getName() + "JaxRsResource");
 
 		Configuration openApiConfig = configAdmin.createFactoryConfiguration(OpenApiResource.COMPONENT_NAME, "?");
