@@ -91,14 +91,7 @@ pipeline  {
 			}
 		}
 
-        stage('Resolve Derby export'){
-
-			steps  {
-				echo "I am exporting applications on branch: ${env.GIT_BRANCH}"
-
-                sh "./gradlew de.avatar.mr.jdbc.example:resolve.launch-derby --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
-			}
-		}
+     
 /*
         stage('Skipping Run Derby Export Application'){
 			steps  {
@@ -107,7 +100,7 @@ pipeline  {
                 sh "./gradlew  de.avatar.mr.jdbc.example:run.launch-derby --info --stacktrace -Dmaven.repo.local=${WORKSPACE}/.m2"
 			}
 		}
-*/
+
 		
         stage('Prepare Docker'){
 			when {
@@ -145,5 +138,6 @@ pipeline  {
 
 			}
 		}
+*/
 	}
 }
