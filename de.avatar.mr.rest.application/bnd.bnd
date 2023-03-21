@@ -1,5 +1,5 @@
 -buildpath: \
-	jakarta.ws.rs-api;version="2.1.6",\
+	jakarta.ws.rs-api;version='2.1.6',\
 	org.osgi.service.jaxrs,\
 	org.osgi.service.component.annotations,\
 	de.avatar.mr.runtime,\
@@ -18,7 +18,8 @@
 	org.gecko.emf.rest,\
 	org.gecko.emf.repository.api,\
 	org.gecko.emf.mongo.api,\
-	org.gecko.emf.util.documentation.generators.apis
+	org.gecko.emf.util.documentation.generators.apis,\
+	de.avatar.mr.model.documentation.provider;version=latest
 
 -library: enable-emf
 

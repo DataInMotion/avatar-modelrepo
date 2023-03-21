@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 import de.avatar.mr.index.api.EPackageIndexService;
 import de.avatar.mr.index.helper.EPackageIndexHelper;
 
-@Component(name="EPackageIndexService", service = EPackageIndexService.class, scope = ServiceScope.SINGLETON)
+@Component(immediate=true, name="EPackageIndexService", service = EPackageIndexService.class, scope = ServiceScope.SINGLETON)
 public class EPackageIndexServiceImpl implements EPackageIndexService{
 
 	@Reference(target = "(id=ePackage)")

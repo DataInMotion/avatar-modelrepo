@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.ReferenceScope;
 import org.osgi.service.component.annotations.ServiceScope;
 import org.osgi.service.jaxrs.whiteboard.propertytypes.JaxrsResource;
 
-import de.avatar.mr.rest.model.documentation.provider.ModelDocumentationProvider;
+import de.avatar.mr.model.documentation.provider.ModelDocumentationProvider;
 import de.avatar.mr.runtime.annotation.RequireRuntime;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -143,7 +143,7 @@ public class ModelResource {
 		if(os == null) {
 			System.out.println("Need to generate HTML documentation!");
 			os = modelDocumentationProvider
-					.generateHtmlDocumentation(ePackage, 
+					.generateDocumentation(ePackage, 
 							"mermaid".equals(docType) ? EcoreToDocumentationOptions.HTML_WITH_MERMAID_CLASS_DIAGRAM 
 									: EcoreToDocumentationOptions.ONLY_HTML_CLASS_OVERVIEW);
 		}		
@@ -176,7 +176,7 @@ public class ModelResource {
 			System.out.println("Need to generate HTML documentation!");
 			EClass eClass = (EClass) eClassifier;
 			os = modelDocumentationProvider
-					.generateHtmlDocumentation(eClass, 
+					.generateDocumentation(eClass, 
 							"mermaid".equals(docType) ? EcoreToDocumentationOptions.HTML_WITH_MERMAID_CLASS_DIAGRAM 
 									: EcoreToDocumentationOptions.ONLY_HTML_CLASS_OVERVIEW);
 		}		
@@ -203,7 +203,7 @@ public class ModelResource {
 		if(os == null) {
 			System.out.println("Need to generate MD documentation!");
 			os = modelDocumentationProvider
-					.generateMarkdownDocumentation(ePackage, 
+					.generateDocumentation(ePackage, 
 							"mermaid".equals(docType) ? EcoreToDocumentationOptions.MARKDOWN_WITH_MERMAID_CLASS_DIAGRAM 
 									: "plantuml".equals(docType) ? EcoreToDocumentationOptions.MARKDOWN_WITH_PLANTUML_CLASS_DIAGRAM 
 											: EcoreToDocumentationOptions.ONLY_MARKDOWN_CLASS_OVERVIEW);
@@ -243,7 +243,7 @@ public class ModelResource {
 			System.out.println("Need to generate MD documentation!");
 			EClass eClass = (EClass) eClassifier;
 			os = modelDocumentationProvider
-					.generateMarkdownDocumentation(eClass, 
+					.generateDocumentation(eClass, 
 							"mermaid".equals(docType) ? EcoreToDocumentationOptions.MARKDOWN_WITH_MERMAID_CLASS_DIAGRAM 
 									: "plantuml".equals(docType) ? EcoreToDocumentationOptions.MARKDOWN_WITH_PLANTUML_CLASS_DIAGRAM 
 											: EcoreToDocumentationOptions.ONLY_MARKDOWN_CLASS_OVERVIEW);

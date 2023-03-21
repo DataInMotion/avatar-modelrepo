@@ -33,7 +33,8 @@ Bundle-Developers: \
 	geckoDIMC,\
 	geckoJacoco,\
 	geckoEMFUtil,\
-	geckoSearch
+	geckoSearch,\
+	geckoVaadin
 	
 # Needed because we enabled library 'gecko-dimc' 	
 github-project: DataInMotion/avatar-modelrepo

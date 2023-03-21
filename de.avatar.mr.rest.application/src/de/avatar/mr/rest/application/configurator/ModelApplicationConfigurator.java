@@ -37,7 +37,7 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 import de.avatar.mr.rest.application.AvatarMRApplication;
 import de.avatar.mr.rest.application.resource.ModelResource;
 import de.avatar.mr.rest.application.resource.openapi.OpenApiResource;
-import de.avatar.mr.rest.model.documentation.provider.ModelDocumentationProvider;
+import de.avatar.mr.model.documentation.provider.ModelDocumentationProvider;
 import de.avatar.mr.swagger.application.SwaggerIndexFilter;
 import de.avatar.mr.swagger.application.SwaggerResources;
 import de.avatar.mr.swagger.application.SwaggerServletContextHelper;
@@ -93,14 +93,17 @@ public class ModelApplicationConfigurator {
 		modelResourceProperties.put(JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT, "(id=" + ePackage.getNsURI() + ")");
 		modelResourceProperties.put(ModelResource.EPACKAGE_REFERENCE_NAME + ".target", "(" + EMFNamespaces.EMF_MODEL_NSURI + "=" + ePackage.getNsURI() + ")");
 		modelResourceProperties.put(ModelResource.REPO_REFERENCE_NAME + ".target", "(repo_id=mdo.mdo)");
+		Map<String, String> packageDocFileMap, classesDocFileMap;
 		if(modelDocumentationProvider.hasEPackageChanged(ePackage)) {
 			System.out.println("Regenerating documentation...");
-			Map<String, String> packageDocFileMap = modelDocumentationProvider.generateAllPackageDocumentation(ePackage);
-			Map<String, String> classesDocFileMap = modelDocumentationProvider.generateAllClassesDocumentation(ePackage);
-			packageDocFileMap.forEach((k,v) -> modelResourceProperties.put(k, v));
-			classesDocFileMap.forEach((k,v) -> modelResourceProperties.put(k, v));
+			packageDocFileMap = modelDocumentationProvider.generateAllPackageDocumentation(ePackage);
+			classesDocFileMap = modelDocumentationProvider.generateAllClassesDocumentation(ePackage);
+		} else {
+			packageDocFileMap = modelDocumentationProvider.retrievePackageFileMap(ePackage);
+			classesDocFileMap = modelDocumentationProvider.retrieveAllClassesFileMap(ePackage);
 		}
-		resourceConfig.update(modelResourceProperties);
+		packageDocFileMap.forEach((k,v) -> modelResourceProperties.put(k, v));
+		classesDocFileMap.forEach((k,v) -> modelResourceProperties.put(k, v));
 		resourceConfig.update(modelResourceProperties);
 		logger.fine(()->"Registering JaxRs resource " + ePackage.getName() + "JaxRsResource");
 

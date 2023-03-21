@@ -9,4 +9,5 @@ Private-Package: de.avatar.mr.index
 	org.apache.lucene.core,\
 	org.osgi.util.promise,\
 	org.gecko.emf.search
+	
 -privatepackage: de.avatar.mr.index.helper

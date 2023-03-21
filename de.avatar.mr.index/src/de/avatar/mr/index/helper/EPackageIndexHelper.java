@@ -108,75 +108,6 @@ public class EPackageIndexHelper {
 					documents.add(featureDoc);
 				});
 			}
-			
-//			ec.eClass().getEAllStructuralFeatures().forEach(sf -> {
-//				Document featureDoc = new Document();	
-//				featureDoc.add(new StringField(EPackageIndexService.DOC_TYPE, "EStructuralFeature", Store.NO));
-//				featureDoc.add(new StringField(EPackageIndexService.ECLASSIFIER_NAME, ec.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NS_URI, ePackage.getNsURI(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NAME, ePackage.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME, sf.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME_LOWER, sf.getName().toLowerCase(), Store.NO));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_TYPE, sf.getEType().getInstanceClass().getSimpleName(), Store.NO));
-//				sf.getEAnnotations().stream().filter(ann -> ann.getDetails().containsKey("documentation")).forEach(ann -> {
-//					featureDoc.add(new TextField(EPackageIndexService.EELEMENT_DESCRIPTION, ann.getDetails().get("documentation"), Store.NO));
-//				});
-//				sf.getEAnnotations().stream()
-//				.filter(ann -> EXTENDED_METADATA_ANNOTATION_SOURCE.equals(ann.getSource()))
-//				.filter(ann -> ann.getDetails().containsKey("name"))
-//				.forEach(ann -> {
-//					featureDoc.add(new TextField(EPackageIndexService.ESTRUCTURAL_FEATURE_ALIAS, ann.getDetails().get("name"), Store.NO));
-//					featureDoc.add(new TextField(EPackageIndexService.ESTRUCTURAL_FEATURE_ALIAS_LOWER, ann.getDetails().get("name").toLowerCase(), Store.NO));
-//				});
-//				
-//				documents.add(featureDoc);
-//			});
-//			
-//			ec.eClass().getEStructuralFeatures().forEach(sf -> {
-//				Document featureDoc = new Document();	
-//				featureDoc.add(new StringField(EPackageIndexService.DOC_TYPE, "EStructuralFeature", Store.NO));
-//				featureDoc.add(new StringField(EPackageIndexService.ECLASSIFIER_NAME, ec.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NS_URI, ePackage.getNsURI(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NAME, ePackage.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME, sf.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME_LOWER, sf.getName().toLowerCase(), Store.NO));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_TYPE, sf.getEType().getInstanceClass().getSimpleName(), Store.NO));
-//				sf.getEAnnotations().stream().filter(ann -> ann.getDetails().containsKey("documentation")).forEach(ann -> {
-//					featureDoc.add(new TextField(EPackageIndexService.EELEMENT_DESCRIPTION, ann.getDetails().get("documentation"), Store.NO));
-//				});
-//				sf.getEAnnotations().stream()
-//				.filter(ann -> EXTENDED_METADATA_ANNOTATION_SOURCE.equals(ann.getSource()))
-//				.filter(ann -> ann.getDetails().containsKey("name"))
-//				.forEach(ann -> {
-//					featureDoc.add(new TextField(EPackageIndexService.ESTRUCTURAL_FEATURE_ALIAS, ann.getDetails().get("name"), Store.NO));
-//					featureDoc.add(new TextField(EPackageIndexService.ESTRUCTURAL_FEATURE_ALIAS_LOWER, ann.getDetails().get("name").toLowerCase(), Store.NO));
-//				});
-//				
-//				documents.add(featureDoc);
-//			});
-			
-//			ec.eClass().getEAllReferences().forEach(sf -> {
-//				Document featureDoc = new Document();	
-//				featureDoc.add(new StringField(EPackageIndexService.DOC_TYPE, "EStructuralFeature", Store.NO));
-//				featureDoc.add(new StringField(EPackageIndexService.ECLASSIFIER_NAME, ec.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NS_URI, ePackage.getNsURI(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NAME, ePackage.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME, sf.getName(), Store.YES));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME_LOWER, sf.getName().toLowerCase(), Store.NO));
-//				featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_TYPE, sf.getEType().getInstanceClass().getSimpleName(), Store.NO));
-//				sf.getEAnnotations().stream().filter(ann -> ann.getDetails().containsKey("documentation")).forEach(ann -> {
-//					featureDoc.add(new TextField(EPackageIndexService.EELEMENT_DESCRIPTION, ann.getDetails().get("documentation"), Store.NO));
-//				});
-//				sf.getEAnnotations().stream()
-//				.filter(ann -> EXTENDED_METADATA_ANNOTATION_SOURCE.equals(ann.getSource()))
-//				.filter(ann -> ann.getDetails().containsKey("name"))
-//				.forEach(ann -> {
-//					featureDoc.add(new TextField(EPackageIndexService.ESTRUCTURAL_FEATURE_ALIAS, ann.getDetails().get("name"), Store.NO));
-//					featureDoc.add(new TextField(EPackageIndexService.ESTRUCTURAL_FEATURE_ALIAS_LOWER, ann.getDetails().get("name").toLowerCase(), Store.NO));
-//				});
-//				
-//				documents.add(featureDoc);
-//			});
 		});
 		
 		EObjectContextObjectBuilder builder = (EObjectContextObjectBuilder) EObjectContextObjectBuilder.create()
@@ -186,8 +117,6 @@ public class EPackageIndexHelper {
 		if (IndexActionType.MODIFY.equals(indexAction) || IndexActionType.REMOVE.equals(indexAction)) {
 			builder.withIdentifyingTerm(new Term("id", ePackage.getNsURI()));
 		}
-		
-
 		return builder.build();
 	}
 

@@ -103,7 +103,7 @@ public class EStructuralFeatureSearchIntegrationTest {
 		PersonPackage modelService = modelAware.getService();
 		assertThat(modelService).isNotNull();
 		
-		indexService.indexEPackage(modelService, true);
+		
 		
 		Thread.sleep(500);
 		
@@ -162,7 +162,7 @@ public class EStructuralFeatureSearchIntegrationTest {
 		PersonPackage modelService = modelAware.getService();
 		assertThat(modelService).isNotNull();
 		
-		indexService.indexEPackage(modelService, true);
+		
 		
 		Thread.sleep(500);
 		
@@ -212,7 +212,7 @@ public class EStructuralFeatureSearchIntegrationTest {
 		PersonPackage modelService = modelAware.getService();
 		assertThat(modelService).isNotNull();
 		
-		indexService.indexEPackage(modelService, true);
+		
 		
 		Thread.sleep(500);
 		

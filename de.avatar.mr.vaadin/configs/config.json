@@ -1,0 +1,28 @@
+{
+  ":configurator:resource-version": 1,
+  
+	"VaadinApplication~Vaadin": 
+  	{
+  	    "vaadin.pwa": "avatar-mr",
+  	    "vaadin.application.description": "Avatar Model Repo Application",
+		"vaadin.application.name" : "avatar-mr",
+		"vaadin.application.context" : "/avatar-mr",
+		"vaadin.application.theme": "Material",
+		"vaadin.application.frontend": "VITE"
+	},
+	"EMFLuceneIndex~ePackage": 
+  	{
+  	    "id": "ePackage",
+  	    "directory.type": "MMAP",
+		"base.path" : "/tmp/index/ePackage/"
+	},
+	"ModelDocumentationProvider~docProvider" : {
+		"output.root.folder" : "./data/model/documentation/",
+		"output.md.folder" : "md",
+		"output.md.mermaid.folder" : "md_mermaid",
+		"output.md.plantuml.folder" : "md_plantuml",
+		"output.html.folder" : "html",
+		"output.html.mermaid.folder" : "html_mermaid",
+		"output.package.hash.code.folder": "epackage_hash_code"
+	}
+}

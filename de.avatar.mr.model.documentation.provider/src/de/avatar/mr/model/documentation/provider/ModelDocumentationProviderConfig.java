@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 - 2023 Data In Motion and others.
+ * Copyright (c) 2012 - 2022 Data In Motion and others.
  * All rights reserved. 
  * 
  * This program and the accompanying materials are made available under the terms of the 
@@ -9,16 +9,11 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package de.avatar.mr.rest.model.documentation.provider;
+package de.avatar.mr.model.documentation.provider;
 
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
-/**
- * 
- * @author ilenia
- * @since Mar 20, 2023
- */
 @ObjectClassDefinition
 public @interface ModelDocumentationProviderConfig {
 	

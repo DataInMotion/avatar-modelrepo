@@ -86,6 +86,5 @@ public class EClassifierSearchServiceImpl implements EClassifierSearchService {
 		} finally {
 			searcherSO.ungetService(searcher);
 		}
-		
 	}
 }

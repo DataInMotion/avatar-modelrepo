@@ -102,9 +102,7 @@ public class EClassifierSearchIntegrationTest {
 		
 		PersonPackage modelService = modelAware.getService();
 		assertThat(modelService).isNotNull();
-		
-		indexService.indexEPackage(modelService, true);
-		
+
 		Thread.sleep(500);
 		
 		assertThat(searchAware).isNotNull();

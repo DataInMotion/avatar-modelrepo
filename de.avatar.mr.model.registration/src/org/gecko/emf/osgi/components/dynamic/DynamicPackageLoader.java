@@ -88,17 +88,11 @@ public class DynamicPackageLoader{
 		@AttributeDefinition(description = "Marks the requirement for a REST Endpoint representation.")
 		boolean additionalRest() default false;
 
-		@AttributeDefinition(description = "Marks the requirement to become part of the GraphQL API.")
-		boolean additionalGraphQL() default false;
-
 		@AttributeDefinition(description = "A List of EClasses in this package, to generate Testdata for.")
 		String[] additionalTestDataList() default {};
 		
 		@AttributeDefinition(description = "The Amount of test Instances to be generated. Default is 1000.")
 		long additionalTestInstances() default 1000L;
-		
-		@AttributeDefinition(description = "Marks the requirement to announce endpoint at a DCAT_AP dataset.")
-		String[] additionalPiveauDataset();
 	}
 	
 	/**

@@ -1,0 +1,28 @@
+-library: \
+	enableVaadin,\
+	enable-emf
+	
+-buildpath: \
+	com.vaadin.flow.component.grid,\
+	com.vaadin.flow.data,\
+	com.vaadin.flow.data.renderer,\
+	com.vaadin.external.gwt,\
+	de.avatar.mr.example.model,\
+	com.vaadin.flow.component.radiobutton,\
+	com.vaadin.flow.component.icon,\
+	de.avatar.mr.search.api;version=latest
+Bundle-Version: 1.0.0.SNAPSHOT
+Export-Package: \
+	de.avatar.mr.vaadin,\
+	de.avatar.mr.vaadin.views.main,\
+	de.avatar.mr.vaadin.views.helloworld,\
+	de.avatar.mr.vaadin.service,\
+	de.avatar.mr.vaadin.views.search
+
+-includeresource: \
+	OSGI-INF/configurator/=configs/,\
+	META-INF/resources=resources,\
+	META-INF/resources=frontend,\
+	META-INF/frontend=frontend
+	
+Require-Capability: osgi.extender;filter:='(osgi.extender=osgi.configurator)'

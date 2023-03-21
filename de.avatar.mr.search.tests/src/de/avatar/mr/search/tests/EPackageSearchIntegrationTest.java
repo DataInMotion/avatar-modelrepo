@@ -104,7 +104,7 @@ public class EPackageSearchIntegrationTest {
 		PersonPackage modelService = modelAware.getService();
 		assertThat(modelService).isNotNull();
 		
-		indexService.indexEPackage(modelService, true);
+		
 		
 		Thread.sleep(500);
 		
@@ -161,7 +161,7 @@ public class EPackageSearchIntegrationTest {
 		PersonPackage modelService = modelAware.getService();
 		assertThat(modelService).isNotNull();
 		
-		indexService.indexEPackage(modelService, true);
+		
 		
 		Thread.sleep(500);
 		
@@ -217,8 +217,6 @@ public class EPackageSearchIntegrationTest {
 		
 		PersonPackage modelService = modelAware.getService();
 		assertThat(modelService).isNotNull();
-		
-		indexService.indexEPackage(modelService, true);
 		
 		Thread.sleep(500);
 		
