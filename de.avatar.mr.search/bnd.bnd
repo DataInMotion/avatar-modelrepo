@@ -1,0 +1,11 @@
+-library: enable-emf
+
+Bundle-Version: 1.0.0.SNAPSHOT
+Private-Package: de.avatar.mr.search
+-buildpath: \
+	de.avatar.mr.search.api;version=latest,\
+	org.gecko.search.document,\
+	org.apache.lucene.core,\
+	de.avatar.mr.index.api,\
+	org.osgi.service.component
+-privatepackage: de.avatar.mr.search.helper

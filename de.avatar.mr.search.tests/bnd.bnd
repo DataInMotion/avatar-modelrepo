@@ -1,0 +1,13 @@
+Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+
+-library: enableOSGi-Test,\
+	enable-emf
+
+	
+Private-Package: de.avatar.mr.search.tests
+Bundle-Version: 1.0.0.SNAPSHOT
+-buildpath: \
+	de.avatar.mr.example.model;version=latest,\
+	de.avatar.mr.index.api;version=latest,\
+	de.avatar.mr.search.api;version=latest,\
+	org.osgi.test.junit5.cm,\
