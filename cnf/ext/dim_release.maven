@@ -34,6 +34,6 @@ org.gecko.addons:org.gecko.util.common:2.0.0
 
 org.gecko.addons:net.jcip.annotation:1.0.0
 
-#org.geckoprojects.search:org.gecko.search.bnd.library:1.1.0-SNAPSHOT
-
+org.geckoprojects.search:org.gecko.emf.search.bnd.project.library:1.1.0-SNAPSHOT
+org.geckoprojects.search:org.gecko.search.bnd.library:1.1.0-SNAPSHOT
 

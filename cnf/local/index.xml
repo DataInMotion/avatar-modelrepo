@@ -208,35 +208,6 @@
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License 2.0"/>
       <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.search.bnd.library"/>
-      <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.search"/>
-      <attribute name="description" value="Dependencies for Gecko Search"/>
-      <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.1.0.202303200839-SNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.1.0.202303200839-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.search.bnd.library"/>
-    </capability>
-    <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.1.0.202303200839-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.search.bnd.library"/>
-    </capability>
-    <capability namespace="bnd.library">
-      <attribute name="bnd.library" value="geckoSearch"/>
-      <attribute name="path" value="library/workspace"/>
-    </capability>
-    <capability namespace="osgi.content">
-      <attribute name="size" value="9371" type="Long"/>
-      <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.search.bnd.library/org.gecko.search.bnd.library-1.1.0.jar"/>
-      <attribute name="osgi.content" value="349895A256050980D04F43252EA79B3FE592A8C9729F1DA5B29080CB66769DDC"/>
-    </capability>
-  </resource>
-  <resource>
-    <capability namespace="osgi.identity">
-      <attribute name="license" value="Eclipse Public License 2.0"/>
-      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
       <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.html.component"/>
       <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
       <attribute name="type" value="osgi.bundle"/>

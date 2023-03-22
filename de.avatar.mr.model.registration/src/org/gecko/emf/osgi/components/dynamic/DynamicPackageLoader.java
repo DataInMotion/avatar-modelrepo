@@ -79,7 +79,7 @@ public class DynamicPackageLoader{
 			)
 	public @interface Config {
 		
-		@AttributeDefinition(description = "A usefull identifier")
+		@AttributeDefinition(description = "A useful identifier")
 		String id();
 		
 		@AttributeDefinition(description = "A URL to a ecore file")
@@ -90,9 +90,6 @@ public class DynamicPackageLoader{
 
 		@AttributeDefinition(description = "A List of EClasses in this package, to generate Testdata for.")
 		String[] additionalTestDataList() default {};
-		
-		@AttributeDefinition(description = "The Amount of test Instances to be generated. Default is 1000.")
-		long additionalTestInstances() default 1000L;
 	}
 	
 	/**
@@ -146,6 +143,7 @@ public class DynamicPackageLoader{
 		EPackage.Registry.INSTANCE.put(dynamicPackage.getNsURI(),dynamicPackage);
 		configuratorRegistration = ctx.registerService(EPackageConfigurator.class, new DynamicPackageConfiguratorImpl(dynamicPackage), properties);
 		packageRegistration =  ctx.registerService(EPackage.class, dynamicPackage, properties);
+		System.out.println("Registered Model");
 	}
 	
 	@Deactivate
