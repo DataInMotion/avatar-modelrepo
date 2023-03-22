@@ -123,7 +123,8 @@
 	org.gecko.emf.util.documentation.generators.markdown;version='[1.0.0,1.0.1)',\
 	org.gecko.emf.util.documentation.generators.markdown.component;version='[1.0.0,1.0.1)',\
 	org.gecko.emf.util.documentation.generators.mermaid;version='[1.0.0,1.0.1)',\
-	org.gecko.emf.util.documentation.generators.plantuml;version='[1.0.0,1.0.1)'
+	org.gecko.emf.util.documentation.generators.plantuml;version='[1.0.0,1.0.1)',\
+	com.vaadin.flow.component.checkbox;version='[23.3.0,23.3.1)'
 
 -runblacklist: \
 	bnd.identity;id='org.osgi.service.http.whiteboard',\

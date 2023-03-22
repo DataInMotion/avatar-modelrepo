@@ -41,7 +41,7 @@ public class ModelDynamicDocumentationComponent {
 	public void generateModelDocumentation(EPackage ePackage, Map<String, Object> properties) {
 		if(modelDocProvider.hasEPackageChanged(ePackage)) {
 			modelDocProvider.generateAllPackageDocumentation(ePackage);
-			modelDocProvider.generateAllClassesDocumentation(ePackage);
+			modelDocProvider.generateAllEClassifiersDocumentation(ePackage);
 		}
 	}
 	

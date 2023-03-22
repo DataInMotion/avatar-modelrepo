@@ -24,7 +24,6 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.TermQuery;
 import org.eclipse.emf.ecore.EPackage;
 import org.osgi.service.component.ComponentServiceObjects;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -45,31 +44,37 @@ public class EPackageDynamicIndexComponent {
 	@Reference
 	EPackageIndexService ePackageIndexService;
 	
-	@Reference(target = "(id=ePackage)")
+	@Reference(target = "(id=ePackage)", cardinality = ReferenceCardinality.MANDATORY)
 	private ComponentServiceObjects<IndexSearcher> searcherSO;
 	
-	private Set<String> ePackagesSet = new HashSet<>();
+	private Set<String> ePackagesSet;
 	
-	@Activate
 	public void activate() {
+		ePackagesSet = new HashSet<>();
 		IndexSearcher searcher = searcherSO.getService();
 		try {
 			BooleanQuery.Builder queryBuilder = new BooleanQuery.Builder();	
 			queryBuilder.add(new TermQuery(new Term(EPackageIndexService.DOC_TYPE, "EPackage")), Occur.MUST);
 			List<Document> docs = SearchHelper.doExecuteSearch(queryBuilder.build(), searcher);
 			docs.forEach(d -> {
-				ePackagesSet.add(d.get("id"));
+				if(d.get(EPackageIndexService.EPACKAGE_NS_URI) != null) {
+					ePackagesSet.add(d.get(EPackageIndexService.EPACKAGE_NS_URI));
+				}		
 			});
 		} finally {
 			searcherSO.ungetService(searcher);
 		}
+		System.out.println("Finished activating Dynamic Index Component! " + ePackagesSet.size());
 	}
 
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, 
 			policyOption = ReferencePolicyOption.GREEDY, unbind = "deleteEPackage")
 	public void indexEPackage(EPackage ePackage, Map<String, Object> properties) {
-		ePackageIndexService.indexEPackage(ePackage, ePackagesSet.add(ePackage.getNsURI()));
+		if(ePackagesSet == null) activate();
+		boolean add = ePackagesSet.add(ePackage.getNsURI());
+		System.out.println("Adding ePackage " + ePackage.getName() + " " + add);
+		ePackageIndexService.indexEPackage(ePackage, add);
 	}
 	
 	public void deleteEPackage(EPackage ePackage) {

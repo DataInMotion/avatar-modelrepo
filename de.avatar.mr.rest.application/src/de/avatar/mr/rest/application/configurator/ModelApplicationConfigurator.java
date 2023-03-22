@@ -97,7 +97,7 @@ public class ModelApplicationConfigurator {
 		if(modelDocumentationProvider.hasEPackageChanged(ePackage)) {
 			System.out.println("Regenerating documentation...");
 			packageDocFileMap = modelDocumentationProvider.generateAllPackageDocumentation(ePackage);
-			classesDocFileMap = modelDocumentationProvider.generateAllClassesDocumentation(ePackage);
+			classesDocFileMap = modelDocumentationProvider.generateAllEClassifiersDocumentation(ePackage);
 		} else {
 			packageDocFileMap = modelDocumentationProvider.retrievePackageFileMap(ePackage);
 			classesDocFileMap = modelDocumentationProvider.retrieveAllClassesFileMap(ePackage);

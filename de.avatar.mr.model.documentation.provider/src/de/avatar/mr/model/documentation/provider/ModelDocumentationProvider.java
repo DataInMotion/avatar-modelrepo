@@ -30,6 +30,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationOptions;
 import org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationService;
@@ -97,10 +99,10 @@ public class ModelDocumentationProvider {
 	}
 
 
-	public Map<String, String> generateAllClassesDocumentation(EPackage ePackage) {
+	public Map<String, String> generateAllEClassifiersDocumentation(EPackage ePackage) {
 		Map<String, String> classDocFileMap = new HashMap<>();
-		List<EClass> eClasses = ePackage.getEClassifiers().stream()
-				.filter(c -> c instanceof EClass).map(c -> (EClass) c).collect(Collectors.toList());
+		List<EClassifier> eClasses = ePackage.getEClassifiers().stream()
+				.filter(c -> c instanceof EClass || c instanceof EEnum).collect(Collectors.toList());
 		eClasses.stream().forEach(c -> {
 			generateAllMarkdownDocumentation(c);
 			generateAllHtmlDocumentation(c);
@@ -125,9 +127,9 @@ public class ModelDocumentationProvider {
 		generateDocumentation(ePackage, EcoreToDocumentationOptions.HTML_WITH_MERMAID_CLASS_DIAGRAM);
 	}
 
-	public void generateAllHtmlDocumentation(EClass eClass) {
-		generateDocumentation(eClass, EcoreToDocumentationOptions.ONLY_HTML_CLASS_OVERVIEW);
-		generateDocumentation(eClass, EcoreToDocumentationOptions.HTML_WITH_MERMAID_CLASS_DIAGRAM);
+	public void generateAllHtmlDocumentation(EClassifier eClassifier) {
+		generateDocumentation(eClassifier, EcoreToDocumentationOptions.ONLY_HTML_CLASS_OVERVIEW);
+		generateDocumentation(eClassifier, EcoreToDocumentationOptions.HTML_WITH_MERMAID_CLASS_DIAGRAM);
 	}
 	
 	public OutputStream generateDocumentation(EPackage ePackage, EcoreToDocumentationOptions option) {
@@ -146,15 +148,15 @@ public class ModelDocumentationProvider {
 		}	
 		return os;
 	}
-
-	public OutputStream generateDocumentation(EClass eClass, EcoreToDocumentationOptions option) {
+	
+	public OutputStream generateDocumentation(EClassifier eClassifier, EcoreToDocumentationOptions option) {
 		OutputStream os = null;
 		try {
 			switch(option) {
 			case HTML_WITH_MERMAID_CLASS_DIAGRAM: case HTML_WITH_PLANTUML_CLASS_DIAGRAM: case ONLY_HTML_CLASS_OVERVIEW:
-				return ecoreToHtmlComponent.doGenerateDocumentation(eClass, option, config.output_root_folder());		
+				return ecoreToHtmlComponent.doGenerateDocumentation(eClassifier, option, config.output_root_folder());		
 			case MARKDOWN_WITH_MERMAID_CLASS_DIAGRAM: case MARKDOWN_WITH_PLANTUML_CLASS_DIAGRAM: case ONLY_MARKDOWN_CLASS_OVERVIEW:
-				return ecoreToMdComponent.doGenerateDocumentation(eClass, option, config.output_root_folder());
+				return ecoreToMdComponent.doGenerateDocumentation(eClassifier, option, config.output_root_folder());
 			default:
 				return os;
 			}
@@ -172,10 +174,10 @@ public class ModelDocumentationProvider {
 		return os;
 	}
 	
-	public OutputStream retrieveDocumentation(String docFilePath, boolean generateIfNotFound, EClass eClass, EcoreToDocumentationOptions docOption) {
+	public OutputStream retrieveDocumentation(String docFilePath, boolean generateIfNotFound, EClassifier eClassifier, EcoreToDocumentationOptions docOption) {
 		OutputStream os = retrieveDocumentationFile(docFilePath);
 		if(os == null && generateIfNotFound) {
-			os = generateDocumentation(eClass, docOption);
+			os = generateDocumentation(eClassifier, docOption);
 		}
 		return os;
 	}
@@ -187,10 +189,10 @@ public class ModelDocumentationProvider {
 
 	}
 
-	private void generateAllMarkdownDocumentation(EClass eClass) {
-		generateDocumentation(eClass, EcoreToDocumentationOptions.ONLY_MARKDOWN_CLASS_OVERVIEW);
-		generateDocumentation(eClass, EcoreToDocumentationOptions.MARKDOWN_WITH_MERMAID_CLASS_DIAGRAM);
-		generateDocumentation(eClass, EcoreToDocumentationOptions.MARKDOWN_WITH_PLANTUML_CLASS_DIAGRAM);
+	private void generateAllMarkdownDocumentation(EClassifier eClassifier) {
+		generateDocumentation(eClassifier, EcoreToDocumentationOptions.ONLY_MARKDOWN_CLASS_OVERVIEW);
+		generateDocumentation(eClassifier, EcoreToDocumentationOptions.MARKDOWN_WITH_MERMAID_CLASS_DIAGRAM);
+		generateDocumentation(eClassifier, EcoreToDocumentationOptions.MARKDOWN_WITH_PLANTUML_CLASS_DIAGRAM);
 	}
 	
 	public OutputStream retrieveDocumentationFile(String docFilePath) {
@@ -256,27 +258,27 @@ public class ModelDocumentationProvider {
 		return documentationFileMap;
 	}
 
-	private Map<String, String> createDocumentationFileMap(EClass eClass) {
+	private Map<String, String> createDocumentationFileMap(EClassifier eClassifier) {
 		Map<String, String> documentationFileMap = new HashMap<>();
-		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_MD_FILE.concat(".").concat(eClass.getName()), 
+		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_MD_FILE.concat(".").concat(eClassifier.getName()), 
 				Paths.get(config.output_root_folder(), config.output_md_folder(), 
-						eClass.getEPackage().getName().concat("_").concat(eClass.getName()).concat(ModelDocumentationConstants.MD_FILE_EXTENSION)).toString());
+						eClassifier.getEPackage().getName().concat("_").concat(eClassifier.getName()).concat(ModelDocumentationConstants.MD_FILE_EXTENSION)).toString());
 
-		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_MD_MERMAID_FILE.concat(".").concat(eClass.getName()), 
+		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_MD_MERMAID_FILE.concat(".").concat(eClassifier.getName()), 
 				Paths.get(config.output_root_folder(), config.output_md_mermaid_folder(), 
-						eClass.getEPackage().getName().concat("_").concat(eClass.getName()).concat(ModelDocumentationConstants.MD_FILE_EXTENSION)).toString());
+						eClassifier.getEPackage().getName().concat("_").concat(eClassifier.getName()).concat(ModelDocumentationConstants.MD_FILE_EXTENSION)).toString());
 
-		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_MD_PLANTUML_FILE.concat(".").concat(eClass.getName()), 
+		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_MD_PLANTUML_FILE.concat(".").concat(eClassifier.getName()), 
 				Paths.get(config.output_root_folder(), config.output_md_plantuml_folder(), 
-						eClass.getEPackage().getName().concat("_").concat(eClass.getName()).concat(ModelDocumentationConstants.MD_FILE_EXTENSION)).toString());
+						eClassifier.getEPackage().getName().concat("_").concat(eClassifier.getName()).concat(ModelDocumentationConstants.MD_FILE_EXTENSION)).toString());
 
-		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_HTML_FILE.concat(".").concat(eClass.getName()), 
+		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_HTML_FILE.concat(".").concat(eClassifier.getName()), 
 				Paths.get(config.output_root_folder(), config.output_html_folder(), 
-						eClass.getEPackage().getName().concat("_").concat(eClass.getName()).concat(ModelDocumentationConstants.HTML_FILE_EXTENSION)).toString());
+						eClassifier.getEPackage().getName().concat("_").concat(eClassifier.getName()).concat(ModelDocumentationConstants.HTML_FILE_EXTENSION)).toString());
 
-		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_HTML_MERMAID_FILE.concat(".").concat(eClass.getName()), 
+		documentationFileMap.put(ModelDocumentationConstants.PROPERTY_HTML_MERMAID_FILE.concat(".").concat(eClassifier.getName()), 
 				Paths.get(config.output_root_folder(), config.output_html_mermaid_folder(), 
-						eClass.getEPackage().getName().concat("_").concat(eClass.getName()).concat(ModelDocumentationConstants.HTML_FILE_EXTENSION)).toString());
+						eClassifier.getEPackage().getName().concat("_").concat(eClassifier.getName()).concat(ModelDocumentationConstants.HTML_FILE_EXTENSION)).toString());
 		return documentationFileMap;
 	}
 }

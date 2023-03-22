@@ -156,7 +156,7 @@ public class ModelResource {
 	@Operation(description = "Returns the html model documentation for the specific requested eClass.")
 	public Response getHtmlModelClassDocumentation(@PathParam("eClass") String eClassName, @PathParam("docType") String docType) {
 		EClassifier eClassifier = ePackage.getEClassifier(eClassName);
-		if(eClassifier == null || !(eClassifier instanceof EClass)) {
+		if(eClassifier == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Unkwon Entity").type(MediaType.TEXT_PLAIN).build(); 
 		}
 		OutputStream os = null;
@@ -174,9 +174,8 @@ public class ModelResource {
 		}
 		if(os == null) {
 			System.out.println("Need to generate HTML documentation!");
-			EClass eClass = (EClass) eClassifier;
 			os = modelDocumentationProvider
-					.generateDocumentation(eClass, 
+					.generateDocumentation(eClassifier, 
 							"mermaid".equals(docType) ? EcoreToDocumentationOptions.HTML_WITH_MERMAID_CLASS_DIAGRAM 
 									: EcoreToDocumentationOptions.ONLY_HTML_CLASS_OVERVIEW);
 		}		
@@ -218,7 +217,7 @@ public class ModelResource {
 	@Operation(description = "Returns the markdown model documentation for the requested class.")
 	public Response getMarkdownModelClassDocumentation(@PathParam("eClass") String eClassName, @PathParam("docType") String docType) {
 		EClassifier eClassifier = ePackage.getEClassifier(eClassName);
-		if(eClassifier == null || !(eClassifier instanceof EClass)) {
+		if(eClassifier == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Unkwon Entity").type(MediaType.TEXT_PLAIN).build(); 
 		}
 		OutputStream os = null;
@@ -241,9 +240,8 @@ public class ModelResource {
 		}
 		if(os == null) {
 			System.out.println("Need to generate MD documentation!");
-			EClass eClass = (EClass) eClassifier;
 			os = modelDocumentationProvider
-					.generateDocumentation(eClass, 
+					.generateDocumentation(eClassifier, 
 							"mermaid".equals(docType) ? EcoreToDocumentationOptions.MARKDOWN_WITH_MERMAID_CLASS_DIAGRAM 
 									: "plantuml".equals(docType) ? EcoreToDocumentationOptions.MARKDOWN_WITH_PLANTUML_CLASS_DIAGRAM 
 											: EcoreToDocumentationOptions.ONLY_MARKDOWN_CLASS_OVERVIEW);

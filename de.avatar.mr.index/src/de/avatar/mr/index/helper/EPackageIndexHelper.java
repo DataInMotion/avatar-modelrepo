@@ -52,7 +52,7 @@ public class EPackageIndexHelper {
 		
 		List<Document> documents = new ArrayList<>();
 		Document packageDoc = new Document();
-		
+		packageDoc.add(new StringField("id", ePackage.getNsURI(), Store.YES));
 		packageDoc.add(new StringField(EPackageIndexService.DOC_TYPE, "EPackage", Store.NO));
 		packageDoc.add(new StringField(EPackageIndexService.EPACKAGE_NS_URI, ePackage.getNsURI(), Store.YES));
 		packageDoc.add(new StringField(EPackageIndexService.EPACKAGE_NAME, ePackage.getName(), Store.YES));
@@ -63,6 +63,7 @@ public class EPackageIndexHelper {
 		
 		ePackage.getEClassifiers().forEach(ec -> {
 			Document classifierDoc = new Document();			
+			classifierDoc.add(new StringField("id", ePackage.getNsURI(), Store.YES));
 			classifierDoc.add(new StringField(EPackageIndexService.DOC_TYPE, "EClassifier", Store.NO));
 			classifierDoc.add(new StringField(EPackageIndexService.ECLASSIFIER_NAME, ec.getName(), Store.YES));
 			classifierDoc.add(new StringField(EPackageIndexService.ECLASSIFIER_NAME_LOWER, ec.getName().toLowerCase(), Store.NO));
@@ -87,6 +88,7 @@ public class EPackageIndexHelper {
 				EClass eclazz = (EClass) ec;
 				eclazz.getEAllStructuralFeatures().forEach(sf -> {
 					Document featureDoc = new Document();	
+					featureDoc.add(new StringField("id", ePackage.getNsURI(), Store.YES));
 					featureDoc.add(new StringField(EPackageIndexService.DOC_TYPE, "EStructuralFeature", Store.NO));
 					featureDoc.add(new StringField(EPackageIndexService.ECLASSIFIER_NAME, ec.getName(), Store.YES));
 					featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NS_URI, ePackage.getNsURI(), Store.YES));

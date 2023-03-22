@@ -10,7 +10,10 @@
 	de.avatar.mr.example.model,\
 	com.vaadin.flow.component.radiobutton,\
 	com.vaadin.flow.component.icon,\
-	de.avatar.mr.search.api;version=latest
+	de.avatar.mr.search.api;version=latest,\
+	com.vaadin.flow.component.checkbox,\
+	de.avatar.mr.model.documentation.provider,\
+	org.gecko.emf.util.documentation.generators.apis
 Bundle-Version: 1.0.0.SNAPSHOT
 Export-Package: \
 	de.avatar.mr.vaadin,\
