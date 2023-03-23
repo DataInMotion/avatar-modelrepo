@@ -11,4 +11,6 @@ Bundle-Version: 1.0.0.SNAPSHOT
 
 # Sometimes without DynamicImport Mockito will not find certain classes
 #DynamicImport-Package: *
--buildpath: org.osgi.test.junit5.cm
+-buildpath: \
+	org.osgi.test.junit5.cm,\
+	org.osgi.service.cm

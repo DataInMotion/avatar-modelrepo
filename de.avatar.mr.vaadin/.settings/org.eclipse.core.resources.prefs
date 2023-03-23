@@ -15,6 +15,7 @@ encoding//src/de/avatar/mr/vaadin/service/package-info.java=UTF-8
 encoding//src/de/avatar/mr/vaadin/views/main/MainView.java=UTF-8
 encoding//src/de/avatar/mr/vaadin/views/main/package-info.java=UTF-8
 encoding//src/de/avatar/mr/vaadin/views/search/package-info.java=UTF-8
+encoding//src/de/avatar/mr/vaadin/views/upload/package-info.java=UTF-8
 encoding/<project>=UTF-8
 encoding/bnd.bnd=UTF-8
 encoding/launch.bndrun=UTF-8

@@ -1,0 +1,18 @@
+Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+
+-library: enableOSGi-Test,\
+	enable-emf
+
+-includeresource: \
+	data/=data/,\
+	data2/=data2/
+
+-buildpath: \
+	org.osgi.test.junit5.cm,\
+	org.osgi.service.cm,\
+	de.avatar.mr.model.upload.api,\
+
+	
+Private-Package: de.avatar.mr.model.upload.tests
+
+Bundle-Version: 1.0.0.SNAPSHOT

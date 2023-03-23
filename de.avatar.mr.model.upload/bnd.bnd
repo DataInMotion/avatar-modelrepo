@@ -1,0 +1,8 @@
+-library: enable-emf
+-buildpath: \
+	de.avatar.mr.model.upload.api;version=latest,\
+	org.osgi.service.cm,\
+	org.osgi.service.component,\
+	org.osgi.service.metatype.annotations
+Bundle-Version: 1.0.0.SNAPSHOT
+Private-Package: de.avatar.mr.model.upload

@@ -135,6 +135,7 @@ public class DynamicPackageLoader{
 		Dictionary<String, Object> properties = new Hashtable<String, Object>();
 		properties.put(EMFNamespaces.EMF_MODEL_NAME, dynamicPackage.getName());
 		properties.put(EMFNamespaces.EMF_MODEL_NSURI, dynamicPackage.getNsURI());
+		
 
 		props.entrySet().stream().filter(e -> e.getKey().startsWith(ADDTIONAL)).forEach(e -> properties.put(e.getKey().substring(ADDTIONAL.length()), e.getValue()));
 		
@@ -148,6 +149,7 @@ public class DynamicPackageLoader{
 	
 	@Deactivate
 	public void deactivate() {
+		System.out.println("I am deactivating " + dynamicPackage.getName());
 		packageRegistration.unregister();
 		configuratorRegistration.unregister();
 		EPackage.Registry.INSTANCE.remove(dynamicPackage.getNsURI());

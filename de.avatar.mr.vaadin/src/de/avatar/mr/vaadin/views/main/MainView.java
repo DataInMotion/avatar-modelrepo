@@ -35,6 +35,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 
 import de.avatar.mr.vaadin.views.search.SearchView;
+import de.avatar.mr.vaadin.views.upload.UploadView;
 
 /**
  * This is the MainView of your Vaadin application. 
@@ -103,7 +104,8 @@ public class MainView extends AppLayout {
 
     private com.vaadin.flow.component.Component[] createMenuItems() {
         return new Tab[]{        		
-        		createTab("Search", SearchView.class)
+        		createTab("Search", SearchView.class),
+        		createTab("Upload", UploadView.class)
         		};
     }
 

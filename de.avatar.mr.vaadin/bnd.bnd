@@ -13,14 +13,17 @@
 	de.avatar.mr.search.api;version=latest,\
 	com.vaadin.flow.component.checkbox,\
 	de.avatar.mr.model.documentation.provider,\
-	org.gecko.emf.util.documentation.generators.apis
+	de.avatar.mr.model.upload.api,\
+	org.gecko.emf.util.documentation.generators.apis,\
+	com.vaadin.flow.component.upload
 Bundle-Version: 1.0.0.SNAPSHOT
 Export-Package: \
 	de.avatar.mr.vaadin,\
 	de.avatar.mr.vaadin.views.main,\
 	de.avatar.mr.vaadin.views.helloworld,\
 	de.avatar.mr.vaadin.service,\
-	de.avatar.mr.vaadin.views.search
+	de.avatar.mr.vaadin.views.search,\
+	de.avatar.mr.vaadin.views.upload
 
 -includeresource: \
 	OSGI-INF/configurator/=configs/,\

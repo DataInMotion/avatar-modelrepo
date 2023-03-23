@@ -24,5 +24,9 @@
 		"output.html.folder" : "html",
 		"output.html.mermaid.folder" : "html_mermaid",
 		"output.package.hash.code.folder": "epackage_hash_code"
+	},
+	"FilePackageLoader~fileLoader": {
+		"modelFolder": "./data/model/upload/"
 	}
+	
 }

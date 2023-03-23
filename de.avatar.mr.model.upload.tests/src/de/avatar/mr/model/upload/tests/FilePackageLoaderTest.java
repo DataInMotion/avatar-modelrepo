@@ -9,7 +9,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package de.avatar.mr.model.registration.tests;
+package de.avatar.mr.model.upload.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +24,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.test.common.annotation.InjectBundleContext;
 import org.osgi.test.common.annotation.Property;
-import org.osgi.test.common.annotation.Property.Type;
 import org.osgi.test.common.annotation.config.WithFactoryConfiguration;
 import org.osgi.test.junit5.cm.ConfigurationExtension;
 import org.osgi.test.junit5.context.BundleContextExtension;
@@ -40,7 +39,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
 @ExtendWith(ConfigurationExtension.class)
-public class DynamicPackageFolderLoaderTest {
+public class FilePackageLoaderTest {
 	
 	private BundleContext ctx;
 	
@@ -53,11 +52,11 @@ public class DynamicPackageFolderLoaderTest {
 	@Test
 	@Order(-1)
 	@WithFactoryConfiguration(
-			factoryPid = "DynamicPackageFolderLoader",
+			factoryPid = "FilePackageLoader",
 			location = "?", 
-			name = "dynamicFolderLoader",
+			name = "test",
 			properties = {
-					@Property(key = "modelFolders", value = "data/", type = Type.Array)
+					@Property(key = "modelFolder", value = "data/")
 			})
 	public void testModelRegistrationFromFolder() throws Exception{
 		

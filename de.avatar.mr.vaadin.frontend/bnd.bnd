@@ -91,5 +91,7 @@ Bundle-Version: 1.0.0.SNAPSHOT
 	com.vaadin.flow.component.checkbox;version='[23.3.0,23.3.1)',\
 	de.avatar.mr.model.documentation.provider;version=snapshot,\
 	org.gecko.emf.util.documentation.generators.apis;version='[1.0.0,1.0.1)',\
-	org.osgi.util.pushstream;version='[1.1.0,1.1.1)'
+	org.osgi.util.pushstream;version='[1.1.0,1.1.1)',\
+	com.vaadin.flow.component.upload;version='[23.3.0,23.3.1)',\
+	de.avatar.mr.model.upload.api;version=snapshot
 -buildpath: de.avatar.mr.vaadin;version=latest

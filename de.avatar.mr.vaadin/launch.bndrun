@@ -25,7 +25,9 @@
 	bnd.identity;id='de.avatar.mr.example.model',\
 	bnd.identity;id='de.avatar.mr.model.documentation.provider',\
 	bnd.identity;id='org.gecko.emf.util.documentation.generators.html.component',\
-	bnd.identity;id='org.gecko.emf.util.documentation.generators.markdown.component'
+	bnd.identity;id='org.gecko.emf.util.documentation.generators.markdown.component',\
+	bnd.identity;id='de.avatar.mr.model.upload',\
+	bnd.identity;id='de.avatar.mr.model.registration'
 
 # we need to run our project
 -runbundles: \
@@ -124,7 +126,13 @@
 	org.gecko.emf.util.documentation.generators.markdown.component;version='[1.0.0,1.0.1)',\
 	org.gecko.emf.util.documentation.generators.mermaid;version='[1.0.0,1.0.1)',\
 	org.gecko.emf.util.documentation.generators.plantuml;version='[1.0.0,1.0.1)',\
-	com.vaadin.flow.component.checkbox;version='[23.3.0,23.3.1)'
+	com.vaadin.flow.component.checkbox;version='[23.3.0,23.3.1)',\
+	com.vaadin.flow.component.upload;version='[23.3.0,23.3.1)',\
+	de.avatar.mr.model.registration;version=snapshot,\
+	de.avatar.mr.model.upload;version=snapshot,\
+	de.avatar.mr.model.upload.api;version=snapshot,\
+	org.apache.felix.log;version='[1.2.6,1.2.7)',\
+	org.apache.felix.metatype;version='[1.2.4,1.2.5)'
 
 -runblacklist: \
 	bnd.identity;id='org.osgi.service.http.whiteboard',\
