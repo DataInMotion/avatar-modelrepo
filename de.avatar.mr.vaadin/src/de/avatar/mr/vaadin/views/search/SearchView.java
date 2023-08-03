@@ -50,6 +50,7 @@ import de.avatar.mr.model.documentation.provider.ModelDocumentationProviderConfi
 import de.avatar.mr.search.api.EClassifierSearchService;
 import de.avatar.mr.search.api.EPackageSearchService;
 import de.avatar.mr.search.api.EStructuralFeatureSearchService;
+import de.avatar.mr.vaadin.common.EPackageGrid;
 import de.avatar.mr.vaadin.views.main.MainView;
 
 /**

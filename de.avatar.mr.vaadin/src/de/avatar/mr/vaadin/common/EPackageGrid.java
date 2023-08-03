@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package de.avatar.mr.vaadin.views.search;
+package de.avatar.mr.vaadin.common;
 
 import java.util.Collection;
 

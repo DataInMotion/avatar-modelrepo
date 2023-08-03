@@ -34,6 +34,7 @@ import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 
+import de.avatar.mr.vaadin.views.evaluate.ModelEvaluateView;
 import de.avatar.mr.vaadin.views.search.SearchView;
 import de.avatar.mr.vaadin.views.upload.UploadView;
 
@@ -105,7 +106,8 @@ public class MainView extends AppLayout {
     private com.vaadin.flow.component.Component[] createMenuItems() {
         return new Tab[]{        		
         		createTab("Search", SearchView.class),
-        		createTab("Upload", UploadView.class)
+        		createTab("Upload", UploadView.class),
+        		createTab("Evaluate", ModelEvaluateView.class)
         		};
     }
 

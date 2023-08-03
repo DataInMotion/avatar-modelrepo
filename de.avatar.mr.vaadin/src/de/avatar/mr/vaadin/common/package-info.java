@@ -10,4 +10,5 @@
  *     Data In Motion - initial API and implementation
  */
 @org.osgi.annotation.versioning.Version("1.0.0")
-package de.avatar.mr.vaadin.service;
+@org.osgi.annotation.bundle.Export
+package de.avatar.mr.vaadin.common;

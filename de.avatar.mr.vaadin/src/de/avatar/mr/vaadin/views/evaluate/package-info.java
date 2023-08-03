@@ -9,10 +9,6 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package de.avatar.mr.vaadin.service;
-
-public interface GreeterService {
-	
-	public String greet(String name);
-
-}
+@org.osgi.annotation.versioning.Version("1.0.0")
+@org.osgi.annotation.bundle.Export
+package de.avatar.mr.vaadin.views.evaluate;

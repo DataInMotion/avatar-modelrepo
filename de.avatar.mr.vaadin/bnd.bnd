@@ -10,17 +10,22 @@
 	de.avatar.mr.example.model,\
 	com.vaadin.flow.component.radiobutton,\
 	com.vaadin.flow.component.icon,\
+	com.vaadin.flow.component.confirmdialog,\
 	de.avatar.mr.search.api;version=latest,\
 	com.vaadin.flow.component.checkbox,\
 	de.avatar.mr.model.documentation.provider,\
 	de.avatar.mr.model.upload.api,\
 	org.gecko.emf.util.documentation.generators.apis,\
-	com.vaadin.flow.component.upload
+	com.vaadin.flow.component.upload,\
+	com.vaadin.flow.component.combobox,\
+	de.avatar.mdp.evaluation.model,\
+	de.avatar.mdp.apis
 Bundle-Version: 1.0.0.SNAPSHOT
 Export-Package: \
 	de.avatar.mr.vaadin,\
+	de.avatar.mr.vaadin.common,\
 	de.avatar.mr.vaadin.views.main,\
-	de.avatar.mr.vaadin.views.helloworld,\
+	de.avatar.mr.vaadin.views.evaluate,\
 	de.avatar.mr.vaadin.service,\
 	de.avatar.mr.vaadin.views.search,\
 	de.avatar.mr.vaadin.views.upload

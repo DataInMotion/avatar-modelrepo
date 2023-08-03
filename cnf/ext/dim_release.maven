@@ -37,3 +37,10 @@ org.gecko.addons:net.jcip.annotation:1.0.0
 org.geckoprojects.search:org.gecko.emf.search.bnd.project.library:1.1.0-SNAPSHOT
 org.geckoprojects.search:org.gecko.search.bnd.library:1.1.0-SNAPSHOT
 
+org.geckoprojects.bnd:org.gecko.bnd.dimc.library:1.3.1
+org.geckoprojects.bnd:org.gecko.bnd.osgitest.library:1.3.1
+org.geckoprojects.bnd:org.gecko.bnd.jacoco.library:1.3.1
+org.geckoprojects.emf:org.gecko.emf.osgi.bnd.library.workspace:5.0.0-SNAPSHOT
+org.geckoprojects.emf:org.gecko.emf.osgi.extender:5.0.0-SNAPSHOT
+org.geckoprojects.emf.utils:org.gecko.emf.util.bnd.library.workspace:1.0.0-SNAPSHOT
+

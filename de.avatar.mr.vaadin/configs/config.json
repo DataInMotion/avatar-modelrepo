@@ -27,6 +27,13 @@
 	},
 	"FilePackageLoader~fileLoader": {
 		"modelFolder": "./data/model/upload/"
+	},
+	"GDPRModelEvaluator~gdpr": {
+		"pyScriptBasePath": "./data/scripts/",
+		"outputBasePath": "./data/model/evaluation/"
+	},
+	"GDPRModelSuggesterRetrainer~gdpr": {
+		"pyScriptBasePath": "./data/scripts/"
 	}
 	
 }

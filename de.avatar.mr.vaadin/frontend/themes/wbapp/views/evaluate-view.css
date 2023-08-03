@@ -1,0 +1,7 @@
+.special.evaluation-text-area-relevant[readonly], .special.evaluation-text-area-relevant[readonly="readonly"] {
+	color: green !important;
+}
+
+.special.evaluation-text-area-no-relevant[readonly], .special.evaluation-text-area-no-relevant[readonly="readonly"] {
+	color: red !important;
+}
