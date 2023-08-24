@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<repository xmlns="http://www.osgi.org/xmlns/repository/v1.0.0" name="Local" increment="1691072238515">
+<repository xmlns="http://www.osgi.org/xmlns/repository/v1.0.0" name="Local" increment="1692883835680">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License 2.0"/>
@@ -7,21 +7,21 @@
       <attribute name="osgi.identity" value="de.avatar.mdp.evaluation.component"/>
       <attribute name="documentation" value="https://github.com/DataInMotion/avatar-mdp"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202308031417-SNAPSHOT" type="Version"/>
+      <attribute name="version" value="1.0.0.202308241330-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202308031417-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308241330-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.bundle" value="de.avatar.mdp.evaluation.component"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202308031417-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308241330-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.host" value="de.avatar.mdp.evaluation.component"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="25273" type="Long"/>
+      <attribute name="size" value="34015" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
       <attribute name="url" value="de.avatar.mdp.evaluation.component/de.avatar.mdp.evaluation.component-1.0.0.jar"/>
-      <attribute name="osgi.content" value="67675DD3593572D1A4D447DC81EEE6BE1641987B0DB97E8F7125DE6F1CA7AD4F"/>
+      <attribute name="osgi.content" value="A107019F07A867EDA7A74DBB0FB7751B269BAA6A7428DF2BA848B323E288C684"/>
     </capability>
     <capability namespace="osgi.service">
       <directive name="uses" value="de.avatar.mdp.apis.api"/>
@@ -30,6 +30,10 @@
     <capability namespace="osgi.service">
       <directive name="uses" value="de.avatar.mdp.apis.api"/>
       <attribute name="objectClass" value="de.avatar.mdp.apis.api.ModelSuggesterRetrainer" type="List&lt;String&gt;"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="de.avatar.mdp.apis.api"/>
+      <attribute name="objectClass" value="de.avatar.mdp.apis.api.PRMetaModelService" type="List&lt;String&gt;"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=com.fasterxml.jackson.databind)(version&gt;=2.13.0)(!(version&gt;=3.0.0)))"/>
@@ -42,6 +46,10 @@
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=de.avatar.mdp.evaluation)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
       <attribute name="osgi.wiring.package" value="de.avatar.mdp.evaluation"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.avatar.mdp.prmeta)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="de.avatar.mdp.prmeta"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.io)"/>
@@ -94,6 +102,154 @@
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.util)(version&gt;=2.33.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.repository.query)(version&gt;=4.0.0)(!(version&gt;=5.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.repository.query"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.component)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.osgi.service.component"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=17))"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.4.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=org.gecko.emf.repository.query.QueryRepository)"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="license" value="Eclipse Public License 2.0"/>
+      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
+      <attribute name="osgi.identity" value="de.avatar.mdp.privacy.related.meta.model"/>
+      <attribute name="documentation" value="https://github.com/DataInMotion/avatar-mdp"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" value="1.0.0.202308241229-SNAPSHOT" type="Version"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <directive name="uses" value="org.eclipse.emf.common.util,org.eclipse.emf.ecore"/>
+      <attribute name="bundle-symbolic-name" value="de.avatar.mdp.privacy.related.meta.model"/>
+      <attribute name="bundle-version" value="1.0.0.202308241229-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="de.avatar.mdp.prmeta"/>
+      <attribute name="version" value="1.0.0" type="Version"/>
+      <attribute name="bnd.hashes" value="-325224520,1091600610,2127553987,-1000463724,-686523421,1425955268,-401703137,407958087,-828318748,-1923478059" type="List&lt;Long&gt;"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <directive name="uses" value="de.avatar.mdp.prmeta,org.eclipse.emf.common.notify,org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.eclipse.emf.ecore.impl"/>
+      <attribute name="bundle-symbolic-name" value="de.avatar.mdp.privacy.related.meta.model"/>
+      <attribute name="bundle-version" value="1.0.0.202308241229-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="de.avatar.mdp.prmeta.impl"/>
+      <attribute name="version" value="1.0.0" type="Version"/>
+      <attribute name="bnd.hashes" value="624173699,1288015572,-16734045,814656991,-963425017,-1721032668,-1923478059" type="List&lt;Long&gt;"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <directive name="uses" value="de.avatar.mdp.prmeta,org.eclipse.emf.common.notify,org.eclipse.emf.common.notify.impl,org.eclipse.emf.ecore,org.eclipse.emf.ecore.util"/>
+      <attribute name="bundle-symbolic-name" value="de.avatar.mdp.privacy.related.meta.model"/>
+      <attribute name="bundle-version" value="1.0.0.202308241229-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="de.avatar.mdp.prmeta.util"/>
+      <attribute name="version" value="1.0.0" type="Version"/>
+      <attribute name="bnd.hashes" value="-1613423166,-1014944453,-1923478059" type="List&lt;Long&gt;"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="bundle-version" value="1.0.0.202308241229-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="de.avatar.mdp.privacy.related.meta.model"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="bundle-version" value="1.0.0.202308241229-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="de.avatar.mdp.privacy.related.meta.model"/>
+    </capability>
+    <capability namespace="de.avatar.mdp.prmeta"/>
+    <capability namespace="org.eclipse.emf.ecore.generated_package">
+      <attribute name="class" value="de.avatar.mdp.prmeta.PRMetaPackage"/>
+      <attribute name="uri" value="http://avatar.de/mdp/privacyrelatedmeta/1.0.0"/>
+      <attribute name="genModel" value="/model/prmeta.genmodel"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="size" value="68781" type="Long"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+      <attribute name="url" value="de.avatar.mdp.privacy.related.meta.model/de.avatar.mdp.privacy.related.meta.model-1.0.0.jar"/>
+      <attribute name="osgi.content" value="545BB637F936067AAA7DA470121404C213C7F50595A2A65F808D650C138B66E8"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="org.eclipse.emf.ecore"/>
+      <attribute name="objectClass" value="de.avatar.mdp.prmeta.PRMetaFactory, org.eclipse.emf.ecore.EFactory" type="List&lt;String&gt;"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="org.eclipse.emf.ecore"/>
+      <attribute name="objectClass" value="de.avatar.mdp.prmeta.PRMetaPackage, org.eclipse.emf.ecore.EPackage" type="List&lt;String&gt;"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="org.eclipse.emf.ecore"/>
+      <attribute name="objectClass" value="org.gecko.emf.osgi.EPackageConfigurator" type="List&lt;String&gt;"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="org.osgi.service.condition"/>
+      <attribute name="objectClass" value="org.osgi.service.condition.Condition" type="List&lt;String&gt;"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.avatar.mdp.prmeta)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+      <attribute name="osgi.wiring.package" value="de.avatar.mdp.prmeta"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.avatar.mdp.prmeta.impl)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="de.avatar.mdp.prmeta.impl"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
+      <attribute name="osgi.wiring.package" value="java.lang"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.util)"/>
+      <attribute name="osgi.wiring.package" value="java.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.notify)(version&gt;=2.28.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.common.notify"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.notify.impl)(version&gt;=2.28.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.common.notify.impl"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.util)(version&gt;=2.28.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.common.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore)(version&gt;=2.33.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.impl)(version&gt;=2.33.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.impl"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.plugin)(version&gt;=2.33.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.plugin"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.resource)(version&gt;=2.33.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.resource"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.util)(version&gt;=2.33.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.osgi)(version&gt;=3.0.0)(!(version&gt;=3.1.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.osgi"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.framework)(version&gt;=1.10.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.osgi.framework"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.osgi.service.condition)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.osgi.service.condition"/>
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=17))"/>
@@ -540,20 +696,20 @@
       <attribute name="osgi.identity" value="de.avatar.mdp.evaluation.model"/>
       <attribute name="documentation" value="https://github.com/DataInMotion/avatar-mdp"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202308021142-SNAPSHOT" type="Version"/>
+      <attribute name="version" value="1.0.0.202308241226-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.eclipse.emf.common.util,org.eclipse.emf.ecore"/>
       <attribute name="bundle-symbolic-name" value="de.avatar.mdp.evaluation.model"/>
-      <attribute name="bundle-version" value="1.0.0.202308021142-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308241226-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="de.avatar.mdp.evaluation"/>
       <attribute name="version" value="1.0.0" type="Version"/>
-      <attribute name="bnd.hashes" value="415523287,-1442978980,-325224520,-2087183190,1807925653,1425955268,2092745937,-1923478059" type="List&lt;Long&gt;"/>
+      <attribute name="bnd.hashes" value="415523287,-1442978980,-325224520,-2087183190,1807925653,1425955268,2092745937,993271205,-1923478059" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="de.avatar.mdp.evaluation,org.eclipse.emf.common.notify,org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.eclipse.emf.ecore.impl"/>
       <attribute name="bundle-symbolic-name" value="de.avatar.mdp.evaluation.model"/>
-      <attribute name="bundle-version" value="1.0.0.202308021142-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308241226-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="de.avatar.mdp.evaluation.impl"/>
       <attribute name="version" value="1.0.0" type="Version"/>
       <attribute name="bnd.hashes" value="2040820887,-410539108,-1951887894,1657849173,-1805727087,-1923478059" type="List&lt;Long&gt;"/>
@@ -561,17 +717,17 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="de.avatar.mdp.evaluation,org.eclipse.emf.common.notify,org.eclipse.emf.common.notify.impl,org.eclipse.emf.ecore,org.eclipse.emf.ecore.util"/>
       <attribute name="bundle-symbolic-name" value="de.avatar.mdp.evaluation.model"/>
-      <attribute name="bundle-version" value="1.0.0.202308021142-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308241226-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="de.avatar.mdp.evaluation.util"/>
       <attribute name="version" value="1.0.0" type="Version"/>
       <attribute name="bnd.hashes" value="-149918768,2113562953,-1923478059" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202308021142-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308241226-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.bundle" value="de.avatar.mdp.evaluation.model"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202308021142-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308241226-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.host" value="de.avatar.mdp.evaluation.model"/>
     </capability>
     <capability namespace="de.avatar.mdp.evaluation"/>
@@ -581,10 +737,10 @@
       <attribute name="genModel" value="/model/evaluation.genmodel"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="58387" type="Long"/>
+      <attribute name="size" value="61687" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
       <attribute name="url" value="de.avatar.mdp.evaluation.model/de.avatar.mdp.evaluation.model-1.0.0.jar"/>
-      <attribute name="osgi.content" value="45CFEAB09C1C63AA3DB732302B6868315561F98B02EC168A6CF0D9394143EAB9"/>
+      <attribute name="osgi.content" value="6001782D9CF9E58705C8CE604F531B1FA976D33E740196A203BACCD553C76383"/>
     </capability>
     <capability namespace="osgi.service">
       <directive name="uses" value="org.eclipse.emf.ecore"/>
@@ -799,33 +955,37 @@
       <attribute name="osgi.identity" value="de.avatar.mdp.apis"/>
       <attribute name="documentation" value="https://github.com/DataInMotion/avatar-mdp"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202308031336-SNAPSHOT" type="Version"/>
+      <attribute name="version" value="1.0.0.202308090929-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.package">
-      <directive name="uses" value="de.avatar.mdp.evaluation,org.eclipse.emf.ecore"/>
+      <directive name="uses" value="de.avatar.mdp.evaluation,de.avatar.mdp.prmeta,org.eclipse.emf.ecore"/>
       <attribute name="bundle-symbolic-name" value="de.avatar.mdp.apis"/>
-      <attribute name="bundle-version" value="1.0.0.202308031336-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308090929-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="de.avatar.mdp.apis.api"/>
       <attribute name="version" value="1.0.0" type="Version"/>
-      <attribute name="bnd.hashes" value="-880584922,-1204244006,-1923478059" type="List&lt;Long&gt;"/>
+      <attribute name="bnd.hashes" value="-880584922,-1204244006,-1067923437,-1923478059" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202308031336-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308090929-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.bundle" value="de.avatar.mdp.apis"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202308031336-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="1.0.0.202308090929-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.host" value="de.avatar.mdp.apis"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="12482" type="Long"/>
+      <attribute name="size" value="13741" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
       <attribute name="url" value="de.avatar.mdp.apis/de.avatar.mdp.apis-1.0.0.jar"/>
-      <attribute name="osgi.content" value="2AF2DB94721E28637CC0C25FBCF26D246A5FDA25A88C2F3195E2950DACA2CE00"/>
+      <attribute name="osgi.content" value="F834AE70A5A1D5B5C67FDB54952672F4BF9CE955FED75D5E7456F86716922C47"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(&amp;(osgi.wiring.package=de.avatar.mdp.evaluation)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
       <attribute name="osgi.wiring.package" value="de.avatar.mdp.evaluation"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=de.avatar.mdp.prmeta)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="de.avatar.mdp.prmeta"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.lang)"/>

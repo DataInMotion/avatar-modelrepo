@@ -18,7 +18,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.gecko.vaadin.whiteboard.annotations.VaadinComponent;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -41,9 +40,11 @@ import com.vaadin.flow.router.Route;
 
 import de.avatar.mdp.apis.api.ModelEvaluator;
 import de.avatar.mdp.apis.api.ModelSuggesterRetrainer;
+import de.avatar.mdp.apis.api.PRMetaModelService;
 import de.avatar.mdp.evaluation.EvaluatedTerm;
 import de.avatar.mdp.evaluation.EvaluationCriteriumType;
 import de.avatar.mdp.evaluation.EvaluationSummary;
+import de.avatar.mdp.evaluation.RelevanceLevelType;
 import de.avatar.mr.search.api.EPackageSearchService;
 import de.avatar.mr.vaadin.common.EPackageGrid;
 import de.avatar.mr.vaadin.views.main.MainView;
@@ -67,9 +68,14 @@ public class ModelEvaluateView extends VerticalLayout{
 	
 	@Reference(target = "(component.name=GDPRModelSuggesterRetrainer)")
 	ModelSuggesterRetrainer gdprSuggesterRetrainer;
+	
+	@Reference
+	PRMetaModelService prMetaModelService;
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 7098092065550709063L;
+	private EvaluationSummary displayedSummary;
+	private EPackage selectedEPackage;
 
 	@Activate 
 	public void renderView() {
@@ -93,7 +99,8 @@ public class ModelEvaluateView extends VerticalLayout{
 		EvaluatedTermGrid summaryGrid = new EvaluatedTermGrid();
 		Button saveBtn = new Button("Save Model", evt -> {
 //			TODO: here we have to take the items of the SummaryGrid and create the coupled model with the info about gdpr related fields
-			Notification.show(String.format("GDPR annotations added to the model.")).addThemeVariants(NotificationVariant.LUMO_SUCCESS);			
+			prMetaModelService.createPRModel(displayedSummary, selectedEPackage);
+			Notification.show(String.format("GDPR constraints added to the model.")).addThemeVariants(NotificationVariant.LUMO_SUCCESS);			
 			
 			ConfirmDialog retrainDialog = new ConfirmDialog();
 			retrainDialog.setHeader("Retrain Suggestion Model");
@@ -111,7 +118,7 @@ public class ModelEvaluateView extends VerticalLayout{
 				List<String> unrelevantDocs = new ArrayList<>();
 				evaluatedTerms.stream().forEach(t -> {
 					t.getEvaluations().stream().forEach(e -> {
-						if(e.isRelevant()) relevantDocs.add(e.getInput());
+						if(e.getRelevanceLevel().equals(RelevanceLevelType.RELEVANT) || e.getRelevanceLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) relevantDocs.add(e.getInput());
 						else unrelevantDocs.add(e.getInput());
 					});
 				});
@@ -158,8 +165,9 @@ public class ModelEvaluateView extends VerticalLayout{
 			btn.addClickListener(evt -> {
 				switch(combo.getValue()) {
 				case GDPR:
-					EvaluationSummary summary = gdprModelEvaluator.evaluateModel(EcoreUtil.copy(ePackage));
-					summaryGrid.setItems(summary.getEvaluatedTerms());
+					selectedEPackage = ePackage;
+					displayedSummary = gdprModelEvaluator.evaluateModel(ePackage);
+					summaryGrid.setItems(displayedSummary.getEvaluatedTerms());
 					summaryLayout.setVisible(true);
 				case OPEN_DATA:
 					break;

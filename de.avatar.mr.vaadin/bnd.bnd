@@ -19,7 +19,8 @@
 	com.vaadin.flow.component.upload,\
 	com.vaadin.flow.component.combobox,\
 	de.avatar.mdp.evaluation.model,\
-	de.avatar.mdp.apis
+	de.avatar.mdp.apis,\
+	de.avatar.mdp.privacy.related.meta.model
 Bundle-Version: 1.0.0.SNAPSHOT
 Export-Package: \
 	de.avatar.mr.vaadin,\
@@ -28,7 +29,8 @@ Export-Package: \
 	de.avatar.mr.vaadin.views.evaluate,\
 	de.avatar.mr.vaadin.service,\
 	de.avatar.mr.vaadin.views.search,\
-	de.avatar.mr.vaadin.views.upload
+	de.avatar.mr.vaadin.views.upload,\
+	de.avatar.mr.vaadin.views.show
 
 -includeresource: \
 	OSGI-INF/configurator/=configs/,\

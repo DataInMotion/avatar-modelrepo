@@ -95,5 +95,6 @@ Bundle-Version: 1.0.0.SNAPSHOT
 	de.avatar.mdp.evaluation.model;version='[1.0.0,1.0.1)',\
 	org.gecko.emf.osgi.api;version='[4.1.1,4.1.2)',\
 	net.bytebuddy.byte-buddy;version='[1.12.21,1.12.22)',\
-	com.vaadin.flow.component.confirmdialog;version='[23.3.0,23.3.1)'
+	com.vaadin.flow.component.confirmdialog;version='[23.3.0,23.3.1)',\
+	de.avatar.mdp.privacy.related.meta.model;version='[1.0.0,1.0.1)'
 -buildpath: de.avatar.mr.vaadin;version=latest

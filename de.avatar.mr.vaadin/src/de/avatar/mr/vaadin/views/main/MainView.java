@@ -36,6 +36,7 @@ import com.vaadin.flow.router.RouterLink;
 
 import de.avatar.mr.vaadin.views.evaluate.ModelEvaluateView;
 import de.avatar.mr.vaadin.views.search.SearchView;
+import de.avatar.mr.vaadin.views.show.ModelShowView;
 import de.avatar.mr.vaadin.views.upload.UploadView;
 
 /**
@@ -107,7 +108,8 @@ public class MainView extends AppLayout {
         return new Tab[]{        		
         		createTab("Search", SearchView.class),
         		createTab("Upload", UploadView.class),
-        		createTab("Evaluate", ModelEvaluateView.class)
+        		createTab("Evaluate", ModelEvaluateView.class),
+        		createTab("Show", ModelShowView.class)
         		};
     }
 

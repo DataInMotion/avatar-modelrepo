@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.html.Label;
@@ -25,6 +25,7 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 
 import de.avatar.mdp.evaluation.EvaluatedTerm;
 import de.avatar.mdp.evaluation.Evaluation;
+import de.avatar.mdp.evaluation.RelevanceLevelType;
 
 /**
  * 
@@ -46,19 +47,23 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 			evaluationsGrid.addColumn(new ComponentRenderer<>(Label::new, (label, evaluation) -> {
 				label.setText(evaluation.getInput());
 				label.setWidth("50%");
-				label.getElement().getStyle().set("color", evaluation.isRelevant() ? "green" : "red");
+				label.getElement().getStyle()
+					.set("color", 
+							evaluation.getRelevanceLevel().equals(RelevanceLevelType.NOT_RELEVANT) ? "green" :
+								(evaluation.getRelevanceLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT) ? "orange": "red"));
 				label.getElement().getStyle().set("white-space", "pre-wrap");
 				label.getElement().getStyle().set("display", "inline-block");
 			})).setHeader("Document").setAutoWidth(true);
-			evaluationsGrid.addColumn(new ComponentRenderer<>(Checkbox::new, (checkbox, evaluation) -> {
-				checkbox.setValue(evaluation.isRelevant());
-				checkbox.setWidth("50%");
-				checkbox.setReadOnly(false);
-				checkbox.addValueChangeListener(evt -> {
-					evaluation.setRelevant(evt.getValue());
+			evaluationsGrid.addColumn(new ComponentRenderer<>(() -> new ComboBox<RelevanceLevelType>(), (combobox, evaluation) -> {
+				combobox.setItems(RelevanceLevelType.values());
+				combobox.setValue(evaluation.getRelevanceLevel());
+				combobox.setWidth("50%");
+				combobox.setReadOnly(false);
+				combobox.addValueChangeListener(evt -> {
+					evaluation.setRelevanceLevel(evt.getValue());
 					evaluationsGrid.getDataProvider().refreshAll();
 				});
-			})).setHeader("Is Relevant?").setAutoWidth(true);
+			})).setHeader("Relevance Level").setAutoWidth(true);
 			evaluationsGrid.setItems(term.getEvaluations());
 			evaluationsGrid.setMaxHeight("200px");
 		})).setHeader("Evaluated Docs").setAutoWidth(true);
