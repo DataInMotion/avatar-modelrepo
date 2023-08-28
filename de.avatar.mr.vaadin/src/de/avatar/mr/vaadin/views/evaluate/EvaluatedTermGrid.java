@@ -25,6 +25,7 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 
 import de.avatar.mdp.evaluation.EvaluatedTerm;
 import de.avatar.mdp.evaluation.Evaluation;
+import de.avatar.mdp.evaluation.Relevance;
 import de.avatar.mdp.evaluation.RelevanceLevelType;
 
 /**
@@ -41,33 +42,41 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 	public EvaluatedTermGrid() {
 		addColumn(new ComponentRenderer<>(Label::new, (text, term) -> {
 			text.setText(term.getFeatureClassifierName().concat("::").concat(term.getEvaluatedFeature().getName()));
-		})).setHeader("Feature Name").setAutoWidth(true);
+		})).setHeader("Feature Name").setAutoWidth(true).setFlexGrow(1);
 		addColumn(new ComponentRenderer<>(() -> new Grid<Evaluation>(), (evaluationsGrid, term) -> {
 			evaluationsGrid.setWidth("100%");
 			evaluationsGrid.addColumn(new ComponentRenderer<>(Label::new, (label, evaluation) -> {
 				label.setText(evaluation.getInput());
-				label.setWidth("50%");
+				label.setTitle(determineTooltipFromRelevance(evaluation));
+				label.setWidth("30%");
 				label.getElement().getStyle()
-					.set("color", 
-							evaluation.getRelevanceLevel().equals(RelevanceLevelType.NOT_RELEVANT) ? "green" :
-								(evaluation.getRelevanceLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT) ? "orange": "red"));
+					.set("color", determineColorFromHighestRelevance(evaluation));
 				label.getElement().getStyle().set("white-space", "pre-wrap");
 				label.getElement().getStyle().set("display", "inline-block");
-			})).setHeader("Document").setAutoWidth(true);
-			evaluationsGrid.addColumn(new ComponentRenderer<>(() -> new ComboBox<RelevanceLevelType>(), (combobox, evaluation) -> {
-				combobox.setItems(RelevanceLevelType.values());
-				combobox.setValue(evaluation.getRelevanceLevel());
-				combobox.setWidth("50%");
-				combobox.setReadOnly(false);
-				combobox.addValueChangeListener(evt -> {
-					evaluation.setRelevanceLevel(evt.getValue());
-					evaluationsGrid.getDataProvider().refreshAll();
-				});
-			})).setHeader("Relevance Level").setAutoWidth(true);
+			})).setHeader("Document").setAutoWidth(true).setFlexGrow(1);
+			evaluationsGrid.addColumn(new ComponentRenderer<>(() -> new Grid<Relevance>(), (relGrid, evaluation) -> {
+				relGrid.setItems(evaluation.getRelevance());
+				relGrid.addColumn(Relevance::getCategory).setHeader("Category").setAutoWidth(true);
+				relGrid.addColumn(new ComponentRenderer<>(() -> new ComboBox<RelevanceLevelType>(), (combobox, relevance) -> {
+					combobox.setItems(RelevanceLevelType.values());
+					combobox.setValue(relevance.getLevel());
+					combobox.setWidthFull();
+					combobox.setReadOnly(false);
+					combobox.addValueChangeListener(evt -> {
+						relevance.setLevel(evt.getValue());
+						evaluationsGrid.getDataProvider().refreshAll();
+					});
+				})).setHeader("Level").setAutoWidth(true).setFlexGrow(1);
+				relGrid.setWidthFull();
+				relGrid.setMaxHeight("150px");
+			})).setHeader("Relevance").setAutoWidth(true).setFlexGrow(1);
 			evaluationsGrid.setItems(term.getEvaluations());
-			evaluationsGrid.setMaxHeight("200px");
-		})).setHeader("Evaluated Docs").setAutoWidth(true);
+			evaluationsGrid.setMaxHeight("300px");
+		})).setHeader("Evaluated Docs").setAutoWidth(true).setFlexGrow(1);
 	}
+
+
+	
 
 	/* 
 	 * (non-Javadoc)
@@ -86,5 +95,38 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 	
 	public List<EvaluatedTerm> getCurrentItems() {
 		return List.copyOf(currentItems);
+	}
+	
+	private String determineColorFromHighestRelevance(Evaluation evaluation) {
+		String color = "black";
+		for(Relevance relevance : evaluation.getRelevance()) {
+			if(relevance.getLevel().equals(RelevanceLevelType.RELEVANT)) {
+				return "red";
+			} else if(relevance.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) {
+				color = "orange";
+			}
+		}
+		return color;
+	}
+	
+	private String determineTooltipFromRelevance(Evaluation evaluation) {
+		List<String> relevantCategories = evaluation.getRelevance().stream().
+				filter(r -> r.getLevel().equals(RelevanceLevelType.RELEVANT)).
+				map(r -> r.getCategory()).toList();
+		List<String> potRelevantCategories = evaluation.getRelevance().stream().
+				filter(r -> r.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)).
+				map(r -> r.getCategory()).toList();
+		if(relevantCategories.isEmpty() && potRelevantCategories.isEmpty()) return "";
+		String tooltip = "";
+		if(!relevantCategories.isEmpty()) {
+			tooltip += "Term is relevant for categories: ";
+			for(String c : relevantCategories) tooltip += c + " ";
+		}
+		if(!potRelevantCategories.isEmpty()) {
+			if(!tooltip.isEmpty()) tooltip += "\n";
+			tooltip += "Term is potentially relevant for categories: ";
+			for(String c : potRelevantCategories) tooltip += c + " ";
+		}
+		return tooltip;
 	}
 }

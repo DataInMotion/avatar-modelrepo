@@ -14,15 +14,17 @@
 package de.avatar.mr.vaadin.views.show;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 
-import de.avatar.mdp.prmeta.EvaluationLevelType;
 import de.avatar.mdp.prmeta.PRClassifier;
 import de.avatar.mdp.prmeta.PRFeature;
+import de.avatar.mdp.prmeta.Relevance;
+import de.avatar.mdp.prmeta.RelevanceLevelType;
 
 /**
  * 
@@ -37,15 +39,15 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 	public PRClassifierGrid() {
 		addColumn(new ComponentRenderer<>(Label::new, (label, classifier) -> {
 			label.setText(classifier.getEClassifier().getName());
-			label.getElement().getStyle().set("color", getColorByEvaluationLevel(classifier.getEvaluationLevel()));
-			label.getElement().setProperty("title", getTooltipByEvaluationLevel(classifier.getEvaluationLevel()));
+			label.getElement().getStyle().set("color", determineColorFromHighestRelevance(classifier.getRelevance()));
+			label.getElement().setProperty("title", determineTooltipFromRelevance(classifier.getRelevance()));
 		})).setHeader("EClassifier").setAutoWidth(true);
 		
 		addColumn(new ComponentRenderer<>(()-> new Grid<PRFeature>(), (grid, classifier) -> {
 			grid.addColumn(new ComponentRenderer<>(Label::new, (label, feature) -> {
 				label.setText(feature.getFeature().getName());
-				label.getElement().getStyle().set("color", getColorByEvaluationLevel(feature.getEvaluationLevel()));
-				label.getElement().setProperty("title", getTooltipByEvaluationLevel(feature.getEvaluationLevel()));
+				label.getElement().getStyle().set("color", determineColorFromHighestRelevance(feature.getRelevance()));
+				label.getElement().setProperty("title", determineTooltipFromRelevance(feature.getRelevance()));
 			})).setHeader("Name").setAutoWidth(true);
 			grid.addColumn(new ComponentRenderer<>(Label::new, (label, feature) -> {
 				label.setText(feature.getFeature().getEType().getName());
@@ -68,25 +70,36 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 		return super.setItems(items);
 	}
 	
-	private String getColorByEvaluationLevel(EvaluationLevelType evaluationLevel) {
-		switch(evaluationLevel) {
-		case NOT_RELEVANT: default:
-			return "black";
-		case RELEVANT:
-			return "red";
-		case POTENTIALLY_RELEVANT:
-			return "orange";
+	private String determineTooltipFromRelevance(List<Relevance> relevances) {
+		List<String> relevantCategories = relevances.stream().
+				filter(r -> r.getLevel().equals(RelevanceLevelType.RELEVANT)).
+				map(r -> r.getCategory()).toList();
+		List<String> potRelevantCategories = relevances.stream().
+				filter(r -> r.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)).
+				map(r -> r.getCategory()).toList();
+		if(relevantCategories.isEmpty() && potRelevantCategories.isEmpty()) return "";
+		String tooltip = "";
+		if(!relevantCategories.isEmpty()) {
+			tooltip += "Element is relevant for categories: ";
+			for(String c : relevantCategories) tooltip += c + " ";
 		}
+		if(!potRelevantCategories.isEmpty()) {
+			if(!tooltip.isEmpty()) tooltip += "\n";
+			tooltip += "Element is potentially relevant for categories: ";
+			for(String c : potRelevantCategories) tooltip += c + " ";
+		}
+		return tooltip;
 	}
 	
-	private String getTooltipByEvaluationLevel(EvaluationLevelType evaluationLevel) {
-		switch(evaluationLevel) {
-		case NOT_RELEVANT: default:
-			return "No warnings for this element based on the selected criteria";
-		case RELEVANT:
-			return "High risk element based on the selected criteria";
-		case POTENTIALLY_RELEVANT:
-			return "Potential risk element based on the selected criteria";
+	private String determineColorFromHighestRelevance(List<Relevance> relevances) {
+		String color = "black";
+		for(Relevance relevance : relevances) {
+			if(relevance.getLevel().equals(RelevanceLevelType.RELEVANT)) {
+				return "red";
+			} else if(relevance.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) {
+				color = "orange";
+			}
 		}
+		return color;
 	}
 }

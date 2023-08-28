@@ -29,11 +29,14 @@
 		"modelFolder": "./data/model/upload/"
 	},
 	"GDPRModelEvaluator~gdpr": {
-		"pyScriptBasePath": "./data/scripts/",
-		"outputBasePath": "./data/model/evaluation/"
+		"basePath": "./data/suggester/",
+		"modelPath": "./data/suggester/model/",
+		"pyScriptBasePath": "./data/suggester/py/",
+		"outputBasePath": "./data/suggester/out/"
 	},
 	"GDPRModelSuggesterRetrainer~gdpr": {
-		"pyScriptBasePath": "./data/scripts/"
+		"basePath": "./data/suggester/",
+		"pyScriptBasePath": "./data/suggester/py/"
 	},
 	"EMFMongoRepositoryConfigurator~avatarmdp": {
 		"mongo.instances": "avatarmdp",

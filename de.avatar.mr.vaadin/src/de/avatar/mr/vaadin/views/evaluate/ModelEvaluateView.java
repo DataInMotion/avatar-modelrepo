@@ -13,9 +13,10 @@
  */
 package de.avatar.mr.vaadin.views.evaluate;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.gecko.vaadin.whiteboard.annotations.VaadinComponent;
@@ -44,7 +45,7 @@ import de.avatar.mdp.apis.api.PRMetaModelService;
 import de.avatar.mdp.evaluation.EvaluatedTerm;
 import de.avatar.mdp.evaluation.EvaluationCriteriumType;
 import de.avatar.mdp.evaluation.EvaluationSummary;
-import de.avatar.mdp.evaluation.RelevanceLevelType;
+import de.avatar.mdp.evaluation.Relevance;
 import de.avatar.mr.search.api.EPackageSearchService;
 import de.avatar.mr.vaadin.common.EPackageGrid;
 import de.avatar.mr.vaadin.views.main.MainView;
@@ -79,6 +80,7 @@ public class ModelEvaluateView extends VerticalLayout{
 
 	@Activate 
 	public void renderView() {
+		setSizeFull();
 		HorizontalLayout searchLayout = new HorizontalLayout();
 		searchLayout.setWidthFull();
 		searchLayout.setAlignItems(Alignment.BASELINE);
@@ -114,15 +116,13 @@ public class ModelEvaluateView extends VerticalLayout{
 			retrainDialog.setConfirmText("Yes");
 			retrainDialog.addConfirmListener(event -> {
 				List<EvaluatedTerm> evaluatedTerms = summaryGrid.getCurrentItems();
-				List<String> relevantDocs = new ArrayList<>();
-				List<String> unrelevantDocs = new ArrayList<>();
+				Map<String, List<Relevance>> evaluatedTermsMap = new HashMap<>();
 				evaluatedTerms.stream().forEach(t -> {
 					t.getEvaluations().stream().forEach(e -> {
-						if(e.getRelevanceLevel().equals(RelevanceLevelType.RELEVANT) || e.getRelevanceLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) relevantDocs.add(e.getInput());
-						else unrelevantDocs.add(e.getInput());
+						evaluatedTermsMap.put(e.getInput(), e.getRelevance());
 					});
 				});
-				gdprSuggesterRetrainer.retrainModelSuggester(relevantDocs, unrelevantDocs);
+				gdprSuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap);
 				Notification.show(String.format("The suggestion model is being retrained with the additional provided documents."))
 				.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
 			});
