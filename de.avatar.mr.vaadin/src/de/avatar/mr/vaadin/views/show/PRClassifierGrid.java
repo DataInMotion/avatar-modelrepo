@@ -16,13 +16,19 @@ package de.avatar.mr.vaadin.views.show;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 
 import de.avatar.mdp.prmeta.PRClassifier;
-import de.avatar.mdp.prmeta.PRFeature;
+import de.avatar.mdp.prmeta.PRModelElement;
 import de.avatar.mdp.prmeta.Relevance;
 import de.avatar.mdp.prmeta.RelevanceLevelType;
 
@@ -37,26 +43,40 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 	private static final long serialVersionUID = -4567276995318247328L;
 	
 	public PRClassifierGrid() {
-		addColumn(new ComponentRenderer<>(Label::new, (label, classifier) -> {
-			label.setText(classifier.getEClassifier().getName());
-			label.getElement().getStyle().set("color", determineColorFromHighestRelevance(classifier.getRelevance()));
-			label.getElement().setProperty("title", determineTooltipFromRelevance(classifier.getRelevance()));
+		addColumn(new ComponentRenderer<>(Label::new, (label, prClassifier) -> {
+			label.setText(prClassifier.getEClassifier().getName());
+			label.getElement().getStyle().set("color", determineColorFromHighestRelevance(prClassifier.getRelevance()));
+			label.getElement().setProperty("title", determineTooltipFromRelevance(prClassifier.getRelevance()));
 		})).setHeader("EClassifier").setAutoWidth(true);
+		addColumn(new ComponentRenderer<>(Label::new, (label, prClassifier) -> {
+			if(prClassifier.getEClassifier() instanceof EClass) label.setText("EClass");
+			else if(prClassifier.getEClassifier() instanceof EEnum) label.setText("EEnum");
+			else if(prClassifier.getEClassifier() instanceof EDataType) label.setText("EDataType");
+			else label.setText("UNKNOWN");
+		})).setHeader("Type").setAutoWidth(true);
 		
-		addColumn(new ComponentRenderer<>(()-> new Grid<PRFeature>(), (grid, classifier) -> {
-			grid.addColumn(new ComponentRenderer<>(Label::new, (label, feature) -> {
-				label.setText(feature.getFeature().getName());
-				label.getElement().getStyle().set("color", determineColorFromHighestRelevance(feature.getRelevance()));
-				label.getElement().setProperty("title", determineTooltipFromRelevance(feature.getRelevance()));
+		addColumn(new ComponentRenderer<>(()-> new Grid<PRModelElement>(), (grid, prClassifier) -> {
+			grid.addColumn(new ComponentRenderer<>(Label::new, (label, prModelElement) -> {
+				label.setText(prModelElement.getModelElement().getName());
+				label.getElement().getStyle().set("color", determineColorFromHighestRelevance(prModelElement.getRelevance()));
+				label.getElement().setProperty("title", determineTooltipFromRelevance(prModelElement.getRelevance()));
 			})).setHeader("Name").setAutoWidth(true);
-			grid.addColumn(new ComponentRenderer<>(Label::new, (label, feature) -> {
-				label.setText(feature.getFeature().getEType().getName());
+			grid.addColumn(new ComponentRenderer<>(Label::new, (label, prModelElement) -> {
+				if(prModelElement.getModelElement() instanceof EStructuralFeature feature) {
+					label.setText(feature.getEType().getName());
+				} else if(prModelElement.getModelElement() instanceof EEnumLiteral literal) {
+					label.setText("EEnumLiteral");				
+				} else if(prModelElement.getModelElement() instanceof EDataType eDataType) {
+					label.setText(eDataType.getInstanceClassName());				
+				}
 			})).setHeader("EType").setAutoWidth(true);
-			grid.addColumn(new ComponentRenderer<>(Label::new, (label, feature) -> {
-				label.setText(feature.getFeature().getLowerBound() + "..." + feature.getFeature().getUpperBound());
+			grid.addColumn(new ComponentRenderer<>(Label::new, (label, prModelElement) -> {
+				if(prModelElement.getModelElement() instanceof EStructuralFeature feature) {
+					label.setText(feature.getLowerBound() + "..." + feature.getUpperBound());
+				} else label.setText("N/A");	
 			})).setHeader("Cardinality").setAutoWidth(true);
-			grid.setItems(classifier.getPrFeature());
-		})).setHeader("EStructuralFeatures").setAutoWidth(true);
+			grid.setItems(prClassifier.getPrModelElement());
+		})).setHeader("Elements").setAutoWidth(true);
 	}
 
 	/* 

@@ -41,8 +41,8 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 	
 	public EvaluatedTermGrid() {
 		addColumn(new ComponentRenderer<>(Label::new, (text, term) -> {
-			text.setText(term.getFeatureClassifierName().concat("::").concat(term.getEvaluatedFeature().getName()));
-		})).setHeader("Feature Name").setAutoWidth(true).setFlexGrow(1);
+			text.setText(term.getElementClassifierName().concat("::").concat(term.getEvaluatedModelElement().getName()));
+		})).setHeader("Element Name").setAutoWidth(true).setFlexGrow(1);
 		addColumn(new ComponentRenderer<>(() -> new Grid<Evaluation>(), (evaluationsGrid, term) -> {
 			evaluationsGrid.setWidth("100%");
 			evaluationsGrid.addColumn(new ComponentRenderer<>(Label::new, (label, evaluation) -> {
@@ -87,7 +87,7 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 		if(items.isEmpty()) setVisible(false);
 		else setVisible(true);
 		items = items.stream().sorted((i1,i2) -> {
-			return i1.getFeatureClassifierName().compareTo(i2.getFeatureClassifierName());
+			return i1.getElementClassifierName().compareTo(i2.getElementClassifierName());
 		}).toList();
 		currentItems = (List<EvaluatedTerm>) items;
 		return super.setItems(items);
