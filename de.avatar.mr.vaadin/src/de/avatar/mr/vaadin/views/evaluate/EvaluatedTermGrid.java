@@ -40,20 +40,20 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 	private List<EvaluatedTerm> currentItems = new ArrayList<>();
 	
 	public EvaluatedTermGrid() {
+		setWidth("100%");
 		addColumn(new ComponentRenderer<>(Label::new, (text, term) -> {
 			text.setText(term.getElementClassifierName().concat("::").concat(term.getEvaluatedModelElement().getName()));
-		})).setHeader("Element Name").setAutoWidth(true).setFlexGrow(1);
+		})).setHeader("Element Name").setResizable(true).setFlexGrow(1);
 		addColumn(new ComponentRenderer<>(() -> new Grid<Evaluation>(), (evaluationsGrid, term) -> {
 			evaluationsGrid.setWidth("100%");
 			evaluationsGrid.addColumn(new ComponentRenderer<>(Label::new, (label, evaluation) -> {
 				label.setText(evaluation.getInput());
 				label.setTitle(determineTooltipFromRelevance(evaluation));
-				label.setWidth("30%");
 				label.getElement().getStyle()
 					.set("color", determineColorFromHighestRelevance(evaluation));
 				label.getElement().getStyle().set("white-space", "pre-wrap");
 				label.getElement().getStyle().set("display", "inline-block");
-			})).setHeader("Document").setAutoWidth(true).setFlexGrow(1);
+			})).setHeader("Document").setResizable(true).setFlexGrow(1);
 			evaluationsGrid.addColumn(new ComponentRenderer<>(() -> new Grid<Relevance>(), (relGrid, evaluation) -> {
 				relGrid.setItems(evaluation.getRelevance());
 				relGrid.addColumn(Relevance::getCategory).setHeader("Category").setAutoWidth(true);
@@ -66,13 +66,13 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 						relevance.setLevel(evt.getValue());
 						evaluationsGrid.getDataProvider().refreshAll();
 					});
-				})).setHeader("Level").setAutoWidth(true).setFlexGrow(1);
+				})).setHeader("Level").setResizable(true);
 				relGrid.setWidthFull();
 				relGrid.setMaxHeight("150px");
-			})).setHeader("Relevance").setAutoWidth(true).setFlexGrow(1);
+			})).setHeader("Relevance").setResizable(true).setFlexGrow(4);
 			evaluationsGrid.setItems(term.getEvaluations());
 			evaluationsGrid.setMaxHeight("300px");
-		})).setHeader("Evaluated Docs").setAutoWidth(true).setFlexGrow(1);
+		})).setHeader("Evaluated Docs").setResizable(true).setFlexGrow(4);
 	}
 
 

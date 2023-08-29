@@ -43,17 +43,18 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 	private static final long serialVersionUID = -4567276995318247328L;
 	
 	public PRClassifierGrid() {
+		setWidth("100%");
 		addColumn(new ComponentRenderer<>(Label::new, (label, prClassifier) -> {
 			label.setText(prClassifier.getEClassifier().getName());
 			label.getElement().getStyle().set("color", determineColorFromHighestRelevance(prClassifier.getRelevance()));
 			label.getElement().setProperty("title", determineTooltipFromRelevance(prClassifier.getRelevance()));
-		})).setHeader("EClassifier").setAutoWidth(true);
+		})).setHeader("EClassifier").setResizable(true).setFlexGrow(1);
 		addColumn(new ComponentRenderer<>(Label::new, (label, prClassifier) -> {
 			if(prClassifier.getEClassifier() instanceof EClass) label.setText("EClass");
 			else if(prClassifier.getEClassifier() instanceof EEnum) label.setText("EEnum");
 			else if(prClassifier.getEClassifier() instanceof EDataType) label.setText("EDataType");
 			else label.setText("UNKNOWN");
-		})).setHeader("Type").setAutoWidth(true);
+		})).setHeader("Type").setResizable(true).setFlexGrow(0);
 		
 		addColumn(new ComponentRenderer<>(()-> new Grid<PRModelElement>(), (grid, prClassifier) -> {
 			grid.addColumn(new ComponentRenderer<>(Label::new, (label, prModelElement) -> {
@@ -69,14 +70,14 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 				} else if(prModelElement.getModelElement() instanceof EDataType eDataType) {
 					label.setText(eDataType.getInstanceClassName());				
 				}
-			})).setHeader("EType").setAutoWidth(true);
+			})).setHeader("EType").setResizable(true);
 			grid.addColumn(new ComponentRenderer<>(Label::new, (label, prModelElement) -> {
 				if(prModelElement.getModelElement() instanceof EStructuralFeature feature) {
 					label.setText(feature.getLowerBound() + "..." + feature.getUpperBound());
 				} else label.setText("N/A");	
-			})).setHeader("Cardinality").setAutoWidth(true);
+			})).setHeader("Cardinality").setResizable(true);
 			grid.setItems(prClassifier.getPrModelElement());
-		})).setHeader("Elements").setAutoWidth(true);
+		})).setHeader("Elements").setResizable(true).setFlexGrow(4);
 	}
 
 	/* 
