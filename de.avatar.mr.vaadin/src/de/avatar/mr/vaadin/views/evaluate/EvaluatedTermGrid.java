@@ -20,6 +20,8 @@ import java.util.List;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
+import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.AnchorTarget;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 
@@ -49,14 +51,19 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 			evaluationsGrid.addColumn(new ComponentRenderer<>(Label::new, (label, evaluation) -> {
 				label.setText(evaluation.getInput());
 				label.setTitle(determineTooltipFromRelevance(evaluation));
-				label.getElement().getStyle()
-					.set("color", determineColorFromHighestRelevance(evaluation));
+				label.getElement().getStyle().set("color", determineColorFromHighestRelevance(evaluation));
 				label.getElement().getStyle().set("white-space", "pre-wrap");
 				label.getElement().getStyle().set("display", "inline-block");
 			})).setHeader("Document").setResizable(true).setFlexGrow(1);
 			evaluationsGrid.addColumn(new ComponentRenderer<>(() -> new Grid<Relevance>(), (relGrid, evaluation) -> {
 				relGrid.setItems(evaluation.getRelevance());
-				relGrid.addColumn(Relevance::getCategory).setHeader("Category").setAutoWidth(true);
+				relGrid.addColumn(new ComponentRenderer<>(Anchor::new, (anchor, relevance) -> {
+					anchor.setText(relevance.getCategory());
+					anchor.setTarget(AnchorTarget.BLANK);
+					if("PERSONAL".equals(relevance.getCategory())) anchor.setHref("https://gdpr-info.eu/art-5-gdpr/");
+					else if("MEDICAL".equals(relevance.getCategory())) anchor.setHref("https://gdpr-info.eu/art-9-gdpr/");
+				})).setHeader("Category").setResizable(true);
+				
 				relGrid.addColumn(new ComponentRenderer<>(() -> new ComboBox<RelevanceLevelType>(), (combobox, relevance) -> {
 					combobox.setItems(RelevanceLevelType.values());
 					combobox.setValue(relevance.getLevel());
