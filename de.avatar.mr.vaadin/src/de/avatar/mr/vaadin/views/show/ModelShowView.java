@@ -37,7 +37,6 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import de.avatar.mdp.apis.api.ModelEvaluator;
 import de.avatar.mdp.apis.api.PRMetaModelService;
 import de.avatar.mdp.prmeta.EvaluationCriteriumType;
 import de.avatar.mdp.prmeta.PRModel;
@@ -60,14 +59,13 @@ public class ModelShowView extends VerticalLayout{
 	/** serialVersionUID */
 	private static final long serialVersionUID = 883893074464566608L;
 	
+	private static final List<String> EVALUATION_MODELS = List.of("GDPR-sklearn", "GDPR-spacy", "OPEN_DATA", "OTHER");
+	
 	@Reference
 	EPackageSearchService ePackageSearchService;
 	
 	@Reference
 	PRMetaModelService prMetaModelService;
-	
-	@Reference(target = "(component.name=GDPRModelEvaluator)")
-	ModelEvaluator gdprModelEvaluator;	
 	
 	private EPackage selectedEPackage;
 	
@@ -92,7 +90,7 @@ public class ModelShowView extends VerticalLayout{
 		showLayout.setVisible(false);
 		ComboBox<String> criteriumCombo = new ComboBox<>();
 		criteriumCombo.setLabel("Select the criteria:");
-		criteriumCombo.setItems(List.of("GDPR", "OPEN_DATA", "NONE"));
+		criteriumCombo.setItems(EVALUATION_MODELS);
 		
 		PRClassifierGrid prClassifierGrid = new PRClassifierGrid();
 		prClassifierGrid.setVisible(false);
@@ -145,11 +143,19 @@ public class ModelShowView extends VerticalLayout{
 			
 			PRPackage prPackage = null;
 			switch(evt.getValue()) {
-			case "GDPR", "OPEN_DATA":
-//				here we show the PRPackage with evaluation criterium != NONE				
-				prPackage = prModels.get(0).getPrPackage().stream().filter(prp -> prp.getEvaluationCriterium().equals(EvaluationCriteriumType.getByName(evt.getValue()))).findFirst().orElse(null);
+			case "GDPR-sklearn":
+				prPackage = prModels.get(0).getPrPackage().stream()
+					.filter(prp -> prp.getEvaluationCriterium().equals(EvaluationCriteriumType.GDPR) && "multilabel_v2".equals(prp.getEvaluationModelUsed())).findFirst().orElse(null);
 				break;		
+			case "GDPR-spacy":
+				prPackage = prModels.get(0).getPrPackage().stream()
+				.filter(prp -> prp.getEvaluationCriterium().equals(EvaluationCriteriumType.GDPR) && "spacy_textcat_ner_negex".equals(prp.getEvaluationModelUsed())).findFirst().orElse(null);
+				break;	
+			case "OPEN_DATA":
+				prPackage = prModels.get(0).getPrPackage().stream().filter(prp -> prp.getEvaluationCriterium().equals(EvaluationCriteriumType.getByName(evt.getValue()))).findFirst().orElse(null);
+				break;	
 			}
+				
 			if(prPackage == null) {
 				Notification.show(String.format("EPackage %s has never been evaluated according to the %s standards. We are just showing you the EPackage without evaluation.", selectedEPackage.getName(), evt.getValue())).addThemeVariants(NotificationVariant.LUMO_CONTRAST);
 				prPackage = prModels.get(0).getPrPackage().stream().filter(prp -> prp.getEvaluationCriterium().equals(EvaluationCriteriumType.NONE)).findFirst().orElse(null);

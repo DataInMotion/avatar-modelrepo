@@ -34,6 +34,7 @@ import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 
+import de.avatar.mr.vaadin.views.edit.ModelEditorView;
 import de.avatar.mr.vaadin.views.evaluate.ModelEvaluateView;
 import de.avatar.mr.vaadin.views.search.SearchView;
 import de.avatar.mr.vaadin.views.show.ModelShowView;
@@ -109,7 +110,8 @@ public class MainView extends AppLayout {
         		createTab("Search", SearchView.class),
         		createTab("Upload", UploadView.class),
         		createTab("Evaluate", ModelEvaluateView.class),
-        		createTab("Show", ModelShowView.class)
+        		createTab("Show", ModelShowView.class),
+        		createTab("Editor", ModelEditorView.class)
         		};
     }
 

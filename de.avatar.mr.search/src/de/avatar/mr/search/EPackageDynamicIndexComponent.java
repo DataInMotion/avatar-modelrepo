@@ -72,9 +72,14 @@ public class EPackageDynamicIndexComponent {
 			policyOption = ReferencePolicyOption.GREEDY, unbind = "deleteEPackage")
 	public void indexEPackage(EPackage ePackage, Map<String, Object> properties) {
 		if(ePackagesSet == null) activate();
-		boolean add = ePackagesSet.add(ePackage.getNsURI());
-		System.out.println("Adding ePackage " + ePackage.getName() + " " + add);
-		ePackageIndexService.indexEPackage(ePackage, add);
+		try {
+			boolean add = ePackagesSet.add(ePackage.getNsURI());
+			System.out.println("Adding ePackage " + ePackage.getName() + " " + add);
+			ePackageIndexService.indexEPackage(ePackage, add);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void deleteEPackage(EPackage ePackage) {

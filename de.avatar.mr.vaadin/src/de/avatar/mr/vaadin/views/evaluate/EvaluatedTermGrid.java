@@ -56,23 +56,27 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 				label.getElement().getStyle().set("display", "inline-block");
 			})).setHeader("Document").setResizable(true).setFlexGrow(1);
 			evaluationsGrid.addColumn(new ComponentRenderer<>(() -> new Grid<Relevance>(), (relGrid, evaluation) -> {
-				relGrid.setItems(evaluation.getRelevance());
+				relGrid.setItems(evaluation.getRelevance().stream().filter(r -> !"NONE".equals(r.getCategory())).toList());
 				relGrid.addColumn(new ComponentRenderer<>(Anchor::new, (anchor, relevance) -> {
-					anchor.setText(relevance.getCategory());
-					anchor.setTarget(AnchorTarget.BLANK);
-					if("PERSONAL".equals(relevance.getCategory())) anchor.setHref("https://gdpr-info.eu/art-5-gdpr/");
-					else if("MEDICAL".equals(relevance.getCategory())) anchor.setHref("https://gdpr-info.eu/art-9-gdpr/");
+					if(!"NONE".equals(relevance.getCategory())) {
+						anchor.setText(relevance.getCategory());
+						anchor.setTarget(AnchorTarget.BLANK);
+						if("PERSONAL".equals(relevance.getCategory())) anchor.setHref("https://gdpr-info.eu/art-5-gdpr/");
+						else if("MEDICAL".equals(relevance.getCategory())) anchor.setHref("https://gdpr-info.eu/art-9-gdpr/");
+					}					
 				})).setHeader("Category").setResizable(true);
 				
 				relGrid.addColumn(new ComponentRenderer<>(() -> new ComboBox<RelevanceLevelType>(), (combobox, relevance) -> {
-					combobox.setItems(RelevanceLevelType.values());
-					combobox.setValue(relevance.getLevel());
-					combobox.setWidthFull();
-					combobox.setReadOnly(false);
-					combobox.addValueChangeListener(evt -> {
-						relevance.setLevel(evt.getValue());
-						evaluationsGrid.getDataProvider().refreshAll();
-					});
+					if(!"NONE".equals(relevance.getCategory())) {
+						combobox.setItems(RelevanceLevelType.values());
+						combobox.setValue(relevance.getLevel());
+						combobox.setWidthFull();
+						combobox.setReadOnly(false);
+						combobox.addValueChangeListener(evt -> {
+							relevance.setLevel(evt.getValue());
+							evaluationsGrid.getDataProvider().refreshAll();
+						});
+					}					
 				})).setHeader("Level").setResizable(true);
 				relGrid.setWidthFull();
 				relGrid.setMaxHeight("150px");
@@ -107,6 +111,7 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 	private String determineColorFromHighestRelevance(Evaluation evaluation) {
 		String color = "black";
 		for(Relevance relevance : evaluation.getRelevance()) {
+			if("NONE".equals(relevance.getCategory())) return color;
 			if(relevance.getLevel().equals(RelevanceLevelType.RELEVANT)) {
 				return "red";
 			} else if(relevance.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) {
@@ -118,10 +123,10 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 	
 	private String determineTooltipFromRelevance(Evaluation evaluation) {
 		List<String> relevantCategories = evaluation.getRelevance().stream().
-				filter(r -> r.getLevel().equals(RelevanceLevelType.RELEVANT)).
+				filter(r -> !"NONE".equals(r.getCategory()) && r.getLevel().equals(RelevanceLevelType.RELEVANT)).
 				map(r -> r.getCategory()).toList();
 		List<String> potRelevantCategories = evaluation.getRelevance().stream().
-				filter(r -> r.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)).
+				filter(r -> !"NONE".equals(r.getCategory()) && r.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)).
 				map(r -> r.getCategory()).toList();
 		if(relevantCategories.isEmpty() && potRelevantCategories.isEmpty()) return "";
 		String tooltip = "";

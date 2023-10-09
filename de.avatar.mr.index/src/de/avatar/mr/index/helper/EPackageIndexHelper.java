@@ -95,7 +95,7 @@ public class EPackageIndexHelper {
 					featureDoc.add(new StringField(EPackageIndexService.EPACKAGE_NAME, ePackage.getName(), Store.YES));
 					featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME, sf.getName(), Store.YES));
 					featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_NAME_LOWER, sf.getName().toLowerCase(), Store.NO));
-					featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_TYPE, sf.getEType().getInstanceClass().getSimpleName(), Store.NO));
+					if(sf.getEType().getInstanceClass() != null) featureDoc.add(new StringField(EPackageIndexService.ESTRUCTURAL_FEATURE_TYPE, sf.getEType().getInstanceClass().getSimpleName(), Store.NO));
 					sf.getEAnnotations().stream().filter(ann -> ann.getDetails().containsKey("documentation")).forEach(ann -> {
 						featureDoc.add(new TextField(EPackageIndexService.EELEMENT_DESCRIPTION, ann.getDetails().get("documentation"), Store.NO));
 					});

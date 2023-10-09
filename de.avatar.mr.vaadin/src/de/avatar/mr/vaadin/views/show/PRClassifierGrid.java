@@ -93,10 +93,10 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 	
 	private String determineTooltipFromRelevance(List<Relevance> relevances) {
 		List<String> relevantCategories = relevances.stream().
-				filter(r -> r.getLevel().equals(RelevanceLevelType.RELEVANT)).
+				filter(r -> !"NONE".equals(r.getCategory()) &&  r.getLevel().equals(RelevanceLevelType.RELEVANT)).
 				map(r -> r.getCategory()).toList();
 		List<String> potRelevantCategories = relevances.stream().
-				filter(r -> r.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)).
+				filter(r -> !"NONE".equals(r.getCategory()) && r.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)).
 				map(r -> r.getCategory()).toList();
 		if(relevantCategories.isEmpty() && potRelevantCategories.isEmpty()) return "";
 		String tooltip = "";
@@ -115,6 +115,7 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 	private String determineColorFromHighestRelevance(List<Relevance> relevances) {
 		String color = "black";
 		for(Relevance relevance : relevances) {
+			if("NONE".equals(relevance.getCategory())) return color;
 			if(relevance.getLevel().equals(RelevanceLevelType.RELEVANT)) {
 				return "red";
 			} else if(relevance.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) {

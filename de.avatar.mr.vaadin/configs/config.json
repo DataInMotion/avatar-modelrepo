@@ -28,15 +28,36 @@
 	"FilePackageLoader~fileLoader": {
 		"modelFolder": "./data/model/upload/"
 	},
-	"GDPRModelEvaluator~gdpr": {
+	"GDPRModelEvaluator~multilabelv2": {
 		"basePath": "./data/suggester/",
 		"modelPath": "./data/suggester/model/",
-		"pyScriptBasePath": "./data/suggester/py/",
-		"outputBasePath": "./data/suggester/out/"
+		"pyScriptBasePath": "./data/suggester/py/multilabel_v2/",
+		"outputBasePath": "./data/suggester/out/",
+		"modelName": "multilabel_v2"
 	},
-	"GDPRModelSuggesterRetrainer~gdpr": {
+	"GDPRModelSuggesterRetrainer~multilabelv2": {
 		"basePath": "./data/suggester/",
-		"pyScriptBasePath": "./data/suggester/py/"
+		"pyScriptBasePath": "./data/suggester/py/multilabel_v2/",
+		"modelName": "multilabel_v2"
+	},
+	"GDPRModelEvaluator~spacy": {
+		"basePath": "./data/suggester/",
+		"modelPath": "./data/suggester/model/",
+		"pyScriptBasePath": "./data/suggester/py/spacy/",
+		"outputBasePath": "./data/suggester/out/",
+		"modelName": "spacy_textcat_ner_negex"
+	},
+	"GDPREObjectEvaluator~ner_fake_pii_generator": {
+		"basePath": "./data/suggester/",
+		"modelPath": "./data/suggester/model/",
+		"pyScriptBasePath": "./data/suggester/py/ner_fake_pii_generator/",
+		"outputBasePath": "./data/suggester/out/",
+		"modelName": "ner_fake_pii_generator"
+	},
+	"GDPRModelSuggesterRetrainer~spacy": {
+		"basePath": "./data/suggester/",
+		"pyScriptBasePath": "./data/suggester/py/spacy/",
+		"modelName": "spacy_textcat_ner_negex"
 	},
 	"EMFMongoRepositoryConfigurator~avatarmdp": {
 		"mongo.instances": "avatarmdp",

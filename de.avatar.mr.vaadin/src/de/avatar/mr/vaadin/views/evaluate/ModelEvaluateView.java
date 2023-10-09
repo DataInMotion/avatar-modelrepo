@@ -43,9 +43,9 @@ import de.avatar.mdp.apis.api.ModelEvaluator;
 import de.avatar.mdp.apis.api.ModelSuggesterRetrainer;
 import de.avatar.mdp.apis.api.PRMetaModelService;
 import de.avatar.mdp.evaluation.EvaluatedTerm;
-import de.avatar.mdp.evaluation.EvaluationCriteriumType;
 import de.avatar.mdp.evaluation.EvaluationSummary;
 import de.avatar.mdp.evaluation.Relevance;
+import de.avatar.mdp.evaluation.RelevanceLevelType;
 import de.avatar.mr.search.api.EPackageSearchService;
 import de.avatar.mr.vaadin.common.EPackageGrid;
 import de.avatar.mr.vaadin.views.main.MainView;
@@ -64,19 +64,27 @@ public class ModelEvaluateView extends VerticalLayout{
 	@Reference
 	EPackageSearchService ePackageSearchService;
 
-	@Reference(target = "(component.name=GDPRModelEvaluator)")
-	ModelEvaluator gdprModelEvaluator;	
+	@Reference(target = "(&(component.name=GDPRModelEvaluator)(modelName=multilabel_v2))")
+	ModelEvaluator gdprSkiLearnModelEvaluator;	
 	
-	@Reference(target = "(component.name=GDPRModelSuggesterRetrainer)")
-	ModelSuggesterRetrainer gdprSuggesterRetrainer;
+	@Reference(target = "(&(component.name=GDPRModelSuggesterRetrainer)(modelName=multilabel_v2))")
+	ModelSuggesterRetrainer gdprSkiLearnSuggesterRetrainer;
+	
+	@Reference(target = "(&(component.name=GDPRModelEvaluator)(modelName=spacy_textcat_ner_negex))")
+	ModelEvaluator gdprSpacyModelEvaluator;	
+	
+	@Reference(target = "(&(component.name=GDPRModelSuggesterRetrainer)(modelName=spacy_textcat_ner_negex))")
+	ModelSuggesterRetrainer gdprSpacySuggesterRetrainer;
 	
 	@Reference
 	PRMetaModelService prMetaModelService;
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 7098092065550709063L;
+	private static final List<String> EVALUATION_MODELS = List.of("GDPR-sklearn", "GDPR-spacy", "OPEN_DATA", "OTHER");
 	private EvaluationSummary displayedSummary;
 	private EPackage selectedEPackage;
+	private ModelEvaluator currentModelEvaluator;
 
 	@Activate 
 	public void renderView() {
@@ -100,7 +108,6 @@ public class ModelEvaluateView extends VerticalLayout{
 		summaryLayout.setVisible(false);
 		EvaluatedTermGrid summaryGrid = new EvaluatedTermGrid();
 		Button saveBtn = new Button("Save Model", evt -> {
-//			TODO: here we have to take the items of the SummaryGrid and create the coupled model with the info about gdpr related fields
 			prMetaModelService.createPRModel(displayedSummary, selectedEPackage);
 			Notification.show(String.format("GDPR constraints added to the model.")).addThemeVariants(NotificationVariant.LUMO_SUCCESS);			
 			
@@ -119,12 +126,33 @@ public class ModelEvaluateView extends VerticalLayout{
 				Map<String, List<Relevance>> evaluatedTermsMap = new HashMap<>();
 				evaluatedTerms.stream().forEach(t -> {
 					t.getEvaluations().stream().forEach(e -> {
-						evaluatedTermsMap.put(e.getInput(), e.getRelevance());
+						List<Relevance> relevances = e.getRelevance();
+//						We need to look whether the user has set some of the categories to relevant or potentially relevant that 
+//						previously were not relevant. If so, we have to set the NONE category to non-relevant
+//						The same for the other way around: we have to set the NONE category to relevant if the user has set all the other
+//						categories to non-relevant
+						boolean setNoneToRelevant = true;
+						for(Relevance relevance : relevances) {
+							if(!"NONE".equals(relevance.getCategory()) && !RelevanceLevelType.NOT_RELEVANT.equals(relevance.getLevel())) {
+								setNoneToRelevant = false;
+								break;
+							}
+						}
+						relevances.stream().filter(r -> "NONE".equals(r.getCategory())).findFirst().get().setLevel(setNoneToRelevant ? RelevanceLevelType.RELEVANT : RelevanceLevelType.NOT_RELEVANT);
+						evaluatedTermsMap.put(e.getInput(), relevances);
 					});
 				});
-				gdprSuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap);
-				Notification.show(String.format("The suggestion model is being retrained with the additional provided documents."))
-				.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+				try {
+					if(currentModelEvaluator == gdprSkiLearnModelEvaluator) {
+						gdprSkiLearnSuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap);
+					} else if(currentModelEvaluator == gdprSpacyModelEvaluator) {
+						gdprSpacySuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap);
+					}
+					Notification.show(String.format("The suggestion model is being retrained with the additional provided documents. Please, notice that it might take a while."))
+					.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+				} catch(Exception e) {
+					Notification.show(String.format("Error while retraining the suggester model.")).addThemeVariants(NotificationVariant.LUMO_ERROR);
+				}
 			});
 			retrainDialog.open();
 		});
@@ -159,26 +187,31 @@ public class ModelEvaluateView extends VerticalLayout{
 
 		ePackageGrid.addColumn(new ComponentRenderer<>(HorizontalLayout::new, (layout, ePackage) -> {
 			layout.setAlignItems(Alignment.CENTER);
-			ComboBox<EvaluationCriteriumType> combo = new ComboBox<>();
+			ComboBox<String> combo = new ComboBox<>();
 			Button btn = new Button("Evaluate");
 			btn.setEnabled(false);
 			btn.addClickListener(evt -> {
 				switch(combo.getValue()) {
-				case GDPR:
+				case "GDPR-sklearn":
 					selectedEPackage = ePackage;
-					displayedSummary = gdprModelEvaluator.evaluateModel(ePackage);
+					displayedSummary = gdprSkiLearnModelEvaluator.evaluateModel(ePackage);
+					currentModelEvaluator = gdprSkiLearnModelEvaluator;
 					summaryGrid.setItems(displayedSummary.getEvaluatedTerms());
 					summaryLayout.setVisible(true);
-				case OPEN_DATA:
 					break;
-				case OTHER:
+				case "GDPR-spacy":
+					selectedEPackage = ePackage;
+					displayedSummary = gdprSpacyModelEvaluator.evaluateModel(ePackage);
+					currentModelEvaluator = gdprSpacyModelEvaluator;
+					summaryGrid.setItems(displayedSummary.getEvaluatedTerms());
+					summaryLayout.setVisible(true);
 					break;
-				default:
+				case "OTHER", "OPEN_DATA": default:
 					break;
 				}
 			});
 
-			combo.setItems(EvaluationCriteriumType.VALUES);
+			combo.setItems(EVALUATION_MODELS);
 			combo.setValue(combo.getEmptyValue());
 			combo.addValueChangeListener(evt -> {
 				if(evt.getValue() != combo.getEmptyValue()) {

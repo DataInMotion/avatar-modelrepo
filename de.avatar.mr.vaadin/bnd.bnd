@@ -20,7 +20,10 @@
 	com.vaadin.flow.component.combobox,\
 	de.avatar.mdp.evaluation.model,\
 	de.avatar.mdp.apis,\
-	de.avatar.mdp.privacy.related.meta.model
+	de.avatar.mdp.privacy.related.meta.model,\
+	com.vaadin.flow.component.formlayout,\
+	com.vaadin.flow.component.datepicker,\
+	com.vaadin.flow.component.dialog
 Bundle-Version: 1.0.0.SNAPSHOT
 Export-Package: \
 	de.avatar.mr.vaadin,\
@@ -30,7 +33,8 @@ Export-Package: \
 	de.avatar.mr.vaadin.service,\
 	de.avatar.mr.vaadin.views.search,\
 	de.avatar.mr.vaadin.views.upload,\
-	de.avatar.mr.vaadin.views.show
+	de.avatar.mr.vaadin.views.show,\
+	de.avatar.mr.vaadin.views.edit
 
 -includeresource: \
 	OSGI-INF/configurator/=configs/,\
