@@ -1,10 +1,22 @@
-[![CI Build](https://github.com//actions/workflows/build.yml/badge.svg)](https://github.com/de-jena/MDO/actions/workflows/build.yml)[![License](https://github.com/de-jena/MDO/actions/workflows/license.yml/badge.svg)](https://github.com/de-jena/MDO/actions/workflows/license.yml )[![Sonar](https://github.com/de-jena/MDO/actions/workflows/sonar.yml/badge.svg)](https://github.com/de-jena/MDO/actions/workflows/sonar.yml )[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=bugs)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=code_smells)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=coverage)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=alert_status)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=security_rating)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=sqale_index)](https://sonarcloud.io/dashboard?id=de-jena/MDO)[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=de-jena/MDO&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=de-jena/MDO)
+# Avatar Model Repo
 
-# â‚¬â‚¬project-symbolic-nameâ‚¬â‚¬
+This project provides a set of functionalities to work with EMF models, such as:
+
++ Indexing and search for `EPackage`;
++ Generating model documentation;
++ Evaluate models and their instances based on certain privacy and/or open data criteria.
+
+## Evaluate Models and their Instances
+
+As part of the Vaadin UI available within this project, the user can evaluate dynamically loaded EMF meta models, as well as creating model instances and evaluate them, based on GDPR criteria of data privacy.
+
+In order for the suggesters to work properly the corresponding models have to be downloaded and placed within the `de.avatar.mr.vaadin` bundle, under the `data` folder. Models are released previous granted permission. 
+
+Once the models have been downloaded and copied in the aforementioned folder the `launch.bndrun` in the same bundle can be executed and the Vaadin UI is available under `localhost::8086/avatar-mr`.
 
 ## Links
 
-* [Documentation](https://github.com/de-jena/MDO)
+* [Documentation](https://github.com/DataInMotion/avatar-modelrepo)
 * [Source Code](https://github.com/de-jena/MDO) (clone with `scm:git:git@github.com:DataInMotion/avatar-modelrepo.git`)
 
 
