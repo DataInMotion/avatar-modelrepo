@@ -6,6 +6,12 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 
+-plugin.5:\
+	aQute.bnd.repository.p2.provider.P2Repository;\
+		name="EMF-Forms";\
+		url=http://download.eclipse.org/ecp/releases/releases_127/;\
+		poll.time=-1;\
+		cache="${workspace}/cnf/cache/stable/EMF-Forms"
 
 -plugin.1.avatar: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
@@ -38,3 +44,4 @@
         readOnly=true; \
         poll.time=-1; \
         name="Jakarta Namespace"	
+

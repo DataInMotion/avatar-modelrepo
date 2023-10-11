@@ -1,0 +1,8 @@
+-library: enable-emf
+
+Bundle-Version: 1.0.0.SNAPSHOT
+Private-Package: de.avatar.mr.emf.forms
+-buildpath: \
+	de.avatar.mr.emf.forms.api;version=latest,\
+	org.eclipse.emf.ecp.view.model,\
+	org.osgi.service.component
