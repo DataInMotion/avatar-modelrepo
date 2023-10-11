@@ -49,8 +49,7 @@ public class SearchHelper {
 				try {
 					return reader.storedFields().document(id);
 				}  catch (IOException e) {
-					logger.log(Level.SEVERE, String.format("Exception while reading matching document from index. Skipping it."));
-					e.printStackTrace();
+					logger.log(Level.SEVERE, String.format("Exception while reading matching document from index. Skipping it."), e);
 					return null;
 				}
 			})

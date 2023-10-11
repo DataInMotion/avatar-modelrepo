@@ -63,7 +63,7 @@ public class DynamicPackageLoader{
 	@Reference
 	private ComponentServiceObjects<ResourceSet> resourceSetServiceObjects;
 	
-	private static final Logger logger = Logger.getLogger(DynamicPackageLoader.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(DynamicPackageLoader.class.getName());
 	private URI ecoreURI = null;
 	private EPackage dynamicPackage = null;
 	private BundleContext ctx;
@@ -100,11 +100,10 @@ public class DynamicPackageLoader{
 	 */
 	@Activate
 	public void activate(BundleContext ctx, Config config, Map<String, Object> props) throws ConfigurationException {
-		logger.info("Trying to load Package for " + config.url());
+		LOGGER.info(String.format("Activating DynamicPackageLoader for EPackage %s", config.url()));
 		this.props = props;
 		this.ctx = ctx;
 		ecoreURI = URI.createURI(config.url());
-		
 		try {
 			loadModel();
 		} catch (Exception e) {
@@ -139,7 +138,7 @@ public class DynamicPackageLoader{
 
 		props.entrySet().stream().filter(e -> e.getKey().startsWith(ADDTIONAL)).forEach(e -> properties.put(e.getKey().substring(ADDTIONAL.length()), e.getValue()));
 		
-		logger.info("Registering Package " + dynamicPackage.getName() + " for with nsURI " + dynamicPackage.getNsURI());
+		LOGGER.info("Registering Package " + dynamicPackage.getName() + " for with nsURI " + dynamicPackage.getNsURI());
 		
 		EPackage.Registry.INSTANCE.put(dynamicPackage.getNsURI(),dynamicPackage);
 		configuratorRegistration = ctx.registerService(EPackageConfigurator.class, new DynamicPackageConfiguratorImpl(dynamicPackage), properties);
@@ -149,7 +148,7 @@ public class DynamicPackageLoader{
 	
 	@Deactivate
 	public void deactivate() {
-		System.out.println("I am deactivating " + dynamicPackage.getName());
+		LOGGER.info(String.format("Deactivating DynamicPackageLoader for EPackage %s", dynamicPackage.getNsURI()));
 		packageRegistration.unregister();
 		configuratorRegistration.unregister();
 		EPackage.Registry.INSTANCE.remove(dynamicPackage.getNsURI());
