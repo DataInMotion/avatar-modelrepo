@@ -125,28 +125,31 @@ public class EObjectForm extends Div {
 		}
 		if("EString".equals(attributeType.getName())) {
 			TextField txtField = new TextField(attributeName);
-			txtField.setTooltipText(ViewHelper.extractElementDocumentation(attribute));
+			if(attribute.isRequired()) txtField.setRequired(true);
+			txtField.setTooltipText(ViewHelper.createTooltip(attribute));
 			txtField.addValueChangeListener(evt -> {
 				eObj.eSet(attribute, evt.getValue());
 			});
 			return txtField;
 		} else if("EDouble".equals(attributeType.getName())) {
 			NumberField numField = new NumberField(attributeName);
-			numField.setTooltipText(ViewHelper.extractElementDocumentation(attribute));
+			numField.setTooltipText(ViewHelper.createTooltip(attribute));
 			numField.addValueChangeListener(evt -> {
 				eObj.eSet(attribute, evt.getValue());
 			});
 			return numField;
 		} else if("EDate".equals(attributeType.getName())) {
 			DatePicker dateField = new DatePicker(attributeName);
-			dateField.setTooltipText(ViewHelper.extractElementDocumentation(attribute));
+			if(attribute.isRequired()) dateField.setRequired(true);
+			dateField.setTooltipText(ViewHelper.createTooltip(attribute));
 			dateField.addValueChangeListener(evt -> {
 				eObj.eSet(attribute, ViewHelper.toDate(evt.getValue()));
 			});
 			return dateField;
 		} else if(attributeType instanceof EEnum enumerator) {
 			ComboBox<String> comboField = new ComboBox<>(attributeName);
-			comboField.setTooltipText(ViewHelper.extractElementDocumentation(attribute));
+			if(attribute.isRequired()) comboField.setRequired(true);
+			comboField.setTooltipText(ViewHelper.createTooltip(attribute));
 			comboField.setItems(enumerator.getELiterals().stream().map(literal-> literal.getName()).toList());
 			comboField.addValueChangeListener(evt -> {
 				EDataType dataType = (EDataType) attribute.getEType();
@@ -159,6 +162,8 @@ public class EObjectForm extends Div {
 		return null;
 	}
 
+	
+	
 	private Dialog createEObjectDialog(EObject eObj) {
 		Dialog dialog = new Dialog();
 		dialog.setWidth("70%");

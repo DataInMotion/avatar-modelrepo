@@ -33,7 +33,8 @@
 	bnd.identity;id='org.gecko.emf.mongo.component',\
 	bnd.identity;id='org.gecko.mongo.osgi.component',\
 	bnd.identity;id='org.mongodb.mongo-java-driver',\
-	bnd.identity;id='org.gecko.emf.repository.mongo'
+	bnd.identity;id='org.gecko.emf.repository.mongo',\
+	bnd.identity;id='de.avatar.mdp.medical.record.example.model'
 
 # we need to run our project
 -runbundles: \
@@ -151,7 +152,8 @@
 	org.mongodb.mongo-java-driver;version='[3.9.1,3.9.2)',\
 	com.vaadin.flow.component.datepicker;version='[23.3.0,23.3.1)',\
 	com.vaadin.flow.component.dialog;version='[23.3.0,23.3.1)',\
-	com.vaadin.flow.component.formlayout;version='[23.3.0,23.3.1)'
+	com.vaadin.flow.component.formlayout;version='[23.3.0,23.3.1)',\
+	de.avatar.mdp.medical.record.example.model;version='[1.0.0,1.0.1)'
 
 -runblacklist: \
 	bnd.identity;id='org.osgi.service.http.whiteboard',\

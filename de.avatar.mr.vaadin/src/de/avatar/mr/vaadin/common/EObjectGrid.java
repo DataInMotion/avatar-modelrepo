@@ -52,8 +52,10 @@ public class EObjectGrid extends Grid<EObject> {
 //			}
 			if("EString".equals(attributeType.getName())) {
 				addColumn(new ComponentRenderer<>(TextField::new, (txtField, eObj) -> {
+					if(attribute.isRequired()) txtField.setRequired(true);
 					String value = (String) eObj.eGet(attribute) != null ? (String) eObj.eGet(attribute) : "";
 					txtField.setValue(value);
+					txtField.setTooltipText(ViewHelper.createTooltip(attribute));
 					txtField.addValueChangeListener(evt -> {
 						eObj.eSet(attribute, evt.getValue());
 					});
@@ -61,21 +63,26 @@ public class EObjectGrid extends Grid<EObject> {
 			} else if("EDouble".equals(attributeType.getName())) {
 				addColumn(new ComponentRenderer<>(NumberField::new, (numField, eObj) -> {
 					numField.setValue((Double) eObj.eGet(attribute));
+					numField.setTooltipText(ViewHelper.createTooltip(attribute));
 					numField.addValueChangeListener(evt -> {
 						eObj.eSet(attribute, evt.getValue());
 					});
 				})).setHeader(attributeName).setAutoWidth(true);		
 			} else if("EDate".equals(attributeType.getName())) {
 				addColumn(new ComponentRenderer<>(DatePicker::new, (dateField, eObj) -> {
+					if(attribute.isRequired()) dateField.setRequired(true);
 					dateField.setValue(ViewHelper.toLocalDate((Date) eObj.eGet(attribute)));
+					dateField.setTooltipText(ViewHelper.createTooltip(attribute));
 					dateField.addValueChangeListener(evt -> {
 						eObj.eSet(attribute, ViewHelper.toDate(evt.getValue()));
 					});
 				})).setHeader(attributeName).setAutoWidth(true);	
 			} else if(attributeType instanceof EEnum enumerator) {
 				addColumn(new ComponentRenderer<>(() -> new ComboBox<String>(), (comboField, eObj) -> {
+					if(attribute.isRequired()) comboField.setRequired(true);
 					comboField.setItems(enumerator.getELiterals().stream().map(literal-> literal.getName()).toList());
 					comboField.setValue(((Enumerator) eObj.eGet(attribute)).getLiteral());
+					comboField.setTooltipText(ViewHelper.createTooltip(attribute));
 					comboField.addValueChangeListener(evt -> {
 						Object obj = EcoreUtil.createFromString((EDataType) attributeType, evt.getValue());
 						eObj.eSet(attribute, obj);

@@ -18,6 +18,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.ENamedElement;
 
 import com.vaadin.flow.component.Component;
@@ -31,6 +32,7 @@ import com.vaadin.flow.component.HasComponents;
 public class ViewHelper {
 	
 	private static final String MODEL_ANNOTATION_SOURCE = "http://www.eclipse.org/emf/2002/GenModel";
+	private static final String ID_FIELD_TOOLTIP = "This is an ID field!";
 	
 	public static String extractElementName(ENamedElement element) {
 		String attributeName = "";
@@ -66,11 +68,21 @@ public class ViewHelper {
 	
 	public static String extractElementDocumentation(ENamedElement element) {
 		EAnnotation annotation = element.getEAnnotation(MODEL_ANNOTATION_SOURCE);
-		if(annotation == null) return null;
+		if(annotation == null) return "";
 		if(!annotation.getDetails().containsKey("documentation")) {
-			return null;
+			return "";
 		}
 		return annotation.getDetails().get("documentation");
+	}
+	
+	public static String createTooltip(EAttribute attribute) {
+		String tooltip = "";
+		if(attribute.isID()) {
+			tooltip += ID_FIELD_TOOLTIP;
+		}
+		String doc = extractElementDocumentation(attribute);
+		if(!doc.isEmpty()) tooltip += "\n" + doc;
+		return tooltip;
 	}
 
 }
