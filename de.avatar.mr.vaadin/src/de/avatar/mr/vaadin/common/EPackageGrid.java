@@ -14,6 +14,7 @@
 package de.avatar.mr.vaadin.common;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 import org.eclipse.emf.ecore.EPackage;
 
@@ -28,6 +29,9 @@ import com.vaadin.flow.component.notification.NotificationVariant;
  * @since Mar 21, 2023
  */
 public class EPackageGrid extends Grid<EPackage> {
+	
+	Predicate<String> filter = s -> s.startsWith("https://geckoprojects.org") || 
+			s.startsWith("http://avatar.de/mdp/evaluation") || s.startsWith("http://avatar.de/mdp/privacyrelatedmeta");
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = -8884867020877692130L;
@@ -43,6 +47,7 @@ public class EPackageGrid extends Grid<EPackage> {
 	 */
 	@Override
 	public GridListDataView<EPackage> setItems(Collection<EPackage> items) {
+		items = items.stream().filter(p -> !filter.test(p.getNsURI())).toList();
 		if(items.isEmpty()) {
 			setVisible(false);
 			Notification.show("No item matching your search criteria has been found").addThemeVariants(NotificationVariant.LUMO_CONTRAST);
@@ -50,5 +55,7 @@ public class EPackageGrid extends Grid<EPackage> {
 		else setVisible(true);
 		return super.setItems(items);
 	}
+	
+	
 
 }
