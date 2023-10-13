@@ -1,0 +1,19 @@
+-library: enable-emf
+
+Bundle-Version: 1.0.0.SNAPSHOT
+Private-Package: de.avatar.mr.example.component
+-buildpath: \
+	de.avatar.mr.example.model;version=latest,\
+	de.avatar.mdp.medical.record.example.model,\
+	org.osgi.service.component,\
+	org.gecko.emf.repository.api,\
+	com.github.javafaker;version=latest,\
+	org.osgi.util.promise,\
+	org.osgi.util.function,\
+	org.gecko.mongo.osgi.component,\
+	de.avatar.mdp.apis
+	
+-includeresource: \
+	OSGI-INF/configurator/=configs
+	
+Require-Capability: osgi.extender;filter:='(osgi.extender=osgi.configurator)'

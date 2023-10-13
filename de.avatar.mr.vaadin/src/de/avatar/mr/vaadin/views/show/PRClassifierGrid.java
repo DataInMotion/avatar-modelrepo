@@ -115,7 +115,7 @@ public class PRClassifierGrid extends Grid<PRClassifier> {
 	private String determineColorFromHighestRelevance(List<Relevance> relevances) {
 		String color = "black";
 		for(Relevance relevance : relevances) {
-			if("NONE".equals(relevance.getCategory())) return color;
+			if("NONE".equals(relevance.getCategory())) continue;
 			if(relevance.getLevel().equals(RelevanceLevelType.RELEVANT)) {
 				return "red";
 			} else if(relevance.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) {

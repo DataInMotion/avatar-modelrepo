@@ -35,7 +35,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 
 import de.avatar.mr.vaadin.views.edit.ModelEditorView;
-import de.avatar.mr.vaadin.views.evaluate.ModelEvaluateView;
+import de.avatar.mr.vaadin.views.instance.evaluate.ModelInstanceEvaluateView;
+import de.avatar.mr.vaadin.views.meta.evaluate.MetaModelEvaluateView;
 import de.avatar.mr.vaadin.views.search.SearchView;
 import de.avatar.mr.vaadin.views.show.ModelShowView;
 import de.avatar.mr.vaadin.views.upload.UploadView;
@@ -109,8 +110,9 @@ public class MainView extends AppLayout {
         return new Tab[]{        		
         		createTab("Search", SearchView.class),
         		createTab("Upload", UploadView.class),
-        		createTab("Evaluate", ModelEvaluateView.class),
         		createTab("Show", ModelShowView.class),
+        		createTab("Evaluate Meta Model", MetaModelEvaluateView.class),
+        		createTab("Evaluate Model Instance", ModelInstanceEvaluateView.class),
         		createTab("Editor", ModelEditorView.class)
         		};
     }

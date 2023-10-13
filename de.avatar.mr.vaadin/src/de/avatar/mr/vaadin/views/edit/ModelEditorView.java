@@ -39,7 +39,7 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import de.avatar.mdp.apis.api.EObjectEvaluator;
+import de.avatar.mdp.apis.EObjectEvaluator;
 import de.avatar.mdp.evaluation.EvaluationSummary;
 import de.avatar.mr.search.api.EPackageSearchService;
 import de.avatar.mr.vaadin.common.EPackageGrid;

@@ -23,13 +23,15 @@
 	de.avatar.mdp.privacy.related.meta.model,\
 	com.vaadin.flow.component.formlayout,\
 	com.vaadin.flow.component.datepicker,\
-	com.vaadin.flow.component.dialog
+	com.vaadin.flow.component.dialog,\
+	de.avatar.mdp.evaluation.component
 Bundle-Version: 1.0.0.SNAPSHOT
 Export-Package: \
 	de.avatar.mr.vaadin,\
 	de.avatar.mr.vaadin.common,\
 	de.avatar.mr.vaadin.views.main,\
-	de.avatar.mr.vaadin.views.evaluate,\
+	de.avatar.mr.vaadin.views.meta.evaluate,\
+	de.avatar.mr.vaadin.views.instance.evaluate,\
 	de.avatar.mr.vaadin.service,\
 	de.avatar.mr.vaadin.views.search,\
 	de.avatar.mr.vaadin.views.upload,\
@@ -40,6 +42,7 @@ Export-Package: \
 	OSGI-INF/configurator/=configs/,\
 	META-INF/resources=resources,\
 	META-INF/resources=frontend,\
-	META-INF/frontend=frontend
+	META-INF/frontend=frontend,\
+	data=data/
 	
 Require-Capability: osgi.extender;filter:='(osgi.extender=osgi.configurator)'

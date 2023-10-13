@@ -64,6 +64,15 @@
 		"avatarmdp.baseUris": "mongodb://mongodb",
 		"avatarmdp.databases": "avatarmdp",
 		"avatarmdp.avatarmdp.repoType": "PROTOTYPE"
+	},
+	"DBObjectsEvaluator~dbObjEvaluator": {
+		"eObjEvaluatorSO.target": "(criterium=GDPR)",
+		"repositorySO.target": "(repo_id=avatarmdp.avatarmdp)",
+		"evaluation.out.folder": "./data/instance-evaluations/",
+		"eClass.uris.to.evaluate": 
+			["http://avatar.de/mdp/medical_record_example/1.0.0#//MedicalRecord"
+			,"http://avatar.de/mr/person/1.0#//Person"
+			]
 	}
 	
 }

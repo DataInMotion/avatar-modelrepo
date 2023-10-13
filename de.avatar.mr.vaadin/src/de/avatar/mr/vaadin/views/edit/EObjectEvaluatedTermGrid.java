@@ -31,12 +31,13 @@ public class EObjectEvaluatedTermGrid extends Grid<EvaluatedTerm> {
 	private static final long serialVersionUID = 6334605680655499755L;
 	
 	public EObjectEvaluatedTermGrid() {
-		setSizeFull();
+//		setSizeFull();
 		addColumn(EvaluatedTerm::getElementClassifierName).setHeader("Classifier Name").setAutoWidth(true);
 		addColumn(new ComponentRenderer<>(Label::new, (label, term) -> {
 			label.setText(term.getEvaluatedModelElement().getName());
 		})).setHeader("Feature Name").setAutoWidth(true);
 		addColumn(new ComponentRenderer<>(() -> new Grid<Evaluation>(), (grid, term) -> {
+			grid.setMaxHeight("150px");
 			grid.setItems(term.getEvaluations());
 			grid.addColumn(Evaluation::getInput).setHeader("Original Value").setAutoWidth(true);
 			grid.addColumn(new ComponentRenderer<>(Label::new, (label, evaluation) -> {
@@ -44,6 +45,7 @@ public class EObjectEvaluatedTermGrid extends Grid<EvaluatedTerm> {
 				for(String entity : evaluation.getEntities()) {
 					entities += entity + ";";
 				}
+				if(!entities.isBlank()) entities = entities.substring(0, entities.length()-1);
 				label.setText(entities);
 			})).setHeader("PII Entities").setAutoWidth(true);
 		})).setHeader("Evaluations").setAutoWidth(true);

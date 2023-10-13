@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package de.avatar.mr.vaadin.views.evaluate;
+package de.avatar.mr.vaadin.views.meta.evaluate;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,13 +35,13 @@ import de.avatar.mdp.evaluation.RelevanceLevelType;
  * @author ilenia
  * @since Aug 1, 2023
  */
-public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
+public class MetaEvaluatedTermGrid extends Grid<EvaluatedTerm>{
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = -1336911553554291158L;
 	private List<EvaluatedTerm> currentItems = new ArrayList<>();
 	
-	public EvaluatedTermGrid() {
+	public MetaEvaluatedTermGrid() {
 		setWidth("100%");
 		addColumn(new ComponentRenderer<>(Label::new, (text, term) -> {
 			text.setText(term.getElementClassifierName().concat("::").concat(term.getEvaluatedModelElement().getName()));
@@ -111,7 +111,7 @@ public class EvaluatedTermGrid extends Grid<EvaluatedTerm>{
 	private String determineColorFromHighestRelevance(Evaluation evaluation) {
 		String color = "black";
 		for(Relevance relevance : evaluation.getRelevance()) {
-			if("NONE".equals(relevance.getCategory())) return color;
+			if("NONE".equals(relevance.getCategory())) continue;
 			if(relevance.getLevel().equals(RelevanceLevelType.RELEVANT)) {
 				return "red";
 			} else if(relevance.getLevel().equals(RelevanceLevelType.POTENTIALLY_RELEVANT)) {

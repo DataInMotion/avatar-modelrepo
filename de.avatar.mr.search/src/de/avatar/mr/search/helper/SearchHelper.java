@@ -38,7 +38,7 @@ import org.apache.lucene.search.WildcardQuery;
  */
 public class SearchHelper {
 	
-	public static final Logger logger = Logger.getLogger(SearchHelper.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(SearchHelper.class.getName());
 	
 	public static List<Document> doExecuteSearch(Query query, IndexSearcher searcher ) {		
 		IndexReader reader = searcher.getIndexReader();
@@ -49,7 +49,7 @@ public class SearchHelper {
 				try {
 					return reader.storedFields().document(id);
 				}  catch (IOException e) {
-					logger.log(Level.SEVERE, String.format("Exception while reading matching document from index. Skipping it."), e);
+					LOGGER.log(Level.SEVERE, String.format("Exception while reading matching document from index. Skipping it."), e);
 					return null;
 				}
 			})
@@ -57,8 +57,7 @@ public class SearchHelper {
 			.forEach(result::add);
 			return result;
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, String.format("Exception while searching for %s", query));
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, String.format("Exception while searching for %s", query), e);
 			return Collections.emptyList();
 		}
 	}

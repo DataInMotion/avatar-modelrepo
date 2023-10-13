@@ -1,0 +1,16 @@
+lib.version: 1.0.2
+
+-buildpath: \
+	com.github.javafaker:javafaker;version='${lib.version}',\
+	com.github.mifmif:generex;version='1.0',\
+	dk.brics:automaton;version='1.12'
+	
+-includeresource: \
+	OSGI-OPT/src=@${repo;com.github.javafaker:javafaker:jar:sources;${lib.version};EXACT}
+
+Bundle-Version: ${lib.version}
+Bundle-Localization: bundle
+Bundle-Name: Re-packaged com.github.javafaker JAR
+Bundle-Vendor: DiUS Computing Pty Ltd 
+
+Export-Package: *

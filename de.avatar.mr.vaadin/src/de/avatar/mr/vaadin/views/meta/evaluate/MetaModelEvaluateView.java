@@ -11,7 +11,7 @@
  * Contributors:
  *     Data In Motion - initial API and implementation
  */
-package de.avatar.mr.vaadin.views.evaluate;
+package de.avatar.mr.vaadin.views.meta.evaluate;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,9 +39,9 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import de.avatar.mdp.apis.api.ModelEvaluator;
-import de.avatar.mdp.apis.api.ModelSuggesterRetrainer;
-import de.avatar.mdp.apis.api.PRMetaModelService;
+import de.avatar.mdp.apis.ModelEvaluator;
+import de.avatar.mdp.apis.ModelSuggesterRetrainer;
+import de.avatar.mdp.apis.PRMetaModelService;
 import de.avatar.mdp.evaluation.EvaluatedTerm;
 import de.avatar.mdp.evaluation.EvaluationSummary;
 import de.avatar.mdp.evaluation.Relevance;
@@ -55,11 +55,11 @@ import de.avatar.mr.vaadin.views.main.MainView;
  * @author ilenia
  * @since Aug 1, 2023
  */
-@Route(value = "evaluate", layout = MainView.class)
-@PageTitle("Evaluate")
-@Component(name = "ModelEvaluateView", service=ModelEvaluateView.class, scope = ServiceScope.PROTOTYPE)
+@Route(value = "meta-evaluation", layout = MainView.class)
+@PageTitle("Meta Model Evaluation")
+@Component(name = "ModelEvaluateView", service=MetaModelEvaluateView.class, scope = ServiceScope.PROTOTYPE)
 @VaadinComponent()
-public class ModelEvaluateView extends VerticalLayout{
+public class MetaModelEvaluateView extends VerticalLayout{
 
 	@Reference
 	EPackageSearchService ePackageSearchService;
@@ -106,7 +106,7 @@ public class ModelEvaluateView extends VerticalLayout{
 		VerticalLayout summaryLayout = new VerticalLayout();
 		summaryLayout.setSizeFull();
 		summaryLayout.setVisible(false);
-		EvaluatedTermGrid summaryGrid = new EvaluatedTermGrid();
+		MetaEvaluatedTermGrid summaryGrid = new MetaEvaluatedTermGrid();
 		Button saveBtn = new Button("Save Model", evt -> {
 			prMetaModelService.createPRModel(displayedSummary, selectedEPackage);
 			Notification.show(String.format("GDPR constraints added to the model.")).addThemeVariants(NotificationVariant.LUMO_SUCCESS);			

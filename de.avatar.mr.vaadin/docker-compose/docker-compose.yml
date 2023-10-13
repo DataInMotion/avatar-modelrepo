@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  mongodb:
+    container_name: mongodb
+    hostname: mongodb
+    image: mongo:4.2
+    ports: 
+      - "27017:27017"
+    networks:
+      - avatar-mr-network
+  avatar_mr:
+    container_name: avatar-mr
+    image: avatar-mr:latest
+    ports:
+      - "8086:8086"
+    tty: true
+    networks:
+      - avatar-mr-network
+
+networks:
+    avatar-mr-network:

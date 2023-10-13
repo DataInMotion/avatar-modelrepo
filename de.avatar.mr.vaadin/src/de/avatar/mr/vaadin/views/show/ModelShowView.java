@@ -37,7 +37,7 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import de.avatar.mdp.apis.api.PRMetaModelService;
+import de.avatar.mdp.apis.PRMetaModelService;
 import de.avatar.mdp.prmeta.EvaluationCriteriumType;
 import de.avatar.mdp.prmeta.PRModel;
 import de.avatar.mdp.prmeta.PRPackage;
