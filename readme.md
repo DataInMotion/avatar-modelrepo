@@ -10,9 +10,9 @@ This project provides a set of functionalities to work with EMF models, such as:
 
 As part of the Vaadin UI available within this project, the user can evaluate dynamically loaded EMF meta models, as well as creating model instances and evaluate them, based on GDPR criteria of data privacy.
 
-In order for the suggesters to work properly the corresponding models have to be downloaded and placed within the `de.avatar.mr.vaadin` bundle, under the `data` folder. Models are released previous granted permission. 
+In order for the suggesters to work properly the corresponding models have to be downloaded and placed within the `de.avatar.mr.vaadin` bundle, under the `data` folder. Models are released in a .zip file previous granted permission. 
 
-Once the models have been downloaded and copied in the aforementioned folder the `launch.bndrun` in the same bundle can be executed and the Vaadin UI is available under `localhost::8086/avatar-mr`.
+Once the models have been downloaded, unzipped and copied in the aforementioned folder the `launch.bndrun` in the same bundle can be executed and the Vaadin UI is available under `localhost::8086/avatar-mr`.
 
 ## Links
 
