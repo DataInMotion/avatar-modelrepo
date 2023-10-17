@@ -9,14 +9,21 @@ services:
       - "27017:27017"
     networks:
       - avatar-mr-network
+    #volumes:
+     # - mongo-avatar-volume:/data/db
   avatar_mr:
     container_name: avatar-mr
-    image: avatar-mr:latest
+    image: avatar-mr:debian12-slim
     ports:
       - "8086:8086"
     tty: true
     networks:
       - avatar-mr-network
+    volumes:
+      - avatar-mr-volume:/opt/osgi
 
+volumes:
+    avatar-mr-volume:
+    mongo-avatar-volume:
 networks:
     avatar-mr-network:

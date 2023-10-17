@@ -1,0 +1,11 @@
+pip 
+numpy
+nltk
+stringutils
+python-string-utils
+setuptools 
+spacy
+negspacy
+scikit-learn
+pandas
+odfpy
