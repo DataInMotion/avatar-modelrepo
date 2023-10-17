@@ -24,7 +24,9 @@
 	com.vaadin.flow.component.formlayout,\
 	com.vaadin.flow.component.datepicker,\
 	com.vaadin.flow.component.dialog,\
-	de.avatar.mdp.evaluation.component
+	de.avatar.mdp.evaluation.component,\
+	org.osgi.util.promise,\
+	org.osgi.util.function
 Bundle-Version: 1.0.0.SNAPSHOT
 Export-Package: \
 	de.avatar.mr.vaadin,\

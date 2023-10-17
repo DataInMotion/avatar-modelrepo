@@ -119,7 +119,6 @@ public class MetaModelEvaluateView extends VerticalLayout{
 			retrainDialog.setCancelable(false);
 			retrainDialog.setRejectable(true);
 			retrainDialog.setRejectText("No");
-			
 			retrainDialog.setConfirmText("Yes");
 			retrainDialog.addConfirmListener(event -> {
 				List<EvaluatedTerm> evaluatedTerms = summaryGrid.getCurrentItems();
@@ -142,15 +141,20 @@ public class MetaModelEvaluateView extends VerticalLayout{
 						evaluatedTermsMap.put(e.getInput(), relevances);
 					});
 				});
+				boolean retrainigRes = false;
 				try {
 					if(currentModelEvaluator == gdprSkiLearnModelEvaluator) {
-						gdprSkiLearnSuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap);
+						retrainigRes = gdprSkiLearnSuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap).getValue();
 					} else if(currentModelEvaluator == gdprSpacyModelEvaluator) {
-						gdprSpacySuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap);
+						retrainigRes = gdprSpacySuggesterRetrainer.retrainModelSuggester(evaluatedTermsMap).getValue();
 					}
-					Notification.show(String.format("The suggestion model is being retrained with the additional provided documents. Please, notice that it might take a while."))
-					.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+					if(retrainigRes) {
+						Notification.show(String.format("The suggestion model has been succesfully retrained.")).addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+					} else {
+						Notification.show(String.format("Error while retraining the suggester model.")).addThemeVariants(NotificationVariant.LUMO_ERROR);
+					}
 				} catch(Exception e) {
+					e.printStackTrace();
 					Notification.show(String.format("Error while retraining the suggester model.")).addThemeVariants(NotificationVariant.LUMO_ERROR);
 				}
 			});
