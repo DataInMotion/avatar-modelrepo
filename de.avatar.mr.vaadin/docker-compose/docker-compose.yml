@@ -13,7 +13,7 @@ services:
      # - mongo-avatar-volume:/data/db
   avatar_mr:
     container_name: avatar-mr
-    image: avatar-mr:debian12-slim
+    image: devel.data-in-motion.biz:6000/de.dim/avatar-mr:latest
     ports:
       - "8086:8086"
     tty: true

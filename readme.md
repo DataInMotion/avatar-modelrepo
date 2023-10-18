@@ -6,13 +6,17 @@ This project provides a set of functionalities to work with EMF models, such as:
 + Generating model documentation;
 + Evaluate models and their instances based on certain privacy and/or open data criteria.
 
-## Evaluate Models and their Instances
+## Launching the Application
 
-As part of the Vaadin UI available within this project, the user can evaluate dynamically loaded EMF meta models, as well as creating model instances and evaluate them, based on GDPR criteria of data privacy.
+A docker image has been created via the `Dockerfile` that can be found in the root folder of this project. 
 
-In order for the suggesters to work properly the corresponding models have to be downloaded and placed within the `de.avatar.mr.vaadin` bundle, under the `data` folder. Models are released in a .zip file previous granted permission. 
+The image is located at `devel.data-in-motion.biz:6000/de.dim/avatar-mr:latest`.
 
-Once the models have been downloaded, unzipped and copied in the aforementioned folder the `launch.bndrun` in the same bundle can be executed and the Vaadin UI is available under `localhost::8086/avatar-mr`.
+To launch the image enter the `de.avatar.mr.vaadin/docker-compose` folder and launch the `docker-compose.yml` there (`docker-compose up -d`).
+
+The Vaadin UI should then be available under `localhost::8086/avatar-mr`.
+
+Please, notice that the `docker-compose` file creates two volumes, one for the `avatar-mr` docker service and one for `mongo`. The volumes are named `avatar-mr-volume` and `mongo-avatar-volume` respectively. When you do not need the container anymore, it's good practice to remove also these volumes (`docker volume rm avatar-mr-volume mongo-avatar-volume`), to keep everything clean on your host.
 
 ## Links
 
