@@ -1,0 +1,31 @@
+-buildpath: \
+	jakarta.ws.rs-api;version='2.1.6',\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.osgi.annotation.bundle;version=latest,\
+	org.osgi.service.jakartars;version=latest,\
+	org.osgi.service.cm;version=latest,\
+	org.osgi.service.http.whiteboard;version=latest,\
+	org.apache.felix.http.servlet-api;version=latest,\
+	org.gecko.emf.util.annotations;version=latest,\
+	io.swagger.core.v3.swagger-core.jakarta;version=latest,\
+	io.swagger.core.v3.swagger-jaxrs2.jakarta;version=latest,\
+	io.swagger.core.v3.swagger-annotations;version=latest,\
+	io.swagger.core.v3.swagger-integration.jakarta;version=latest,\
+	io.swagger.core.v3.swagger-models.jakarta;version=latest,\
+	com.fasterxml.jackson.core.jackson-core;version=latest,\
+	com.fasterxml.jackson.core.jackson-databind;version=latest,\
+	org.gecko.emf.json;version=latest,\
+	org.gecko.emf.repository.api;version=latest,\
+	org.gecko.emf.mongo.api;version=latest,\
+	org.gecko.emf.util.documentation.generators.apis;version=latest,\
+	de.avatar.ma.runtime;version=latest,\
+	de.avatar.ma.model.documentation.provider;version=project,\
+	de.avatar.ma.mediatypes.api;version=project,\
+	de.avatar.ma.model;version=project,\
+
+-library: enable-emf
+
+-includeresource.swagger: \
+	swagger-api=@https://github.com/swagger-api/swagger-ui/archive/refs/tags/v3.52.3.zip!/swagger-ui-3.52.3/dist/(*);rename:=$1,\
+	swagger-api=swagger

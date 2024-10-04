@@ -1,0 +1,48 @@
+{
+	":configurator:resource-version": 1,
+	":configurator:symbolicname": "de.avatar.ma.runtime",
+	":configurator:version": "0.0.0",
+	"org.apache.felix.http~maHttp": {
+		"org.osgi.service.http.port": "8085",
+		"org.osgi.service.http.host": "0.0.0.0",
+		"org.apache.felix.http.context_path": "ma/",
+		"org.apache.felix.http.name": "ma",
+		"org.apache.felix.http.runtime.init.id": "maHttp"
+	},
+	"GeckoGraphQLWhiteboard~login": {
+		"osgi.http.whiteboard.target": "(id=maHttp)",
+		"osgi.http.whiteboard.servlet.pattern": "/graphql/*",
+		"osgi.graphql.response.header.Access-Control-Allow-Origin": "http://localhost:8005",
+		"osgi.graphql.response.header.Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+		"osgi.graphql.response.header.Access-Control-Allow-Credentials": "true",
+		"osgi.graphql.response.header.Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, authorization"
+	},
+	"JakartarsServletWhiteboardRuntimeComponent~maRest": {
+		"jersey.jaxrs.whiteboard.name": "maRest",
+		"jersey.context.path": "rest",
+		"osgi.http.whiteboard.target": "(id=maHttp)"
+	},
+	"DynamicPackageLoader~asset": {
+		"id": "asset",
+		"url": "https://raw.githubusercontent.com/de-jena/MDO/main/de.jena.mdo.example.asset.model/model/asset.ecore",
+		"additionalRest": true,
+		"additionalPiveau": true,
+		"additionalGraphQL": true
+	},
+	"DynamicPackageLoader~trees": {
+		"id": "asset",
+		"url": "https://raw.githubusercontent.com/de-jena/MDO/main/de.jena.mdo.example.tree.model/model/trees.ecore",
+		"additionalRest": true,
+		"additionalPiveau": true,
+		"additionalGraphQL": true
+	},
+	"ModelDocumentationProvider~docProvider" : {
+		"output.root.folder" : "./data/model/documentation/",
+		"output.md.folder" : "md",
+		"output.md.mermaid.folder" : "md_mermaid",
+		"output.md.plantuml.folder" : "md_plantuml",
+		"output.html.folder" : "html",
+		"output.html.mermaid.folder" : "html_mermaid",
+		"output.package.hash.code.folder": "epackage_hash_code"
+	}
+}

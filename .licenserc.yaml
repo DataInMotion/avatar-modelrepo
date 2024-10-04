@@ -24,7 +24,6 @@ header:
     - '**/*.genmodel'
     - '**/*.md'
     - '**/*.MD'
-    - '**/*.json'
     - '**/.classpath'
     - 'LICENSE'
     - 'Jenkinsfile'

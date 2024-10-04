@@ -1,0 +1,17 @@
+Bundle-Name: Piveau REST Demo
+Bundle-Description: Piveau REST Demo Component 4 Testing
+
+-includeresource: OSGI-INF/configurator/=configs/
+Require-Capability: osgi.extender;filter:='(osgi.extender=osgi.configurator)'
+
+-buildpath: \
+	org.osgi.framework;version=latest,\
+	org.osgi.util.promise;version=latest,\
+	org.osgi.util.function;version=latest,\
+	org.osgi.service.component;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.eclipse.emf.common;version=latest,\
+	org.eclipse.emf.ecore;version=latest,\
+	org.gecko.piveau.model;version=snapshot,\
+	org.gecko.piveau.api;version=snapshot,\
+	org.gecko.piveau.rest.jakarta;version=snapshot

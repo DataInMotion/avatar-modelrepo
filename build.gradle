@@ -1,6 +1,4 @@
 plugins {
-  id "org.sonarqube" version "3.1.1"
-  id 'jacoco'
   id 'java'
 }
 
@@ -8,15 +6,6 @@ repositories {
     mavenCentral()
 }
 
-sonarqube {
-  properties {
-    property "sonar.projectName", "DataInMotion.avatar-modelrepo"
-    property "sonar.projectKey", "DataInMotion_avatar-modelrepo"
-    property "sonar.organization", "DataInMotion"
-    property "sonar.host.url", "https://sonarcloud.io"
-    property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
-  }
-}
 
 tasks.named('wrapper') {
   jarFile = rootProject.file('.gradle-wrapper/gradle-wrapper.jar')
@@ -27,25 +16,3 @@ subprojects {
     useJUnitPlatform()
   }
 }
-
-task codeCoverageReport(type: JacocoReport) {
-    dependsOn test
-    // Gather execution data from all subprojects
-    executionData fileTree(project.rootDir.absolutePath).include("**/**/jacoco.exec")
-
-    // Add all relevant sourcesets from the subprojects
-    subprojects.each {
-        sourceSets it.sourceSets.main
-    }
-
-    reports {
-        xml.enabled true
-        html.enabled true
-        csv.enabled false
-    }
-}
-
-tasks.named("sonarqube") {
-    dependsOn(codeCoverageReport)
-}
-

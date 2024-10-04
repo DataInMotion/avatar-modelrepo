@@ -1,36 +1,111 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<repository xmlns="http://www.osgi.org/xmlns/repository/v1.0.0" name="Local" increment="1679475902265">
+<repository xmlns="http://www.osgi.org/xmlns/repository/v1.0.0" name="Local" increment="1728043877153">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License 2.0"/>
       <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.html"/>
+      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.apis"/>
       <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
-      <attribute name="description" value="Xtend Generator for Html"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
+      <attribute name="version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <directive name="uses" value="org.eclipse.emf.ecore"/>
+      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="bundle-version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="version" value="1.0.0" type="Version"/>
+      <attribute name="bnd.hashes" value="-2015859540,-1467185877,1640733731,579394618,-728418419,-1923478059" type="List&lt;Long&gt;"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="bundle-version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.apis"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="bundle-version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.apis"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="size" value="22611" type="Long"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+      <attribute name="url" value="org.gecko.emf.util.documentation.generators.apis/org.gecko.emf.util.documentation.generators.apis-1.0.0.jar"/>
+      <attribute name="osgi.content" value="1C79001472A514B2C5BBAA76C736421DC8DCC47607A0606B62B9FE21E9688B40"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.io)"/>
+      <attribute name="osgi.wiring.package" value="java.io"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
+      <attribute name="osgi.wiring.package" value="java.lang"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.lang.invoke)"/>
+      <attribute name="osgi.wiring.package" value="java.lang.invoke"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.nio.file)"/>
+      <attribute name="osgi.wiring.package" value="java.nio.file"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.nio.file.attribute)"/>
+      <attribute name="osgi.wiring.package" value="java.nio.file.attribute"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.util)"/>
+      <attribute name="osgi.wiring.package" value="java.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.util.function)"/>
+      <attribute name="osgi.wiring.package" value="java.util.function"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.util.logging)"/>
+      <attribute name="osgi.wiring.package" value="java.util.logging"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.util.stream)"/>
+      <attribute name="osgi.wiring.package" value="java.util.stream"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.ecore)"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="license" value="Eclipse Public License 2.0"/>
+      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
+      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.markdown"/>
+      <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
+      <attribute name="description" value="Xtend Generator for Markdown"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" value="1.0.0.202210200810-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.html"/>
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.html"/>
+      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.markdown"/>
+      <attribute name="bundle-version" value="1.0.0.202210200810-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.markdown"/>
       <attribute name="version" value="1.0.0.SNAPSHOT" type="Version"/>
-      <attribute name="bnd.hashes" value="555177944" type="List&lt;Long&gt;"/>
+      <attribute name="bnd.hashes" value="1220263444" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.html"/>
+      <attribute name="bundle-version" value="1.0.0.202210200810-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.markdown"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.html"/>
+      <attribute name="bundle-version" value="1.0.0.202210200810-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.markdown"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="37288" type="Long"/>
+      <attribute name="size" value="34129" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.emf.util.documentation.generators.html/org.gecko.emf.util.documentation.generators.html-1.0.0.jar"/>
-      <attribute name="osgi.content" value="623627440A025721945559C9FCEE0BAE4672F8EFE4269417F3F279ECD6625094"/>
+      <attribute name="url" value="org.gecko.emf.util.documentation.generators.markdown/org.gecko.emf.util.documentation.generators.markdown-1.0.0.jar"/>
+      <attribute name="osgi.content" value="2F69D1D577310DBB56A31843A0D288B46CF52F85A4E74D21544E5979E5BE36DD"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
@@ -68,6 +143,10 @@
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.mermaid)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.mermaid"/>
     </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.plantuml)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.plantuml"/>
+    </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
     </requirement>
@@ -76,219 +155,33 @@
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License 2.0"/>
       <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.vaadin.bnd.project.library"/>
-      <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.vaadin"/>
-      <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="2.0.0.SNAPSHOTSNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="2.0.0.SNAPSHOTSNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.vaadin.bnd.project.library"/>
-    </capability>
-    <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="2.0.0.SNAPSHOTSNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.vaadin.bnd.project.library"/>
-    </capability>
-    <capability namespace="bnd.library">
-      <attribute name="bnd.library" value="enableVaadin"/>
-      <attribute name="path" value="library"/>
-    </capability>
-    <capability namespace="org.bndtools.template">
-      <attribute name="help" value="vaadin.xml"/>
-      <attribute name="engine" value="mustache"/>
-      <attribute name="name" value="Gecko Vaadin Example"/>
-      <attribute name="icon" value="data:image/gif;base64,AAABAAIAEBAAAAEAIABoBAAAJgAAABAQAgABAAEAsAAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECY+AAAAAAAaP2dbG0BqeRk8ZHsaPWWNAAAAJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgTH6PI1aMFAAAAAAAAAAAAAAAACNTinIPIzlVAAAAAAAAAAAAAAAAAAAAAAAAAAAONx85AAAAABRUKykfSHp8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIEp7fwAAAA0AAAAAAAAAAAAAAAAXWTNZGF02uA45IUAWXC1ZHURxdSWUVhgQQCV1CSYVMQAAAAAAAAAZAAAACShfnTcOIzlDAAAAAAAAAAAhfkkAAAAAABtqPYgXXDSaGjtmTw4cPzQZYDejGmk82gMPBigbWE6qHG48jQAAAAcoXpseGT1kXAAAAAAAAAAAAAAAAAAAAAAAAAAAFlYxTyhboz0BAwgpHXJBVhJHKEgAAAAAGUNclwAAAAAAAAAAIU+BaAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAABVRL2YrZKY0DR8zPyebWRcMMRxDAAAAACJSiU8ZPGOSHUVyhh9LfEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTCteAAAAABg5X34AAAAAE0srYAAAAAAAAAAAAAAAAAAAAACH//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAigEoAGmc8SQAAAAgaQGqFAAAAABJJKVMGGw8qFVIvqAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACulXwoQPSNfKWGfQwkXJkYbajxpF102Ph50Qv4AAgIkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH3xHMgYfBUIgTH6NAAAAGwAAAAAppF8JAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjiE8lED4jcBo7aqQMLh5MEUYlYBlhOFgXXC5PEkknaQwwHD4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF1kzbxNLK20WYCdJIk+HXRczYIQYOWFtHUJzeBZKPnUUUS8VAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIoJLACGCTD8XWzTGDjkhQAAAAAAcdjYzEUggWRVYLFsYXjYUSP+fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhg0oaG2g8RAAAAAAAAAAAIVgiAAAAAAAAAAAAI4lOAAAAAAAAAAAAAAAAAP//AAD/3wAA/f8AAP//AADf/wAAzJ8AAP+/AAD/zwAA//8AAPu/AAD/vwAA/f8AAP7/AAD/vwAA/f8AAP//AAAoAAAAEAAAACAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="/>
-      <attribute name="metaType" value="vaadin-metatype.xml"/>
-      <attribute name="ranking" value="1001.0" type="Double"/>
-      <attribute name="org.bndtools.template" value="project"/>
-      <attribute name="category" value="ccc/Gecko OSGi Standard Templates"/>
-      <attribute name="dir" value="templates/vaadin"/>
-    </capability>
-    <capability namespace="org.bndtools.template">
-      <attribute name="help" value="vaadin-frontend.xml"/>
-      <attribute name="engine" value="mustache"/>
-      <attribute name="name" value="Gecko Vaadin Frontend Example"/>
-      <attribute name="icon" value="data:image/gif;base64,AAABAAIAEBAAAAEAIABoBAAAJgAAABAQAgABAAEAsAAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECY+AAAAAAAaP2dbG0BqeRk8ZHsaPWWNAAAAJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgTH6PI1aMFAAAAAAAAAAAAAAAACNTinIPIzlVAAAAAAAAAAAAAAAAAAAAAAAAAAAONx85AAAAABRUKykfSHp8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIEp7fwAAAA0AAAAAAAAAAAAAAAAXWTNZGF02uA45IUAWXC1ZHURxdSWUVhgQQCV1CSYVMQAAAAAAAAAZAAAACShfnTcOIzlDAAAAAAAAAAAhfkkAAAAAABtqPYgXXDSaGjtmTw4cPzQZYDejGmk82gMPBigbWE6qHG48jQAAAAcoXpseGT1kXAAAAAAAAAAAAAAAAAAAAAAAAAAAFlYxTyhboz0BAwgpHXJBVhJHKEgAAAAAGUNclwAAAAAAAAAAIU+BaAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAABVRL2YrZKY0DR8zPyebWRcMMRxDAAAAACJSiU8ZPGOSHUVyhh9LfEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTCteAAAAABg5X34AAAAAE0srYAAAAAAAAAAAAAAAAAAAAACH//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAigEoAGmc8SQAAAAgaQGqFAAAAABJJKVMGGw8qFVIvqAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACulXwoQPSNfKWGfQwkXJkYbajxpF102Ph50Qv4AAgIkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH3xHMgYfBUIgTH6NAAAAGwAAAAAppF8JAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjiE8lED4jcBo7aqQMLh5MEUYlYBlhOFgXXC5PEkknaQwwHD4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF1kzbxNLK20WYCdJIk+HXRczYIQYOWFtHUJzeBZKPnUUUS8VAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIoJLACGCTD8XWzTGDjkhQAAAAAAcdjYzEUggWRVYLFsYXjYUSP+fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhg0oaG2g8RAAAAAAAAAAAIVgiAAAAAAAAAAAAI4lOAAAAAAAAAAAAAAAAAP//AAD/3wAA/f8AAP//AADf/wAAzJ8AAP+/AAD/zwAA//8AAPu/AAD/vwAA/f8AAP7/AAD/vwAA/f8AAP//AAAoAAAAEAAAACAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="/>
-      <attribute name="metaType" value="vaadin-frontend-metatype.xml"/>
-      <attribute name="ranking" value="1001.0" type="Double"/>
-      <attribute name="org.bndtools.template" value="project"/>
-      <attribute name="category" value="ccc/Gecko OSGi Standard Templates"/>
-      <attribute name="dir" value="templates/vaadin-frontend"/>
-    </capability>
-    <capability namespace="osgi.content">
-      <attribute name="size" value="61760" type="Long"/>
-      <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.vaadin.bnd.project.library/org.gecko.vaadin.bnd.project.library-2.0.0.jar"/>
-      <attribute name="osgi.content" value="030E66B908B830D08624C868EC1CFC139BEE2C5F9DDC4DFF96E6CAE96C8CD71A"/>
-    </capability>
-  </resource>
-  <resource>
-    <capability namespace="osgi.identity">
-      <attribute name="license" value="Eclipse Public License 2.0"/>
-      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.markdown.component"/>
+      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.mermaid"/>
       <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
+      <attribute name="description" value="Xtend Generator for Mermaid"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202303220903-SNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202303220903-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.markdown.component"/>
-    </capability>
-    <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202303220903-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.markdown.component"/>
-    </capability>
-    <capability namespace="osgi.content">
-      <attribute name="size" value="15865" type="Long"/>
-      <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.emf.util.documentation.generators.markdown.component/org.gecko.emf.util.documentation.generators.markdown.component-1.0.0.jar"/>
-      <attribute name="osgi.content" value="691AC9403458B7C87FC03B7755DC264DBB7741AA5D0A5A236EC20FE5119A5C8D"/>
-    </capability>
-    <capability namespace="osgi.service">
-      <directive name="uses" value="org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="objectClass" value="org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationService" type="List&lt;String&gt;"/>
-    </capability>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=java.io)"/>
-      <attribute name="osgi.wiring.package" value="java.io"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
-      <attribute name="osgi.wiring.package" value="java.lang"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.ecore)"/>
-      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.apis)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.apis"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.markdown)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.markdown"/>
-    </requirement>
-    <requirement namespace="osgi.ee">
-      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
-    </requirement>
-    <requirement namespace="osgi.extender">
-      <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.4.0)(!(version&gt;=2.0.0)))"/>
-    </requirement>
-  </resource>
-  <resource>
-    <capability namespace="osgi.identity">
-      <attribute name="license" value="&quot;Apache-2.0&quot;;link=&quot;https://opensource.org/licenses/Apache-2.0&quot;;description=&quot;Apache License, Version 2.0&quot;"/>
-      <attribute name="osgi.identity" value="org.osgi.test.bnd.library"/>
-      <attribute name="documentation" value="https://www.osgi.org"/>
-      <attribute name="description" value="OSGi Testing BND libaray"/>
-      <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.2.0.SNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.2.0.SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.osgi.test.bnd.library"/>
-    </capability>
-    <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.2.0.SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.osgi.test.bnd.library"/>
-    </capability>
-    <capability namespace="bnd.library">
-      <attribute name="bnd.library" value="osgi-test"/>
-      <attribute name="path" value="workspace"/>
-    </capability>
-    <capability namespace="osgi.content">
-      <attribute name="size" value="9405" type="Long"/>
-      <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.osgi.test.bnd.library/org.osgi.test.bnd.library-1.2.0.jar"/>
-      <attribute name="osgi.content" value="93775EFB7311AA6463CFBE708BA78DA33BFDA69FEE3F81AC272198E03083634A"/>
-    </capability>
-  </resource>
-  <resource>
-    <capability namespace="osgi.identity">
-      <attribute name="license" value="Eclipse Public License 2.0"/>
-      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.html.component"/>
-      <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
-      <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.html.component"/>
-    </capability>
-    <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.html.component"/>
-    </capability>
-    <capability namespace="osgi.content">
-      <attribute name="size" value="15643" type="Long"/>
-      <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.emf.util.documentation.generators.html.component/org.gecko.emf.util.documentation.generators.html.component-1.0.0.jar"/>
-      <attribute name="osgi.content" value="74D4534A0EC5194C301E034A741DD782239201DD30366CB9D6AA830CA35FC30A"/>
-    </capability>
-    <capability namespace="osgi.service">
-      <directive name="uses" value="org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="objectClass" value="org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationService" type="List&lt;String&gt;"/>
-    </capability>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=java.io)"/>
-      <attribute name="osgi.wiring.package" value="java.io"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
-      <attribute name="osgi.wiring.package" value="java.lang"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.ecore)"/>
-      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.apis)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.apis"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.html)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.html"/>
-    </requirement>
-    <requirement namespace="osgi.ee">
-      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
-    </requirement>
-    <requirement namespace="osgi.extender">
-      <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.4.0)(!(version&gt;=2.0.0)))"/>
-    </requirement>
-  </resource>
-  <resource>
-    <capability namespace="osgi.identity">
-      <attribute name="license" value="Eclipse Public License 2.0"/>
-      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.plantuml"/>
-      <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
-      <attribute name="description" value="Xtend Generator for Plantuml"/>
-      <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
+      <attribute name="version" value="1.0.0.202212150932-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.plantuml"/>
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.plantuml"/>
+      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.mermaid"/>
+      <attribute name="bundle-version" value="1.0.0.202212150932-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.mermaid"/>
       <attribute name="version" value="1.0.0" type="Version"/>
-      <attribute name="bnd.hashes" value="-1267988481" type="List&lt;Long&gt;"/>
+      <attribute name="bnd.hashes" value="-1723016129" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.plantuml"/>
+      <attribute name="bundle-version" value="1.0.0.202212150932-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.mermaid"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.plantuml"/>
+      <attribute name="bundle-version" value="1.0.0.202212150932-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.mermaid"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="38566" type="Long"/>
+      <attribute name="size" value="33868" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.emf.util.documentation.generators.plantuml/org.gecko.emf.util.documentation.generators.plantuml-1.0.0.jar"/>
-      <attribute name="osgi.content" value="497BBD1E840B34765AD19C57D9DCBC5931896F38E3D75ABEC5EB311D4E721AA4"/>
+      <attribute name="url" value="org.gecko.emf.util.documentation.generators.mermaid/org.gecko.emf.util.documentation.generators.mermaid-1.0.0.jar"/>
+      <attribute name="osgi.content" value="768F81A2DBC51A7C5F4329C1C28775E80556AD3B938116F0DE5630B71D91CF64"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
@@ -330,61 +223,28 @@
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License 2.0"/>
       <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.vaadin.bnd.library"/>
-      <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.vaadin"/>
-      <attribute name="description" value="Vaadin Dependencies for the Gecko Vaadin Whiteboard"/>
-      <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="2.0.0.202303101033-SNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="2.0.0.202303101033-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.vaadin.bnd.library"/>
-    </capability>
-    <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="2.0.0.202303101033-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.vaadin.bnd.library"/>
-    </capability>
-    <capability namespace="bnd.library">
-      <attribute name="bnd.library" value="geckoVaadin"/>
-      <attribute name="path" value="library/workspace"/>
-    </capability>
-    <capability namespace="osgi.content">
-      <attribute name="size" value="10345" type="Long"/>
-      <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.vaadin.bnd.library/org.gecko.vaadin.bnd.library-2.0.0.jar"/>
-      <attribute name="osgi.content" value="50B788C5F243900421C98AEDEF55686156F4072A069114B1FBDB42EC104D433F"/>
-    </capability>
-  </resource>
-  <resource>
-    <capability namespace="osgi.identity">
-      <attribute name="license" value="Eclipse Public License 2.0"/>
-      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.html.component"/>
       <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.package">
-      <directive name="uses" value="org.eclipse.emf.ecore"/>
-      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="version" value="1.0.0" type="Version"/>
-      <attribute name="bnd.hashes" value="-2015859540,-1467185877,1640733731,579394618,-1923478059" type="List&lt;Long&gt;"/>
+      <attribute name="version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="bundle-version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.html.component"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="bundle-version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.html.component"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="19040" type="Long"/>
+      <attribute name="size" value="15529" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.emf.util.documentation.generators.apis/org.gecko.emf.util.documentation.generators.apis-1.0.0.jar"/>
-      <attribute name="osgi.content" value="0CBFA2DE7863F85FC6037A0EC30147106ED4B1291550F198E4075B529DFF106A"/>
+      <attribute name="url" value="org.gecko.emf.util.documentation.generators.html.component/org.gecko.emf.util.documentation.generators.html.component-1.0.0.jar"/>
+      <attribute name="osgi.content" value="BD595EDB428F6D8DD25CF97B9ACF73FA9AB684BB3B46F08E8315C227BD905208"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="objectClass" value="org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationService" type="List&lt;String&gt;"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.io)"/>
@@ -395,19 +255,22 @@
       <attribute name="osgi.wiring.package" value="java.lang"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=java.nio.file)"/>
-      <attribute name="osgi.wiring.package" value="java.nio.file"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=java.nio.file.attribute)"/>
-      <attribute name="osgi.wiring.package" value="java.nio.file.attribute"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.ecore)"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
     </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.apis)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.apis"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.html)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.html"/>
+    </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.4.0)(!(version&gt;=2.0.0)))"/>
     </requirement>
   </resource>
   <resource>
@@ -469,33 +332,101 @@
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License 2.0"/>
       <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.markdown"/>
+      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.plantuml"/>
       <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
-      <attribute name="description" value="Xtend Generator for Markdown"/>
+      <attribute name="description" value="Xtend Generator for Plantuml"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
+      <attribute name="version" value="1.0.0.202210201148-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.markdown"/>
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.markdown"/>
-      <attribute name="version" value="1.0.0.SNAPSHOT" type="Version"/>
-      <attribute name="bnd.hashes" value="1220263444" type="List&lt;Long&gt;"/>
+      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.plantuml"/>
+      <attribute name="bundle-version" value="1.0.0.202210201148-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.plantuml"/>
+      <attribute name="version" value="1.0.0" type="Version"/>
+      <attribute name="bnd.hashes" value="-1267988481" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.markdown"/>
+      <attribute name="bundle-version" value="1.0.0.202210201148-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.plantuml"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.markdown"/>
+      <attribute name="bundle-version" value="1.0.0.202210201148-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.plantuml"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="34473" type="Long"/>
+      <attribute name="size" value="38600" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.emf.util.documentation.generators.markdown/org.gecko.emf.util.documentation.generators.markdown-1.0.0.jar"/>
-      <attribute name="osgi.content" value="D14570347627FEAC8D270532FBCD9F2782CA7EFED8EBA9FBF8F9AD2E72660E66"/>
+      <attribute name="url" value="org.gecko.emf.util.documentation.generators.plantuml/org.gecko.emf.util.documentation.generators.plantuml-1.0.0.jar"/>
+      <attribute name="osgi.content" value="381C3C6C1DD0DA3E7085DBF39343B298CA248CC26AF8B91EAFE399AE19CFE38A"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
+      <attribute name="osgi.wiring.package" value="java.lang"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.lang.invoke)"/>
+      <attribute name="osgi.wiring.package" value="java.lang.invoke"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.util)"/>
+      <attribute name="osgi.wiring.package" value="java.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.common.util)"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.common.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.ecore)"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.xtend2.lib)(version&gt;=2.29.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.xtend2.lib"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.xtext.xbase.lib)(version&gt;=2.29.0)(!(version&gt;=3.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.xtext.xbase.lib"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.apis)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.apis"/>
+    </requirement>
+    <requirement namespace="osgi.ee">
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
+    </requirement>
+  </resource>
+  <resource>
+    <capability namespace="osgi.identity">
+      <attribute name="license" value="Eclipse Public License 2.0"/>
+      <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
+      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.html"/>
+      <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
+      <attribute name="description" value="Xtend Generator for Html"/>
+      <attribute name="type" value="osgi.bundle"/>
+      <attribute name="version" value="1.0.0.202212150940-SNAPSHOT" type="Version"/>
+    </capability>
+    <capability namespace="osgi.wiring.package">
+      <directive name="uses" value="org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.html"/>
+      <attribute name="bundle-version" value="1.0.0.202212150940-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.html"/>
+      <attribute name="version" value="1.0.0.SNAPSHOT" type="Version"/>
+      <attribute name="bnd.hashes" value="555177944" type="List&lt;Long&gt;"/>
+    </capability>
+    <capability namespace="osgi.wiring.bundle">
+      <attribute name="bundle-version" value="1.0.0.202212150940-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.html"/>
+    </capability>
+    <capability namespace="osgi.wiring.host">
+      <attribute name="bundle-version" value="1.0.0.202212150940-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.html"/>
+    </capability>
+    <capability namespace="osgi.content">
+      <attribute name="size" value="37718" type="Long"/>
+      <attribute name="mime" value="application/vnd.osgi.bundle"/>
+      <attribute name="url" value="org.gecko.emf.util.documentation.generators.html/org.gecko.emf.util.documentation.generators.html-1.0.0.jar"/>
+      <attribute name="osgi.content" value="D9CA77D27095FAA15E0F0E5B59D6C4EA43E4627C18A63810498741B242769D00"/>
     </capability>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
@@ -533,10 +464,6 @@
       <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.mermaid)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.mermaid"/>
     </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.plantuml)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.plantuml"/>
-    </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
     </requirement>
@@ -545,45 +472,52 @@
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License 2.0"/>
       <attribute name="copyright" value="Data In Motion Consuling GmbH - All rights reserved"/>
-      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.mermaid"/>
+      <attribute name="osgi.identity" value="org.gecko.emf.util.documentation.generators.markdown.component"/>
       <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.util"/>
-      <attribute name="description" value="Xtend Generator for Mermaid"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-    </capability>
-    <capability namespace="osgi.wiring.package">
-      <directive name="uses" value="org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.gecko.emf.util.documentation.generators.apis"/>
-      <attribute name="bundle-symbolic-name" value="org.gecko.emf.util.documentation.generators.mermaid"/>
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.mermaid"/>
-      <attribute name="version" value="1.0.0" type="Version"/>
-      <attribute name="bnd.hashes" value="-1723016129" type="List&lt;Long&gt;"/>
+      <attribute name="version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.mermaid"/>
+      <attribute name="bundle-version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.bundle" value="org.gecko.emf.util.documentation.generators.markdown.component"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="1.0.0.202303220902-SNAPSHOT" type="Version"/>
-      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.mermaid"/>
+      <attribute name="bundle-version" value="1.0.0.202210201131-SNAPSHOT" type="Version"/>
+      <attribute name="osgi.wiring.host" value="org.gecko.emf.util.documentation.generators.markdown.component"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="33423" type="Long"/>
+      <attribute name="size" value="20568" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
-      <attribute name="url" value="org.gecko.emf.util.documentation.generators.mermaid/org.gecko.emf.util.documentation.generators.mermaid-1.0.0.jar"/>
-      <attribute name="osgi.content" value="0BF13637605148F3C2020218C569834CAF8467C9D802C8D142AA784CA17A05C6"/>
+      <attribute name="url" value="org.gecko.emf.util.documentation.generators.markdown.component/org.gecko.emf.util.documentation.generators.markdown.component-1.0.0.jar"/>
+      <attribute name="osgi.content" value="14B77F37AB5CE1135281867A58ECB602A5BC77987347C38470E41F879860C011"/>
     </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="objectClass" value="org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationService" type="List&lt;String&gt;"/>
+    </capability>
+    <capability namespace="osgi.service">
+      <directive name="uses" value="org.gecko.emf.util.documentation.generators.apis"/>
+      <attribute name="objectClass" value="org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationServiceOld" type="List&lt;String&gt;"/>
+    </capability>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.io)"/>
+      <attribute name="osgi.wiring.package" value="java.io"/>
+    </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.lang)"/>
       <attribute name="osgi.wiring.package" value="java.lang"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(osgi.wiring.package=java.lang.invoke)"/>
-      <attribute name="osgi.wiring.package" value="java.lang.invoke"/>
+      <directive name="filter" value="(osgi.wiring.package=java.nio.file)"/>
+      <attribute name="osgi.wiring.package" value="java.nio.file"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=java.util)"/>
       <attribute name="osgi.wiring.package" value="java.util"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(osgi.wiring.package=java.util.logging)"/>
+      <attribute name="osgi.wiring.package" value="java.util.logging"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
       <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.common.util)"/>
@@ -594,19 +528,30 @@
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.xtend2.lib)(version&gt;=2.29.0)(!(version&gt;=3.0.0)))"/>
-      <attribute name="osgi.wiring.package" value="org.eclipse.xtend2.lib"/>
+      <directive name="filter" value="(osgi.wiring.package=org.eclipse.emf.ecore.resource)"/>
+      <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.resource"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.xtext.xbase.lib)(version&gt;=2.29.0)(!(version&gt;=3.0.0)))"/>
-      <attribute name="osgi.wiring.package" value="org.eclipse.xtext.xbase.lib"/>
-    </requirement>
-    <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.apis)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.apis)(version&gt;=1.0.0)(!(version&gt;=1.1.0)))"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.apis"/>
+    </requirement>
+    <requirement namespace="osgi.wiring.package">
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.gecko.emf.util.documentation.generators.markdown)(version&gt;=1.0.0)(!(version&gt;=2.0.0)))"/>
+      <attribute name="osgi.wiring.package" value="org.gecko.emf.util.documentation.generators.markdown"/>
     </requirement>
     <requirement namespace="osgi.ee">
       <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
+    </requirement>
+    <requirement namespace="osgi.extender">
+      <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.4.0)(!(version&gt;=2.0.0)))"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=org.eclipse.emf.ecore.resource.ResourceSet)"/>
+      <directive name="effective" value="active"/>
+    </requirement>
+    <requirement namespace="osgi.service">
+      <directive name="filter" value="(objectClass=org.gecko.emf.util.documentation.generators.apis.EcoreToDocumentationService)"/>
+      <directive name="effective" value="active"/>
     </requirement>
   </resource>
 </repository>

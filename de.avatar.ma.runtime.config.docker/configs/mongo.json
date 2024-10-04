@@ -1,0 +1,15 @@
+{
+  ":configurator:resource-version": 1,
+  
+	"EMFMongoRepositoryConfigurator": 
+  	{
+	    "mongo.instances": "ma",
+		"ma.baseUris": "bla",
+		"ma.baseUris.env": "MONGO_BASE_URI",
+		"ma.databases" : "ma", 
+		"ma.user.env": "MONGO_USERNAME",
+		"ma.password.env": "MONGO_PASSWORD",
+		"ma.authSource": "admin", 
+		"ma.ma.repoType" : "PROTOTYPE" 
+	}
+}

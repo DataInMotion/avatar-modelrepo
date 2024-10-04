@@ -1,6 +1,0 @@
-/META-INF/*
-npm-generate.log
-package-lock.json
-/generated/*
-/bin/
-/bin_test/

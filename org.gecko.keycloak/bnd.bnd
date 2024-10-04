@@ -1,0 +1,12 @@
+-library: enable-emf
+
+Bundle-Version: 1.0.0.SNAPSHOT
+
+-buildpath: \
+	org.osgi.service.cm;version=latest,\
+	org.keycloak.keycloak-authz-client;version=latest,\
+	org.keycloak.keycloak-core;version=latest,\
+	org.keycloak.keycloak-servlet-filter-adapter;version=latest,\
+	org.apache.commons.commons-codec;version=latest,\
+	org.gecko.keycloak.api;version=snapshot
+	

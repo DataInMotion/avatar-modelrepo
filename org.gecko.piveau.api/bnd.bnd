@@ -1,0 +1,17 @@
+-library: enable-emf
+-buildpath: \
+	org.osgi.framework;version=latest,\
+	org.osgi.util.function;version=latest,\
+	org.osgi.util.converter;version=latest,\
+	org.osgi.util.tracker;version=latest,\
+	org.osgi.util.promise;version=latest,\
+	org.osgi.service.metatype.annotations;version=latest,\
+	org.osgi.annotation.bundle;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.annotation.versioning;version=latest,\
+	org.gecko.piveau.model;version=snapshot
+	
+Bundle-Name: Piveau API
+Bundle-Description: Piveau API
+-testpath: \
+	org.gecko.piveau.model

@@ -1,0 +1,12 @@
+Bundle-Name: Gecko Piveau Implementation
+Bundle-Description: Gecko based Piveau Provider
+
+-library: enable-emf
+-buildpath: \
+	org.osgi.util.converter;version=latest,\
+	org.osgi.service.component;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.framework;version=latest,\
+	org.gecko.piveau.api;version=snapshot,\
+	org.gecko.piveau.model;version=snapshot,\
+	de.avatar.ma.mediatypes.api;version=snapshot

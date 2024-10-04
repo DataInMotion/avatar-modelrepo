@@ -6,7 +6,7 @@ Bundle-SCM: url=https://github.com/DataInMotion/avatar-modelrepo, \
 	connection=scm:git:git@github.com:DataInMotion/avatar-modelrepo.git, \
 	developerConnection=scm:git:git@github.com:DataInMotion/avatar-modelrepo.git
 
-
+dimcBaselining: false
 Bundle-Developers: \
     jalbert; \
         email="j.albert@data-in-motion.biz"; \
@@ -30,19 +30,19 @@ Bundle-Developers: \
 -library: \
 	geckoEMF,\
 	geckoOSGi-Test,\
-	geckoDIMC,\
-	geckoJacoco,\
+	geckoEMFRepository,\
 	geckoEMFUtil,\
-	geckoSearch,\
-	geckoVaadin
+	jakartaREST
 	
 # Needed because we enabled library 'gecko-dimc' 	
 github-project: DataInMotion/avatar-modelrepo
-base-version: 1.0.0.SNAPSHOT
-avatar-mr-version: ${base-version}.SNAPSHOT
+base-version: 1.0.0
+ma-version: ${base-version}.SNAPSHOT
+
+Bundle-Version: ${ma-version}
 
 # Maven Central Group-Id
--groupid: de.avatar.mr
+-groupid: de.avatar.ma
 
 -fixupmessages: \
 	"No metadata for revision";\
@@ -51,11 +51,6 @@ avatar-mr-version: ${base-version}.SNAPSHOT
 
 -snapshot: ${tstamp}-SNAPSHOT
 -pom: version=${versionmask;===s;${@version}}	
-# Find out if the current Bundle Version is already deployed in any repository (excluding the Workspace)
-releaseNotNeeded: ${findproviders;osgi.identity;(&(osgi.identity=${bsn})(version=${avatar-mr-version}));REPOS}
-
-# If release not needed is empty, no Bundle has been found and for maven we do a release to the remote Repo. If not, we only do a release to the local .m2 Repo
--maven-release.local: ${if;${def;releaseNotNeeded};local;remote}
 
 -plugin: aQute.bnd.deployer.repository.LocalIndexedRepo;\
 		local               =${.}/local;\

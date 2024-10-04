@@ -1,0 +1,8 @@
+-include: modelatlas.runtime_base.bndrun
+
+-runbundles.docker: de.avatar.ma.runtime.config.docker
+-runproperties.docker: \
+	base.path=${.},\
+	logback.configurationFile=file:/opt/ma/runtime/etc/logback.xml,\
+	gecko.log.dir=/opt/ma/runtime/logs,\
+	org.apache.felix.configadmin.plugin.interpolation.secretsdir=${.}/runtime/secrets

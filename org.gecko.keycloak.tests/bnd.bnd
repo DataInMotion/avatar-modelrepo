@@ -1,0 +1,12 @@
+Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+
+-library: enableOSGi-Test
+
+Bundle-Version: 1.0.0.SNAPSHOT
+
+-buildpath: \
+	org.osgi.framework;version=latest,\
+	org.keycloak.keycloak-core;version=latest,\
+	org.apache.commons.commons-codec;version=latest,\
+	org.gecko.keycloak.api;version=snapshot,\
+	org.gecko.keycloak;version=snapshot

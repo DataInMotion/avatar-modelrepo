@@ -1,0 +1,10 @@
+-include: ../de.avatar.ma.runtime/modelatlas.runtime_base.bndrun
+
+-runbundles.local: \
+	de.avatar.ma.runtime.config.local,\
+	de.avatar.ma.piveau,\
+	org.gecko.piveau.api,\
+	org.gecko.piveau.model,\
+	org.gecko.piveau.rest.jakarta,\
+	de.avatar.ma.piveau.config,\
+	
