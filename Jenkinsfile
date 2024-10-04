@@ -32,10 +32,10 @@ pipeline  {
 			}
 		}
 		
-		stage('Skipping Integration Tests') {
+		stage('Snapshot Integration Tests') {
 
 			when { 
-                branch 'Skipping' 
+                branch 'develop' 
             }
 
 			steps {
@@ -54,6 +54,7 @@ pipeline  {
         stage('Snapshot branch release') {
             when { 
                 branch 'snapshot'
+                branch 'develop'
             }
             steps  {
                 echo "I am building on ${env.JOB_NAME}"
