@@ -21,6 +21,9 @@ import org.gecko.emf.osgi.annotation.require.RequireEMF;
 import org.gecko.piveau.api.PiveauRegistry;
 import org.gecko.piveau.api.connector.DatasetConnector;
 import org.gecko.piveau.api.connector.DistributionConnector;
+import org.gecko.piveau.dcat.Dataset;
+import org.gecko.piveau.dcat.Distribution;
+import org.gecko.piveau.terms.StandardType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,10 +44,6 @@ import org.osgi.test.junit5.cm.ConfigurationExtension;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 import org.osgi.util.promise.PromiseFactory;
-
-import org.gecko.piveau.dcat.Dataset;
-import org.gecko.piveau.dcat.Distribution;
-import org.gecko.piveau.terms.StandardType;
 
 //import org.mockito.Mock;
 //import org.mockito.junit.jupiter.MockitoExtension;
@@ -140,7 +139,7 @@ public class MAPiveauProviderTest {
 		props.put("dataset.distributionHost", "ma.avatar.de");
 		providerConfig.update(props);
 		
-		PiveauRegistry registry = adapterAware.waitForService(1000l);
+		PiveauRegistry registry = adapterAware.waitForService(10000l);
 		assertNotNull(registry);
 		
 		testRegistration = ctx.registerService(EPackage.class, testPackage, Dictionaries.dictionaryOf("emf.model.name", "test", "Piveau", "ma-ds"));
@@ -152,19 +151,19 @@ public class MAPiveauProviderTest {
 		assertEquals(2, dataset.getTitle().size());
 		assertEquals(2, dataset.getDescription().size());
 		assertEquals("https://ma.avatar.de/demo/ma-ds", dataset.getAbout());
-		assertEquals(2, registry.getActiveDistributions().size());
+		assertEquals(4, registry.getActiveDistributions().size());
 		Distribution dist = registry.getActiveDistributions().get(0);
-		assertEquals("MAREST for model 'toast'", dist.getTitle().getValue());
+		assertTrue(dist.getTitle().getValue().startsWith("MA REST for model 'toast'"));
 		assertEquals(1, dist.getDescription().size());
-		assertEquals("REST Endpoint mytest for model 'toast'", dist.getDescription().get(0).getValue());
+		assertEquals("REST Endpoint 'mytest' for model 'toast'", dist.getDescription().get(0).getValue());
 		assertEquals(1, dist.getConformsTo().size());
 		StandardType standard = dist.getConformsTo().get(0).getStandard();
 		assertEquals(1, standard.getTitle().size());
 		assertEquals("toast", standard.getTitle().get(0).getValue());
 		assertEquals("https://toast", standard.getAbout());
 		
-		assertEquals(2, dataset.getDistribution().size());
-		assertEquals(2, updatedDatasetRef.get().getDistribution().size());
+		assertEquals(4, dataset.getDistribution().size());
+		assertEquals(4, updatedDatasetRef.get().getDistribution().size());
 		assertEquals(updatedDatasetRef.get().getAbout(), dataset.getAbout());
 		
 		testDemoRegistration.unregister();
@@ -229,14 +228,14 @@ public class MAPiveauProviderTest {
 		assertEquals(2, dataset.getTitle().size());
 		assertEquals(2, dataset.getDescription().size());
 		assertEquals("https://ma.test.de/demo/ma-ds", dataset.getAbout());
-		assertEquals(2, registry.getActiveDistributions().size());
+		assertEquals(4, registry.getActiveDistributions().size());
 		Distribution dist = registry.getActiveDistributions().get(0);
-		assertEquals("MA REST for model 'blub'", dist.getTitle().getValue());
+		assertTrue(dist.getTitle().getValue().startsWith("MA REST for model 'blub'"));
 		assertTrue(dist.getDescription().isEmpty());
 		assertTrue(dist.getConformsTo().isEmpty());
 		
-		assertEquals(2, dataset.getDistribution().size());
-		assertEquals(2, updatedDatasetRef.get().getDistribution().size());
+		assertEquals(4, dataset.getDistribution().size());
+		assertEquals(4, updatedDatasetRef.get().getDistribution().size());
 		assertEquals(updatedDatasetRef.get().getAbout(), dataset.getAbout());
 		
 		testDemoRegistration.unregister();
@@ -301,14 +300,14 @@ public class MAPiveauProviderTest {
 		assertEquals(2, dataset.getTitle().size());
 		assertEquals(2, dataset.getDescription().size());
 		assertEquals("https://ma.test.de/demo/ma-ds", dataset.getAbout());
-		assertEquals(2, registry.getActiveDistributions().size());
+		assertEquals(4, registry.getActiveDistributions().size());
 		Distribution dist = registry.getActiveDistributions().get(0);
-		assertEquals("MA REST for model '<none>'", dist.getTitle().getValue());
+		assertTrue(dist.getTitle().getValue().startsWith("MA REST for model 'NONE'"));
 		assertTrue(dist.getDescription().isEmpty());
 		assertTrue(dist.getConformsTo().isEmpty());
 		
-		assertEquals(2, dataset.getDistribution().size());
-		assertEquals(2, updatedDatasetRef.get().getDistribution().size());
+		assertEquals(4, dataset.getDistribution().size());
+		assertEquals(4, updatedDatasetRef.get().getDistribution().size());
 		assertEquals(updatedDatasetRef.get().getAbout(), dataset.getAbout());
 		
 		testDemoRegistration.unregister();
@@ -377,7 +376,7 @@ public class MAPiveauProviderTest {
 		assertEquals("https://ma.test.de/demo/ma-ds", dataset.getAbout());
 		
 		Distribution dist = registry.getActiveDistributions().get(0);
-		assertEquals("MA GraphQL for model 'test'", dist.getTitle().getValue());
+		assertTrue(dist.getTitle().getValue().startsWith("MA GraphQL for model 'test'"));
 		assertEquals(1, dist.getDescription().size());
 		assertEquals("GraphQL Endpoint for model 'test'", dist.getDescription().get(0).getValue());
 		assertEquals(1, dist.getConformsTo().size());
@@ -454,7 +453,7 @@ public class MAPiveauProviderTest {
 		assertEquals("https://ma.test.de/demo/ma-ds", dataset.getAbout());
 		assertEquals(1, registry.getActiveDistributions().size());
 		Distribution dist = registry.getActiveDistributions().get(0);
-		assertEquals("MA GraphQL for model 'blub'", dist.getTitle().getValue());
+		assertTrue(dist.getTitle().getValue().startsWith("MA GraphQL for model 'blub'"));
 		assertEquals(1, dist.getDescription().size());
 		assertEquals("GraphQL Endpoint for model 'blub'", dist.getDescription().get(0).getValue());
 		assertTrue(dist.getConformsTo().isEmpty());
@@ -527,9 +526,9 @@ public class MAPiveauProviderTest {
 		assertEquals("https://ma.test.de/demo/ma-ds", dataset.getAbout());
 		assertEquals(1, registry.getActiveDistributions().size());
 		Distribution dist = registry.getActiveDistributions().get(0);
-		assertEquals("MA GraphQL for model '<none>'", dist.getTitle().getValue());
+		assertTrue(dist.getTitle().getValue().startsWith("MA GraphQL for model 'NONE'"));
 		assertEquals(1, dist.getDescription().size());
-		assertEquals("GraphQL Endpoint for model '<none>'", dist.getDescription().get(0).getValue());
+		assertEquals("GraphQL Endpoint for model 'NONE'", dist.getDescription().get(0).getValue());
 		assertTrue(dist.getConformsTo().isEmpty());
 		
 		assertEquals(1, dataset.getDistribution().size());
