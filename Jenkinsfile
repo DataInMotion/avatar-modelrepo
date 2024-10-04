@@ -53,7 +53,6 @@ pipeline  {
         
         stage('Snapshot branch release') {
             when { 
-                branch 'snapshot'
                 branch 'develop'
             }
             steps  {
