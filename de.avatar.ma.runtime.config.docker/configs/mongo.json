@@ -4,7 +4,7 @@
 	"EMFMongoRepositoryConfigurator": 
   	{
 	    "mongo.instances": "ma",
-		"ma.baseUris": "bla",
+		"ma.baseUris": "mongodb://mongodb:27017",
 		"ma.baseUris.env": "MONGO_BASE_URI",
 		"ma.databases" : "ma", 
 		"ma.user.env": "MONGO_USERNAME",

@@ -1,16 +1,12 @@
-version: '2'
-
 services:
 
     mongodb:
         image: mongo:4.2
         entrypoint: [ "/usr/bin/mongod", "--dbpath", "/data", "--journal", "--bind_ip", "0.0.0.0"]
-        ports:
-            - "27017:27017"
 
-    mdo:
-        image: devel.data-in-motion.biz:6000/scj/mdo:latest
+    avatar-ma:
+        image: devel.data-in-motion.biz:6000/avatar/ma:latest
         ports:
-            - "8085:8085"
+            - "8015:8085"
 
 
