@@ -3,10 +3,18 @@ services:
     mongodb:
         image: mongo:4.2
         entrypoint: [ "/usr/bin/mongod", "--dbpath", "/data", "--journal", "--bind_ip", "0.0.0.0"]
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=avatar
+            - MONGO_INITDB_ROOT_PASSWORD=init@avatar_
 
     avatar-ma:
         image: devel.data-in-motion.biz:6000/avatar/ma:latest
         ports:
             - "8015:8085"
+        environment:
+            - MONGO_BASE_URI=mongodb://mongodb:27017
+            - MONGO_USERNAME=avatar
+            - MONGO_PASSWORD=init@avatar_
+
 
 
